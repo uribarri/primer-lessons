@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narrative Summaries: The Lady Who Put Salt in Her Coffee</title>
+    <!-- Google Fonts: Cinzel & Cormorant Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f9f5eb;
+            --parchment-card: #f3ebd7;
+            --ink: #2b1f17;
+            --burgundy: #7a1c1c;
+            --gold: #c5a059;
+            --gold-light: #e6d3a7;
+            --border-dark: #4a382a;
+            --quote-bg: #f5eedc;
+            --highlight-bad: #8b2626;
+            --highlight-good: #2a663b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--parchment);
+            color: var(--ink);
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.25rem;
+            line-height: 1.75;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            background: var(--parchment);
+            border: 2px solid var(--gold);
+            padding: 3rem 3.5rem;
+            box-shadow: 0 0 25px rgba(0,0,0,0.08), inset 0 0 60px rgba(197,160,89,0.12);
+            position: relative;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
+            border: 1px solid var(--gold-light);
+            pointer-events: none;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .curriculum-meta {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            color: var(--burgundy);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--burgundy);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-size: 1.35rem;
+            color: var(--border-dark);
+        }
+
+        /* Typography & Structure */
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.75rem;
+            color: var(--burgundy);
+            margin: 2.5rem 0 1rem 0;
+            border-bottom: 1px solid var(--gold-light);
+            padding-bottom: 0.3rem;
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.35rem;
+            color: var(--border-dark);
+            margin: 1.75rem 0 0.75rem 0;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            text-align: justify;
+        }
+
+        .dropcap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 10px;
+            padding-left: 3px;
+            color: var(--burgundy);
+            font-weight: 700;
+        }
+
+        .vocab {
+            color: var(--burgundy);
+            font-weight: 600;
+            border-bottom: 1px dotted var(--burgundy);
+        }
+
+        /* Bookplate Image Box */
+        figure.book-plate {
+            margin: 2rem 0;
+            text-align: center;
+            border: 1px solid var(--gold);
+            padding: 1rem;
+            background: var(--parchment-card);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        figure.book-plate img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-dark);
+            display: block;
+            margin: 0 auto;
+        }
+
+        figcaption {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: var(--border-dark);
+            margin-top: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Original Text Cards */
+        .source-text-block {
+            background-color: var(--quote-bg);
+            border-left: 4px solid var(--burgundy);
+            border-right: 1px solid var(--gold-light);
+            border-top: 1px solid var(--gold-light);
+            border-bottom: 1px solid var(--gold-light);
+            padding: 1.5rem 1.75rem;
+            margin: 1.5rem 0;
+            font-style: normal;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+        }
+
+        .source-text-block .author-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--burgundy);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Dialogue Box & Notes */
+        .character-dialogue {
+            background: var(--parchment-card);
+            border: 1px solid var(--gold);
+            padding: 1.25rem 1.5rem;
+            margin: 1.25rem 0;
+            border-radius: 2px;
+        }
+
+        .character-name {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--burgundy);
+            margin-bottom: 0.25rem;
+        }
+
+        .bad-idea {
+            background-color: #fdf2f2;
+            border-left: 4px solid var(--highlight-bad);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+        }
+
+        .bad-idea .tag {
+            font-family: 'Cinzel', serif;
+            color: var(--highlight-bad);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .good-idea {
+            background-color: #f2f8f3;
+            border-left: 4px solid var(--highlight-good);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+        }
+
+        .good-idea .tag {
+            font-family: 'Cinzel', serif;
+            color: var(--highlight-good);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .notebook-page {
+            background-color: #fffdf7;
+            border: 1px solid #d4c5a9;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        .notebook-page h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--burgundy);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid #e0d5be;
+            padding-bottom: 0.25rem;
+        }
+
+        ol, ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        hr.divider {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(197, 160, 89, 0), rgba(197, 160, 89, 0.75), rgba(197, 160, 89, 0));
+            margin: 2.5rem 0;
+        }
+
+        .checklist-card {
+            background: var(--parchment-card);
+            border: 2px double var(--gold);
+            padding: 1.75rem;
+            margin: 2.5rem 0;
+        }
+
+        .checklist-card h3 {
+            text-align: center;
+            color: var(--burgundy);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="curriculum-meta">Writing with Skill &bull; Level 1 &bull; Week 1, Day 1</div>
+        <h1>The Art of Narrative Summary</h1>
+        <div class="subtitle">Learning to Extract the Plot with Cloud & Rama Lama</div>
+    </header>
+
+    <figure class="book-plate">
+        <img src="../../assets/illustrations/cloud_rama_lesson.jpg" alt="Rama Lama guiding Cloud at a Victorian study table with a leather notebook and scratch paper.">
+        <figcaption>Figure 1. Rama Lama explaining the four steps of narrative summary to Cloud in the study.</figcaption>
+    </figure>
+
+    <p><span class="dropcap">U</span>nder the shade of an ancient oak at the edge of the sunlit meadow, <strong>Rama Lama</strong> sat quietly on a smooth, flat stone. His curved, cream-colored horns gleamed in the light, and his turquoise bead necklace rested gently against his soft, curly brown wool. Across from him sat <strong>Cloud</strong>, his golden-brown fluffy fur slightly ruffled, his dark expressive eyes filled with eager concentration as he held a pencil over a blank pad of scratch paper.</p>
+
+    <p>"Now, little Cloud," Rama Lama said in a calm, encouraging voice, "before you open your text, let us review our <strong>four-step procedure</strong>. Many young writers read a story first and only later discover they were supposed to take notes. This forces them to re-read the entire piece from the beginning. We shall avoid that friction today!"</p>
+
+    <div class="checklist-card">
+        <h3>The 4-Step Summary Workflow</h3>
+        <ol>
+            <li><strong>Step 1: Set the Objective (Before Reading):</strong> Know your goal in advance. Get scratch paper ready and look for <em>only the 4 to 6 main events</em> in chronological order.</li>
+            <li><strong>Step 2: Read & Note (Active Reading):</strong> Read the story through once. As you read, write down <em>short phrases</em> (not full sentences) for main events on scratch paper—ignoring decorative details.</li>
+            <li><strong>Step 3: Draft & Speak Aloud:</strong> Combine your short phrases into 2 to 3 smooth sentences. <em>Speak your sentences out loud first</em> before writing them down.</li>
+            <li><strong>Step 4: Write & Proofread:</strong> Copy your sentences into your notebook, read out loud to self-check punctuation and proper nouns, and review with your instructor.</li>
+        </ol>
+    </div>
+
+    <h2>Step 1: Set the Objective & Prepare</h2>
+
+    <div class="character-dialogue">
+        <div class="character-name">Rama Lama</div>
+        <p>"Before you read a single word of <em>The Lady Who Put Salt in Her Coffee</em>, Cloud, set your mind on the <span class="vocab">chronological</span> trunk of the tree. A story has a sturdy trunk—the central plot—and many decorative leaves. Your objective is to write down <strong>short phrases</strong> for 5 or 6 main events in order. Do not write full sentences yet—just brief reminder phrases!"</p>
+    </div>
+
+    <div class="character-dialogue">
+        <div class="character-name">Cloud</div>
+        <p>"Trunk first, no leaves! Short phrases on scratch paper!" Cloud repeated eagerly, adjusting his small turquoise pendant.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Step 2: Read & Note (Part I — The Salt & The Chemist)</h2>
+
+    <p>Cloud opened his book and began reading the unabridged text of Lucretia P. Hale's classic tale.</p>
+
+    <div class="source-text-block">
+        <div class="author-tag">Unabridged Text — Chapter I, Part 1</div>
+        <p>This was Mrs. Peterkin. It was a mistake. She had poured out a delicious cup of coffee, and, just as she was helping herself to cream, she found she had put in salt instead of sugar! It tasted bad. What should she do? Of course she couldn't drink the coffee; so she called in the family, for she was sitting at a late breakfast all alone. The family came in; they all tasted, and looked, and wondered what should be done, and all sat down to think.</p>
+        <p>At last Agamemnon, who had been to college, said, "Why don't we go over and ask the advice of the chemist?" (For the chemist lived over the way, and was a very wise man.)</p>
+        <p>Mrs. Peterkin said, "Yes," and Mr. Peterkin said, "Very well," and all the children said they would go too. So the little boys put on their india-rubber boots, and over they went.</p>
+        <p>Now the chemist was just trying to find out something which should turn everything it touched into gold; and he had a large glass bottle into which he put all kinds of gold and silver, and many other valuable things, and melted them all up over the fire, till he had almost found what he wanted. He could turn things into <em>almost</em> gold. But just now he had used up all the gold that he had round the house, and gold was high. He had used up his wife's gold thimble and his great-grandfather's gold-bowed spectacles; and he had melted up the gold head of his great-great-grandfather's cane; and, just as the Peterkin family came in, he was down on his knees before his wife, asking her to let him have her wedding-ring to melt up with all the rest, because this time he knew he should succeed, and should be able to turn everything into gold; and then she could have a new wedding-ring of diamonds, all set in emeralds and rubies and topazes, and all the furniture could be turned into the finest of gold.</p>
+        <p>Now his wife was just consenting when the Peterkin family burst in. You can imagine how mad the chemist was! He came near throwing his crucible—that was the name of his melting-pot—at their heads. But he didn't. He listened as calmly as he could to the story of how Mrs. Peterkin had put salt in her coffee.</p>
+        <p>At first he said he couldn't do anything about it; but when Agamemnon said they would pay in gold if he would only go, he packed up his bottles in a leather case, and went back with them all.</p>
+        <p>First he looked at the coffee, and then stirred it. Then he put in a little chlorate of potassium, and the family tried it all round; but it tasted no better. Then he stirred in a little bichlorate of magnesia. But Mrs. Peterkin didn't like that. Then he added some tartaric acid and some hypersulphate of lime. But no; it was no better. "I have it!" exclaimed the chemist,—"a little ammonia is just the thing!" No, it wasn't the thing at all.</p>
+        <p>Then he tried, each in turn, some oxalic, cyanic, acetic, phosphoric, chloric, hyperchloric, sulphuric, boracic, silicic, nitric, formic, nitrous nitric, and carbonic acids. Mrs. Peterkin tasted each, and said the flavor was pleasant, but not precisely that of coffee. So then he tried a little calcium, aluminum, barium, and strontium, a little clear bitumen, and a half of a third of a sixteenth of a grain of arsenic. This gave rather a pretty color; but still Mrs. Peterkin ungratefully said it tasted of anything but coffee. The chemist was not discouraged. He put in a little belladonna and atropine, some granulated hydrogen, some potash, and a very little antimony, finishing off with a little pure carbon. But still Mrs. Peterkin was not satisfied.</p>
+        <p>The chemist said that all he had done ought to have taken out the salt. The theory remained the same, although the experiment had failed. Perhaps a little starch would have some effect. If not, that was all the time he could give. He should like to be paid, and go. They were all much obliged to him, and willing to give him $1.37½ in gold. Gold was now 2.69¾, so Mr. Peterkin found in the newspaper. This gave Agamemnon a pretty little sum. He sat himself down to do it. But there was the coffee!</p>
+    </div>
+
+    <figure class="book-plate">
+        <img src="../../assets/illustrations/peterkin_coffee_chemist.jpg" alt="Victorian bookplate engraving showing Mrs. Peterkin at the table with the eccentric chemist mixing chemicals.">
+        <figcaption>Figure 2. Mrs. Peterkin and her family watching the chemist attempt to fix her coffee with chemical acids.</figcaption>
+    </figure>
+
+    <h3>Cloud's First Reaction & Note-Taking Attempt</h3>
+
+    <p>Cloud's pencil flew across his scratch paper as he jotted down notes while reading.</p>
+
+    <div class="bad-idea">
+        <div class="tag">Cloud's Trap — Distracting Details (Bad Notes)</div>
+        <ul>
+            <li><em>"Little boys put on india-rubber boots"</em></li>
+            <li><em>"Chemist melted wife's gold thimble and grand-grandfather's spectacles"</em></li>
+            <li><em>"Used arsenic, chlorate of potassium, and pure carbon"</em></li>
+        </ul>
+    </div>
+
+    <div class="character-dialogue">
+        <div class="character-name">Rama Lama</div>
+        <p>"Hold your pencil a moment, Cloud," Rama Lama guided gently. "Look at your notes. If the little boys had worn plain leather shoes instead of india-rubber boots, would Mrs. Peterkin still have salt in her coffee?"</p>
+    </div>
+
+    <div class="character-dialogue">
+        <div class="character-name">Cloud</div>
+        <p>Cloud scratched his soft furry ear. "Well... yes. She'd still have salty coffee."</p>
+    </div>
+
+    <div class="character-dialogue">
+        <div class="character-name">Rama Lama</div>
+        <p>"And if the chemist had not melted his spectacles, would his chemical experiment on the coffee have changed?"</p>
+    </div>
+
+    <div class="character-dialogue">
+        <div class="character-name">Cloud</div>
+        <p>"No! He still tried chemicals and failed." Cloud's expressive eyes lit up. "Ah! The boots and the spectacles are decorative leaves! The trunk is just short reminder phrases: <strong>Mrs. Peterkin put salt in coffee</strong> and <strong>Chemist tried chemicals — failed</strong>."</p>
+    </div>
+
+    <div class="good-idea">
+        <div class="tag">Cloud's Refined Plot Notes (Short Phrases)</div>
+        <ol>
+            <li><em>Mrs. Peterkin put salt in coffee by mistake</em></li>
+            <li><em>Chemist tried chemicals — made it taste worse</em></li>
+        </ol>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Step 2: Read & Note (Part II — The Herb-Woman & The Lady from Philadelphia)</h2>
+
+    <p>Cloud continued reading the second half of the story.</p>
+
+    <div class="source-text-block">
+        <div class="author-tag">Unabridged Text — Chapter I, Part 2</div>
+        <p>All sat and thought awhile, till Elizabeth Eliza said, "Why don't we go to the herb-woman?" Elizabeth Eliza was the only daughter. She was named after her two aunts,—Elizabeth, from the sister of her father; Eliza, from her mother's sister. Now, the herb-woman was an old woman who came round to sell herbs, and knew a great deal. They all shouted with joy at the idea of asking her, and Solomon John and the younger children agreed to go and find her too. The herb-woman lived down at the very end of the street; so the boys put on their india-rubber boots again, and they set off. It was a long walk through the village, but they came at last to the herb-woman's house, at the foot of a high hill. They went through her little garden. Here she had marigolds and hollyhocks, and old maids and tall sunflowers, and all kinds of sweet-smelling herbs, so that the air was full of tansy-tea and elder-blow. Over the porch grew a hop-vine, and a brandy-cherry tree shaded the door, and a luxuriant cranberry-vine flung its delicious fruit across the window. They went into a small parlor, which smelt very spicy. All around hung little bags full of catnip, and peppermint, and all kinds of herbs; and dried stalks hung from the ceiling; and on the shelves were jars of rhubarb, senna, manna, and the like.</p>
+        <p>But there was no little old woman. She had gone up into the woods to get some more wild herbs, so they all thought they would follow her,—Elizabeth Eliza, Solomon John, and the little boys. They had to climb up over high rocks, and in among huckleberry-bushes and blackberry-vines. But the little boys had their india-rubber boots. At last they discovered the little old woman. They knew her by her hat. It was steeple-crowned, without any vane. They saw her digging with her trowel round a sassafras bush. They told her their story,—how their mother had put salt in her coffee, and how the chemist had made it worse instead of better, and how their mother couldn't drink it, and wouldn't she come and see what she could do? And she said she would, and took up her little old apron, with pockets all round, all filled with everlasting and pennyroyal, and went back to her house.</p>
+        <p>There she stopped, and stuffed her huge pockets with some of all the kinds of herbs. She took some tansy and peppermint, and caraway-seed and dill, spearmint and cloves, pennyroyal and sweet marjoram, basil and rosemary, wild thyme and some of the other time,—such as you have in clocks,—sappermint and oppermint, catnip, valerian, and hop; indeed, there isn't a kind of herb you can think of that the little old woman didn't have done up in her little paper bags, that had all been dried in her little Dutch-oven. She packed these all up, and then went back with the children, taking her stick.</p>
+        <p>Meanwhile Mrs. Peterkin was getting quite impatient for her coffee.</p>
+        <p>As soon as the little old woman came she had it set over the fire, and began to stir in the different herbs. First she put in a little hop for the bitter. Mrs. Peterkin said it tasted like hop-tea, and not at all like coffee. Then she tried a little flag-root and snakeroot, then some spruce gum, and some caraway and some dill, some rue and rosemary, some sweet marjoram and sour, some oppermint and sappermint, a little spearmint and peppermint, some wild thyme, and some of the other tame time, some tansy and basil, and catnip and valerian, and sassafras, ginger, and pennyroyal. The children tasted after each mixture, but made up dreadful faces. Mrs. Peterkin tasted, and did the same. The more the old woman stirred, and the more she put in, the worse it all seemed to taste.</p>
+        <p>So the old woman shook her head, and muttered a few words, and said she must go. She believed the coffee was bewitched. She bundled up her packets of herbs, and took her trowel, and her basket, and her stick, and went back to her root of sassafras, that she had left half in the air and half out. And all she would take for pay was five cents in currency.</p>
+        <p>Then the family were in despair, and all sat and thought a great while. It was growing late in the day, and Mrs. Peterkin hadn't had her cup of coffee. At last Elizabeth Eliza said, "They say that the lady from Philadelphia, who is staying in town, is very wise. Suppose I go and ask her what is best to be done." To this they all agreed, it was a great thought, and off Elizabeth Eliza went.</p>
+        <p>She told the lady from Philadelphia the whole story,—how her mother had put salt in the coffee; how the chemist had been called in; how he tried everything but could make it no better; and how they went for the little old herb-woman, and how she had tried in vain, for her mother couldn't drink the coffee. The lady from Philadelphia listened very attentively, and then said, "Why doesn't your mother make a fresh cup of coffee?"</p>
+        <p>Elizabeth Eliza started with surprise. Solomon John shouted with joy; so did Agamemnon, who had just finished his sum; so did the little boys, who had followed on. "Why didn't we think of that?" said Elizabeth Eliza; and they all went back to their mother, and she had her cup of coffee.</p>
+    </div>
+
+    <h3>Cloud's Second Note-Taking Checkpoint</h3>
+
+    <p>Having learned to avoid decorative details, Cloud jotted down his complete list of 5 short main-event phrases on scratch paper:</p>
+
+    <div class="good-idea">
+        <div class="tag">Cloud's Complete Scratch-Paper Notes (5 Short Phrases)</div>
+        <ol>
+            <li><em>Mrs. Peterkin put salt in coffee by mistake</em></li>
+            <li><em>Chemist tried chemicals — made it taste worse</em></li>
+            <li><em>Herb-woman tried herbs — failed too</em></li>
+            <li><em>Asked wise lady from Philadelphia for advice</em></li>
+            <li><em>Lady suggested making fresh cup of coffee</em></li>
+        </ol>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Step 3: Draft & Speak Aloud (Combining Phrases into Sentences)</h2>
+
+    <p>Now that he had 5 short reminder phrases, Cloud tried to turn them into full summary sentences. At first, he tried writing right away without speaking out loud.</p>
+
+    <div class="bad-idea">
+        <div class="tag">Cloud's Mumbled First Attempt (Without Speaking Out Loud First)</div>
+        <p><em>"Mrs. Peterkin put salt in her coffee so the family asked the chemist who used chemicals but it made it worse and then they asked the herb-woman who used herbs like tansy and peppermint but it was still bad so Elizabeth Eliza went to the lady from Philadelphia..."</em></p>
+    </div>
+
+    <div class="character-dialogue">
+        <div class="character-name">Rama Lama</div>
+        <p>"Stop a moment, Cloud! Listen to how breathless that sounds! You tried to write complete sentences before testing them with your voice. Speak your sentences out loud first."</p>
+    </div>
+
+    <p>Cloud took a deep breath, closed his eyes, and recited his draft out loud to hear the rhythm:</p>
+
+    <div class="character-dialogue">
+        <div class="character-name">Cloud (Speaking Aloud)</div>
+        <p><em>"When Mrs. Peterkin accidentally put salt in her morning coffee, her family asked a chemist to fix it. However, his chemical mixtures only made the coffee taste worse. Next, they tried using the herb-woman's herbs, but that failed too. Finally, they consulted the wise lady from Philadelphia, who simply suggested making a fresh cup."</em></p>
+    </div>
+
+    <div class="character-dialogue">
+        <div class="character-name">Rama Lama</div>
+        <p>"A triumph of oral editing!" Rama Lama nodded warmly. "By speaking out loud, you turned five short phrases into three clear, balanced sentences. Now write them down!"</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Step 4: Write & Proofread (Final Polish)</h2>
+
+    <p>Cloud copied his polished sentences into his notebook and performed his final proofreading check:</p>
+
+    <div class="notebook-page">
+        <h4>Composition Notebook &bull; Section 1: Narrations</h4>
+        <p>When Mrs. Peterkin accidentally put salt in her morning coffee, her family asked a chemist to fix it. However, his chemical mixtures only made the coffee taste worse. Next, they tried using the herb-woman's herbs, but that failed too. Finally, they consulted the wise lady from Philadelphia, who simply suggested making a fresh cup.</p>
+    </div>
+
+    <div class="checklist-card">
+        <h3>Cloud's Final Self-Proofreading Checklist</h3>
+        <ul>
+            <li>&check; <strong>Chronological Order:</strong> Events follow the exact order of the story.</li>
+            <li>&check; <strong>No Excess Details:</strong> Omitted boots, thimbles, 24 herbs, and chemical names.</li>
+            <li>&check; <strong>Mechanics & Capitalization:</strong> Proper names (<em>Mrs. Peterkin</em>, <em>Philadelphia</em>) capitalized.</li>
+            <li>&check; <strong>Sentence Count:</strong> Exactly 3 smooth, complete sentences formed from 5 short phrases.</li>
+        </ul>
+    </div>
+
+    <div class="character-dialogue">
+        <div class="character-name">Rama Lama</div>
+        <p>"Well done, Cloud! You set your goal before reading, wrote short phrases for the main plot events, spoke your draft aloud, and proofread your final text. You are now a master of narrative summaries!"</p>
+    </div>
+
+</div>
+
+</body>
+</html>

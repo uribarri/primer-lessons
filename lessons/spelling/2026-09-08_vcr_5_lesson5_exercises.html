@@ -1,0 +1,2272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="primer-week" content="5">
+  <meta name="primer-day" content="2">
+  <meta name="primer-uuid" content="bb6632f5-ad47-5830-80d5-49becc468906">
+  {{EXTRA_META_TAGS}}
+  <title>Book 5, L5: Looking at Our Planet (terr, aqua, marin) — Worksheet Exercises A–D</title>
+  <!-- Google Fonts: Cormorant Garamond, EB Garamond & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Neo-Victorian Base Palette Variables */
+    :root {
+      --bg-body-outer: #1a1410;
+      --bg-body-image: radial-gradient(circle at center, rgba(30, 20, 15, 0.4) 0%, rgba(10, 7, 5, 0.9) 100%), linear-gradient(to bottom, #140d09, #241810, #140d09);
+      --bg-paper: #f9f5eb;
+      --bg-paper-dark: #f2ebd9;
+      --bg-paper-image: radial-gradient(#e8dfc8 1px, transparent 1px);
+      --text-ink: #2b1f17;
+      --text-muted: #5c4a3e;
+      --border-gold: #c5a059;
+      --border-gold-light: #e6c88b;
+      --accent-burgundy: #7a1c1c;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+      --font-body-size: 25.2px;
+      --font-body-weight: 400;
+      --page-box-shadow: 0 0 0 12px #261b14, 0 0 0 14px var(--border-gold), 0 25px 60px rgba(0, 0, 0, 0.85);
+      --plate-box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+      --border-width-base: 2px;
+      --scroll-behavior: smooth;
+    }
+
+    /* Color E-Ink Mode Overrides (Boox Note Air C & Kaleido 3 Hardware System) */
+    body.mode-eink {
+      --bg-body-outer: #ffffff;
+      --bg-body-image: none;
+      --bg-paper: #ffffff;
+      --bg-paper-dark: #f8f8f8;
+      --bg-paper-image: none;
+      --text-ink: #000000;
+      --text-muted: #000000;
+      --border-gold: #000000;
+      --border-gold-light: #000000;
+      --accent-burgundy: #800000;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'EB Garamond', serif;
+      --font-body-size: 28.8px;
+      --font-body-weight: 500;
+      --page-box-shadow: none;
+      --plate-box-shadow: none;
+      --border-width-base: 2px;
+      --scroll-behavior: auto;
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 120%;
+      scroll-behavior: var(--scroll-behavior);
+    }
+
+    body {
+      background-color: var(--bg-body-outer);
+      background-image: var(--bg-body-image);
+      color: var(--text-ink);
+      font-family: var(--font-body);
+      font-size: var(--font-body-size);
+      font-weight: var(--font-body-weight);
+      line-height: 1.8;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Stationary Fixed Outer Frame for E-Ink Viewport */
+    body.mode-eink::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 36px;
+      border: 3px solid #000000;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Paginated Multi-Column Container for E-Ink Mode */
+    body.mode-eink .book-page {
+      width: 100vw;
+      height: calc(100vh - 116px);
+      max-width: 100vw;
+      margin-top: 70px;
+      margin-bottom: 46px;
+      margin-left: 0;
+      margin-right: 0;
+      padding: 0;
+      column-width: 100vw;
+      column-gap: 0;
+      column-fill: auto;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      border: none;
+      box-shadow: none;
+      box-sizing: border-box;
+    }
+
+    /* Internal Side Padding for Block Elements in E-Ink Mode */
+    body.mode-eink .book-header,
+    body.mode-eink .chapter,
+    body.mode-eink .exercise-section,
+    body.mode-eink .flourish-divider,
+    body.mode-eink .grammar-callout,
+    body.mode-eink .character-dialogue,
+    body.mode-eink figure.book-plate,
+    body.mode-eink .book-footer {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      box-sizing: border-box;
+    }
+
+    /* Fragmentation & BFC Rules for E-Ink */
+    body.mode-eink section,
+    body.mode-eink .chapter,
+    body.mode-eink .exercise-section,
+    body.mode-eink .page {
+      display: block;
+      width: 100%;
+      min-height: 0 !important;
+      min-height: auto !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+      -webkit-column-break-inside: auto !important;
+      break-before: auto !important;
+      page-break-before: auto !important;
+      scroll-snap-align: none !important;
+    }
+
+    /* Protected Containers: Never Break Across Columns/Pages */
+    body.mode-eink figure,
+    body.mode-eink .character-dialogue,
+    body.mode-eink .grammar-callout,
+    body.mode-eink .math-callout,
+    body.mode-eink .study-box,
+    body.mode-eink .reflection-point,
+    body.mode-eink .arc-cards,
+    body.mode-eink .arc-card,
+    body.mode-eink .summary-card,
+    body.mode-eink .poem-stanza,
+    body.mode-eink .word-bank-box,
+    body.mode-eink .dictation-item,
+    body.mode-eink .matching-item,
+    body.mode-eink .morphology-item,
+    body.mode-eink blockquote,
+    body.mode-eink table {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    /* Exceptions: Large Multi-Page Containers Allowed to Fragment Across Pages */
+    body.mode-eink .poem-box {
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+      -webkit-column-break-inside: auto !important;
+    }
+
+    body.mode-eink h1,
+    body.mode-eink h2,
+    body.mode-eink h3,
+    body.mode-eink h4,
+    body.mode-eink h5,
+    body.mode-eink .chapter-heading,
+    body.mode-eink .character-name {
+      break-after: avoid !important;
+      page-break-after: avoid !important;
+    }
+
+    body.mode-eink .chapter-heading {
+      margin-top: 1.2rem;
+      margin-bottom: 0.8rem;
+      break-before: auto !important;
+    }
+
+    body.mode-eink .chapter-subtitle {
+      color: #000000;
+      margin-top: -0.4rem;
+      margin-bottom: 1rem;
+      text-indent: 0;
+    }
+
+    body.mode-eink .flourish-divider {
+      display: block;
+      margin: 3.5rem 0 !important;
+      padding: 0 !important;
+      line-height: 1.2 !important;
+      font-size: 1.4rem !important;
+      text-align: center;
+      clear: both;
+      break-inside: avoid !important;
+      break-before: auto !important;
+      break-after: auto !important;
+      page-break-after: auto !important;
+    }
+
+    body.mode-eink p.story-paragraph {
+      margin-bottom: 1rem;
+      widows: 2;
+      orphans: 2;
+    }
+
+    body.mode-eink .character-dialogue {
+      margin: 1rem 0;
+      padding: 0.8rem 1.2rem;
+      background: #f8f8f8;
+      border-left: 5px solid #000000 !important;
+      border-top: 3px solid #000000 !important;
+      border-bottom: 3px solid #000000 !important;
+      border-right: 3px solid #000000 !important;
+    }
+
+    body.mode-eink .grammar-callout,
+    body.mode-eink .math-callout {
+      margin: 1.2rem 0;
+      padding: 1.2rem 1.5rem;
+      background: #f8f8f8;
+      border-left: 6px solid #800000 !important;
+      border-top: 3px solid #000000 !important;
+      border-bottom: 3px solid #000000 !important;
+      border-right: 3px solid #000000 !important;
+    }
+
+    body.mode-eink .mode-toggle-container,
+    body.mode-eink #mode-toggle-btn {
+      display: none !important;
+    }
+
+    /* Floated Image Strategy for E-Ink */
+    body.mode-eink figure.book-plate {
+      float: left;
+      width: 100%;
+      margin: 0 0 1em 0;
+      border: none !important;
+      padding: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+
+    body.mode-eink figure.book-plate img {
+      width: 100%;
+      max-height: 40vh;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    body.mode-eink figure.book-plate figcaption {
+      font-size: 0.95rem;
+      font-style: italic;
+      text-align: center;
+      margin-top: 0.4em;
+      color: #000000;
+    }
+
+    /* Fixed Position Corner Flourishes for Every E-Ink Viewport */
+    body.mode-eink .corner-flourish {
+      position: fixed;
+      width: 44px;
+      height: 44px;
+      border: 3px solid #000000;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    body.mode-eink .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    body.mode-eink .corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    body.mode-eink .corner-bl { bottom: 52px; left: 16px; border-right: none; border-top: none; }
+    body.mode-eink .corner-br { bottom: 52px; right: 16px; border-left: none; border-top: none; }
+
+    /* Hardware E-Ink Media Query Auto-Detection */
+    @media (update: slow), (prefers-contrast: more) {
+      :root:not(.mode-lcd-user) {
+        --bg-body-outer: #ffffff;
+        --bg-body-image: none;
+        --bg-paper: #ffffff;
+        --bg-paper-dark: #f8f8f8;
+        --bg-paper-image: none;
+        --text-ink: #000000;
+        --text-muted: #000000;
+        --border-gold: #000000;
+        --border-gold-light: #000000;
+        --accent-burgundy: #800000;
+        --font-heading: 'Cinzel', serif;
+        --font-body: 'EB Garamond', serif;
+        --font-body-size: 28.8px;
+        --font-body-weight: 500;
+        --page-box-shadow: none;
+        --plate-box-shadow: none;
+        --border-width-base: 2px;
+        --scroll-behavior: auto;
+      }
+    }
+
+    /* Book Page Container (Classic LCD Mode Base) */
+    .book-page {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--bg-paper);
+      background-image: var(--bg-paper-image);
+      background-size: 24px 24px;
+      border: 1px solid var(--border-gold);
+      box-shadow: var(--page-box-shadow);
+      padding: 4rem 4.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .book-page {
+        padding: 2.5rem 1.8rem;
+      }
+    }
+
+    /* Mode Switcher Button (Top Right Margin) */
+    .mode-toggle-container {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      z-index: 100;
+    }
+
+    .mode-toggle-btn {
+      background: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      color: var(--text-ink);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 5px 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .mode-toggle-btn:hover {
+      background: var(--accent-burgundy);
+      color: #ffffff;
+    }
+
+    /* Ornate Filigree Corner Accents (LCD Base) */
+    .corner-flourish {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: var(--border-width-base) solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 16px; right: 180px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    /* Header & Title Block */
+    .book-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1.5px solid var(--border-gold-light);
+      position: relative;
+    }
+
+    .header-tag {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 700;
+    }
+
+    h1.book-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.3rem, 4.5vw, 3.3rem);
+      font-weight: 800;
+      color: var(--accent-burgundy);
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.8rem;
+    }
+
+    .book-subtitle {
+      font-style: italic;
+      font-size: 1.45rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Victorian Decorative Rule */
+    .flourish-divider {
+      text-align: center;
+      margin: 5rem 0;
+      color: var(--border-gold);
+      font-size: 1.65rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* Chapter Formatting */
+    .chapter {
+      margin-bottom: 3.5rem;
+    }
+
+    .chapter-heading {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1.5px solid var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    .chapter-subtitle {
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: -1.2rem;
+      margin-bottom: 1.8rem;
+      line-height: 1.5;
+      text-indent: 0;
+    }
+
+    /* Paragraphs & Drop Caps */
+    p.story-paragraph {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+      text-indent: 2em;
+      color: var(--text-ink);
+    }
+
+    p.story-paragraph.first-para {
+      text-indent: 0;
+    }
+
+    p.story-paragraph.first-para::first-letter {
+      font-family: var(--font-heading);
+      font-size: 4.0em;
+      float: left;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-burgundy);
+      font-weight: 800;
+    }
+
+    /* Vocabulary Words Styling */
+    .vocab {
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    /* Dialogue Styling */
+    .character-dialogue {
+      margin: 1.5rem 0;
+      padding: 1rem 1.4rem;
+      background: var(--bg-paper-dark);
+      border-left: 3.5px solid var(--border-gold);
+      color: var(--text-ink);
+    }
+
+    .character-name {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Key Definition Box */
+    .grammar-callout {
+      background: var(--bg-paper-dark);
+      border-left: 5px solid var(--accent-burgundy);
+      border-right: 3px solid var(--border-gold-light);
+      border-top: 3px solid var(--border-gold-light);
+      border-bottom: 3px solid var(--border-gold-light);
+      padding: 1.4rem 1.8rem;
+      margin: 2rem 0;
+      font-size: 1.15rem;
+      color: var(--text-ink);
+    }
+
+    .grammar-callout h3 {
+      font-family: var(--font-heading);
+      color: var(--accent-burgundy);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .grammar-callout ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .grammar-callout li {
+      margin-bottom: 0.5rem;
+      color: var(--text-ink);
+    }
+
+    /* Math Key Equations & Number Line Callouts */
+    .math-callout {
+      background: var(--bg-paper-dark);
+      border-left: 5px solid var(--accent-burgundy);
+      border-right: 3px solid var(--border-gold-light);
+      border-top: 3px solid var(--border-gold-light);
+      border-bottom: 3px solid var(--border-gold-light);
+      padding: 1.2rem 1.6rem;
+      margin: 2rem 0;
+      font-size: 1.15rem;
+      color: var(--text-ink);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* Stone Key Display Grid for Math Lessons */
+    .stone-display {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 1.5rem 0;
+    }
+
+    .rune-stone {
+      background: #e6dfcc;
+      border: 2px solid var(--border-gold);
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.15);
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .stone-padded {
+      background: #d8ceb5;
+      border-color: var(--accent-burgundy);
+    }
+
+    body.mode-eink .rune-stone {
+      background: #ffffff;
+      border: 2px solid #000000;
+      color: #000000;
+      box-shadow: none;
+    }
+
+    body.mode-eink .stone-padded {
+      background: #f0f0f0;
+      border: 2px solid #000000;
+    }
+
+    /* Study Cards & Concept Callout Boxes */
+    .study-box {
+      margin: 2rem 0;
+      padding: 1.5rem 1.8rem;
+      background-color: var(--bg-paper-dark);
+      border-left: 4px solid var(--accent-burgundy);
+      border-top: 1px solid var(--border-gold-light);
+      border-right: 1px solid var(--border-gold-light);
+      border-bottom: 1px solid var(--border-gold-light);
+      box-shadow: inset 0 0 15px rgba(197, 160, 89, 0.08);
+    }
+
+    .study-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .study-box p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-ink);
+      text-indent: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    .study-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    body.mode-eink .study-box {
+      background: #f8f8f8;
+      border: 2px solid #000000 !important;
+      border-left: 6px solid #800000 !important;
+      box-shadow: none;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .study-box h3 {
+      color: #800000;
+    }
+
+    /* Multi-Column Feature / Story Arc Cards */
+    .arc-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin: 1.8rem 0;
+    }
+
+    @media (max-width: 700px) {
+      .arc-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .arc-card {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-gold);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      position: relative;
+    }
+
+    .arc-card-num {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.3rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 0.3rem;
+    }
+
+    .arc-card-title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .arc-card-desc {
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+      text-align: left;
+    }
+
+    .arc-card-badge {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      font-family: var(--font-heading);
+      color: var(--accent-burgundy);
+      background: var(--bg-paper-dark);
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--border-gold-light);
+      border-radius: 2px;
+      font-weight: 600;
+    }
+
+    body.mode-eink .arc-cards {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .arc-card {
+      background: #ffffff;
+      border: 2px solid #000000;
+      box-shadow: none;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .arc-card-num {
+      color: #800000;
+      border-bottom: 1px solid #000000;
+    }
+
+    body.mode-eink .arc-card-title,
+    body.mode-eink .arc-card-desc {
+      color: #000000;
+    }
+
+    body.mode-eink .arc-card-badge {
+      background: #f0f0f0;
+      border: 1px solid #000000;
+      color: #000000;
+    }
+
+    /* Neo-Victorian Tables */
+    .structure-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.8rem 0;
+      font-size: 1rem;
+    }
+
+    .structure-table th {
+      font-family: var(--font-heading);
+      background-color: var(--bg-paper-dark);
+      color: var(--accent-burgundy);
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-gold);
+      text-align: left;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .structure-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-gold-light);
+      background-color: var(--bg-paper);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .structure-table tr:nth-child(even) td {
+      background-color: var(--bg-paper-dark);
+    }
+
+    body.mode-eink .structure-table th {
+      background: #f0f0f0;
+      color: #000000;
+      border: 2px solid #000000;
+    }
+
+    body.mode-eink .structure-table td {
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #000000;
+    }
+
+    body.mode-eink .structure-table tr:nth-child(even) td {
+      background: #f8f8f8;
+    }
+
+    /* Poetry Containers & Verse Formatting */
+    .poem-box {
+      margin: 2.5rem 0;
+      padding: 2.5rem 2rem;
+      background: var(--bg-paper-dark);
+      border: 2px solid var(--border-gold);
+      box-shadow: inset 0 0 25px rgba(122, 28, 28, 0.04);
+      position: relative;
+    }
+
+    .poem-box-header {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.08em;
+    }
+
+    .poem-author {
+      text-align: center;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 1rem;
+    }
+
+    .poem-stanza {
+      margin-bottom: 2.2rem;
+      padding-left: 8%;
+    }
+
+    .poem-stanza:last-child {
+      margin-bottom: 0;
+    }
+
+    .poem-stanza-num {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.1em;
+      text-align: left;
+    }
+
+    .poem-line {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--text-ink);
+      text-align: left;
+    }
+
+    .poem-line.indent {
+      padding-left: 1.8rem;
+    }
+
+    .poem-line.indent-extra {
+      padding-left: 3.6rem;
+      font-weight: 600;
+    }
+
+    .rhyme-token {
+      background-color: rgba(197, 160, 89, 0.22);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-weight: 600;
+      color: var(--accent-burgundy);
+      border: 1px solid rgba(197, 160, 89, 0.4);
+    }
+
+    .echo-token {
+      background-color: rgba(122, 28, 28, 0.1);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-weight: 600;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    body.mode-eink .poem-box {
+      background: #ffffff;
+      border: 2px solid #000000;
+      box-shadow: none;
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+      -webkit-column-break-inside: auto !important;
+    }
+
+    body.mode-eink .poem-stanza {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .poem-box-header {
+      color: #800000;
+    }
+
+    body.mode-eink .poem-author {
+      color: #000000;
+      border-bottom: 1px solid #000000;
+    }
+
+    body.mode-eink .poem-stanza-num {
+      color: #800000;
+    }
+
+    body.mode-eink .poem-line {
+      color: #000000;
+    }
+
+    body.mode-eink .rhyme-token {
+      background: none;
+      color: #000000;
+      border: none;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    body.mode-eink .echo-token {
+      background: none;
+      color: #000000;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    /* Scholar Summary Cards */
+    .summary-card {
+      background: var(--bg-paper);
+      border: 2px solid var(--border-gold);
+      padding: 1.8rem 2rem;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+
+    .summary-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--accent-burgundy);
+      text-align: center;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    .summary-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 0.9rem;
+      padding-left: 1.8rem;
+      position: relative;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .summary-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--accent-burgundy);
+      font-size: 0.9rem;
+      top: 2px;
+    }
+
+    .summary-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    body.mode-eink .summary-card {
+      background: #ffffff;
+      border: 2px solid #000000;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .summary-title {
+      color: #800000;
+      border-bottom: 1px solid #000000;
+    }
+
+    body.mode-eink .summary-list li {
+      color: #000000;
+    }
+
+    body.mode-eink .summary-list li::before {
+      color: #000000;
+    }
+
+    /* Book Plate Illustrations */
+    .book-plate {
+      margin: 3rem 0;
+      text-align: center;
+      background: var(--bg-paper-dark);
+      border: 1.5px solid var(--border-gold);
+      padding: 12px;
+      box-shadow: var(--plate-box-shadow);
+    }
+
+    .book-plate img {
+      max-width: 100%;
+      height: auto;
+      max-height: 480px;
+      border: 1.5px solid var(--border-gold-light);
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .book-plate figcaption {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    /* =========================================================
+       Stylus Exercise Worksheet & Dictation Styling
+       ========================================================= */
+    .exercise-section {
+      margin: 3.5rem 0;
+    }
+
+    .exercise-heading {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid var(--border-gold-light);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .exercise-instructions {
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* Word Bank Box */
+    .word-bank-box {
+      background: var(--bg-paper-dark);
+      border: 2px solid var(--border-gold);
+      border-radius: 6px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0 2.5rem 0;
+      box-shadow: inset 0 0 12px rgba(197, 160, 89, 0.12);
+    }
+
+    .word-bank-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      text-align: center;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 0.4rem;
+    }
+
+    .word-bank-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.9rem 1.2rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--text-ink);
+    }
+
+    .word-bank-item {
+      padding: 0.4rem 0.8rem;
+      border: 1px dashed var(--border-gold);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.02em;
+    }
+
+    /* Dictation Exercise Items (Inline Single Line with Audio Icon) */
+    .dictation-list {
+      display: block;
+      margin: 1.6rem 0;
+    }
+
+    .dictation-item {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.2rem;
+      width: 100%;
+      margin-bottom: 1.4rem;
+      break-inside: avoid;
+    }
+
+    .dictation-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .dictation-num {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      min-width: 1.8rem;
+      line-height: 1;
+      padding-bottom: 12px;
+    }
+
+    /* Audio Play Button (Icon Only, Inline Playback) */
+    .audio-play-btn,
+    .audio-prompt-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-burgundy);
+      background: var(--bg-paper-dark);
+      border: 1.5px solid var(--border-gold);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      min-height: 42px;
+      padding: 0;
+      text-decoration: none;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      margin-bottom: 4px;
+      flex-shrink: 0;
+    }
+
+    .audio-play-btn:hover,
+    .audio-prompt-btn:hover {
+      background: var(--border-gold-light);
+      color: #1a1410;
+      transform: scale(1.08);
+    }
+
+    .audio-play-btn:active,
+    .audio-play-btn.is-playing,
+    .audio-prompt-btn:active,
+    .audio-prompt-btn.is-playing {
+      background: var(--accent-burgundy);
+      color: #ffffff;
+      border-color: var(--accent-burgundy);
+    }
+
+    .audio-play-btn svg,
+    .audio-prompt-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    /* Spacious Stylus Writing Lines (+15% vertical penmanship baselines) */
+    .stylus-writing-area {
+      width: 100%;
+      margin-top: 0.4rem;
+    }
+
+    .stylus-line {
+      height: 60px;
+      border-bottom: 2px solid var(--border-gold);
+      width: 100%;
+      position: relative;
+    }
+
+    .stylus-line.inline-line {
+      flex-grow: 1;
+      height: 58px;
+    }
+
+    .stylus-line-double {
+      height: 60px;
+      border-bottom: 2px solid var(--border-gold);
+      width: 100%;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .stylus-line-label {
+      position: absolute;
+      right: 0;
+      bottom: 4px;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text-muted);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    /* Definition Matching Items */
+    .matching-list {
+      display: block;
+      margin: 1.6rem 0;
+    }
+
+    .matching-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+      break-inside: avoid;
+    }
+
+    .matching-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .stylus-bracket-blank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 260px;
+      height: 56px;
+      border-bottom: 2px solid var(--border-gold);
+      margin-right: 0.8rem;
+      flex-shrink: 0;
+      background: transparent;
+    }
+
+    .stylus-bracket-blank.short {
+      min-width: 80px;
+    }
+
+    .matching-text {
+      flex-grow: 1;
+      padding-top: 6px;
+      color: var(--text-ink);
+    }
+
+    .matching-text strong {
+      color: var(--accent-burgundy);
+    }
+
+    /* Morphology & Root Analysis */
+    .morphology-item {
+      margin-bottom: 2.2rem;
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+
+    .morphology-question {
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* E-Ink High Contrast & Spacing Adjustments */
+    body.mode-eink .exercise-heading {
+      color: #800000;
+      border-bottom: 2px solid #000000;
+      margin-top: 1rem;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+    }
+
+    body.mode-eink .exercise-instructions {
+      color: #000000;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+
+    body.mode-eink .word-bank-box {
+      background: #ffffff;
+      border: 2px solid #000000;
+      box-shadow: none;
+      margin: 1.2rem 0 1.4rem 0;
+      padding: 1.2rem 1.6rem;
+    }
+
+    body.mode-eink .word-bank-title {
+      color: #800000;
+      border-bottom: 1px solid #000000;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.3rem;
+    }
+
+    body.mode-eink .word-bank-item {
+      border: 1px solid #000000;
+      background: transparent;
+      color: #000000;
+    }
+
+    body.mode-eink .dictation-list,
+    body.mode-eink .matching-list {
+      margin: 1.2rem 0;
+    }
+
+    body.mode-eink .dictation-item,
+    body.mode-eink .matching-item {
+      margin-bottom: 1.2rem;
+    }
+
+    body.mode-eink .morphology-item {
+      margin-bottom: 1.4rem;
+    }
+
+    body.mode-eink .dictation-num {
+      color: #800000;
+    }
+
+    body.mode-eink .audio-play-btn,
+    body.mode-eink .audio-prompt-btn {
+      background: #ffffff;
+      border: 2px solid #000000;
+      color: #000000;
+      box-shadow: none;
+    }
+
+    body.mode-eink .audio-play-btn:hover,
+    body.mode-eink .audio-play-btn:active,
+    body.mode-eink .audio-play-btn.is-playing,
+    body.mode-eink .audio-prompt-btn:hover,
+    body.mode-eink .audio-prompt-btn:active,
+    body.mode-eink .audio-prompt-btn.is-playing {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    body.mode-eink .stylus-line,
+    body.mode-eink .stylus-line.inline-line,
+    body.mode-eink .stylus-line-double {
+      border-bottom: 2px solid #000000;
+    }
+
+    body.mode-eink .stylus-bracket-blank {
+      border-bottom: 2px solid #000000;
+      background: transparent;
+    }
+
+    body.mode-eink .stylus-line-label {
+      color: #000000;
+      opacity: 0.8;
+    }
+
+    /* Bottom Page Bar & Navigation Controls */
+    .eink-page-bar {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: var(--bg-paper);
+      color: var(--text-ink);
+      border-top: 1.5px solid var(--border-gold);
+      padding: 0 16px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      z-index: 1001;
+      box-sizing: border-box;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    body.mode-eink .eink-page-bar {
+      display: flex;
+      background: #ffffff;
+      color: #000000;
+      border-top: 2px solid #000000;
+      box-shadow: none;
+    }
+
+    .eink-bar-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .eink-bar-btn {
+      background: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: var(--accent-burgundy);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 6px;
+      min-width: 34px;
+      min-height: 34px;
+      line-height: 1;
+      user-select: none;
+      -webkit-user-select: none;
+      z-index: 1002;
+      transition: all 0.2s ease;
+    }
+
+    .eink-bar-btn:hover {
+      background: rgba(197, 160, 89, 0.18);
+      border-color: var(--border-gold-light);
+    }
+
+    .eink-bar-btn:active {
+      opacity: 0.6;
+    }
+
+    .eink-bar-btn svg.eink-icon {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent-burgundy);
+      fill: none;
+      display: block;
+      transition: stroke 0.2s ease;
+    }
+
+    body.mode-eink .eink-bar-btn {
+      color: #000000;
+      border: 1.5px solid transparent;
+    }
+
+    body.mode-eink .eink-bar-btn svg.eink-icon {
+      stroke: #000000 !important;
+    }
+
+    body.mode-eink .eink-bar-btn:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    body.mode-eink .eink-bar-btn:hover svg.eink-icon {
+      stroke: #ffffff !important;
+    }
+
+    /* Upward Arrow Submit Button & States */
+    .eink-bar-submit {
+      display: none;
+    }
+
+    .eink-bar-submit.is-visible {
+      display: inline-flex;
+    }
+
+    .eink-bar-submit.is-submitting {
+      opacity: 0.6;
+      cursor: wait;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: 0.4; }
+      to { opacity: 0.9; }
+    }
+
+    .eink-bar-submit.is-submitted {
+      color: #2e7d32;
+      border-color: #2e7d32;
+      background: rgba(46, 125, 50, 0.12);
+      cursor: default;
+    }
+
+    .eink-bar-submit.is-submitted svg.eink-icon {
+      stroke: #2e7d32 !important;
+    }
+
+    body.mode-eink .eink-bar-submit.is-submitted {
+      color: #000000;
+      border: 2px solid #000000;
+      background: #e0e0e0;
+    }
+
+    body.mode-eink .eink-bar-submit.is-submitted svg.eink-icon {
+      stroke: #000000 !important;
+    }
+
+    /* Book Footer */
+    .book-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1.5px solid var(--border-gold-light);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    #eink-page-text {
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    /* Tap Zone Indicators for E-Ink Mode (Top Corners: 12% width, 20% height) */
+    .eink-tap-zone {
+      display: none;
+      position: fixed;
+      top: 0;
+      height: 20%;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    body.mode-eink .eink-tap-zone {
+      display: block;
+    }
+
+    .eink-tap-left {
+      left: 0;
+      width: 12%;
+    }
+
+    .eink-tap-right {
+      right: 0;
+      width: 12%;
+    }
+  </style>
+</head>
+<body class="mode-eink">
+
+  <article class="book-page">
+
+    <!-- Filigree Corners -->
+    <div class="corner-flourish corner-tl"></div>
+    <div class="corner-flourish corner-tr"></div>
+    <div class="corner-flourish corner-bl"></div>
+    <div class="corner-flourish corner-br"></div>
+
+    <!-- Title Block -->
+    <header class="book-header">
+      <span class="header-tag">Week 5 • Day 2 — Spelling &amp; Vocabulary (vcr_5_lesson5)</span>
+      <h1 class="book-title">Lesson 5: Looking at Our Planet</h1>
+      <p class="book-subtitle">Written Exercises A–D on Classical Roots &amp; Affixes (vcr_5_lesson5)</p>
+    </header>
+
+    
+    <!-- Section I: Key Words & Root Clues Introduction -->
+    <section class="exercise-section" data-problem-id="root_clues_intro" data-node-id="bb6632f5-ad47-5830-80d5-49becc468906" data-prompt="Root Introduction and Key Words">
+      <p class="story-paragraph first-para">
+        The root terr as in territory means “earth” or “land.” The root aqua as in aquatic means “water.” In each of the following key words, underline the root.
+      </p>
+
+      <!-- Key Words Box -->
+      <div class="word-bank-box">
+        <h3 class="word-bank-title">Key Words</h3>
+        <div class="word-bank-grid">
+          <div class="word-bank-item">aquamarine</div><div class="word-bank-item">subterranean</div><div class="word-bank-item">aquaculture</div><div class="word-bank-item">terrace</div><div class="word-bank-item">aquatic</div><div class="word-bank-item">terrain</div><div class="word-bank-item">Mediterranean</div><div class="word-bank-item">territory</div>
+        </div>
+      </div>
+
+      <h2 class="exercise-heading">Using ROOT CLUES</h2>
+      <p class="exercise-instructions">
+        Use the underlined root clues to help you match the following columns. Write the letter of the matching definition in each bracket with your stylus:
+      </p>
+
+      <!-- Two-Column Separated Matching Layout -->
+      <div class="matching-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.8rem 0; align-items: start;">
+        <div class="matching-col-left">
+          <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: var(--accent-burgundy); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; border-bottom: 1.5px solid var(--border-gold-light); padding-bottom: 0.3rem;">Column 1</h4>
+          
+          <div class="matching-item" style="display: flex; align-items: center; margin-bottom: 1.4rem;">
+            <span style="font-weight: 700; min-width: 1.6rem; color: var(--accent-burgundy);">1.</span>
+            <div class="stylus-bracket-blank short" style="margin: 0 0.6rem 0 0;"></div>
+            <div class="matching-term" style="font-weight: 600; font-size: 1.15rem;">aquatic</div>
+          </div>
+          <div class="matching-item" style="display: flex; align-items: center; margin-bottom: 1.4rem;">
+            <span style="font-weight: 700; min-width: 1.6rem; color: var(--accent-burgundy);">2.</span>
+            <div class="stylus-bracket-blank short" style="margin: 0 0.6rem 0 0;"></div>
+            <div class="matching-term" style="font-weight: 600; font-size: 1.15rem;">terrain</div>
+          </div>
+          <div class="matching-item" style="display: flex; align-items: center; margin-bottom: 1.4rem;">
+            <span style="font-weight: 700; min-width: 1.6rem; color: var(--accent-burgundy);">3.</span>
+            <div class="stylus-bracket-blank short" style="margin: 0 0.6rem 0 0;"></div>
+            <div class="matching-term" style="font-weight: 600; font-size: 1.15rem;">subterranean</div>
+          </div>
+          <div class="matching-item" style="display: flex; align-items: center; margin-bottom: 1.4rem;">
+            <span style="font-weight: 700; min-width: 1.6rem; color: var(--accent-burgundy);">4.</span>
+            <div class="stylus-bracket-blank short" style="margin: 0 0.6rem 0 0;"></div>
+            <div class="matching-term" style="font-weight: 600; font-size: 1.15rem;">aquaculture</div>
+          </div>
+        </div>
+        <div class="matching-col-right">
+          <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: var(--accent-burgundy); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; border-bottom: 1.5px solid var(--border-gold-light); padding-bottom: 0.3rem;">Column 2</h4>
+          
+          <div class="matching-def" style="margin-bottom: 1.4rem; font-size: 1.1rem; line-height: 1.5; min-height: 50px; display: flex; align-items: center;">
+            <div><strong style="color: var(--accent-burgundy); margin-right: 0.3rem;">A.</strong> physical features of a tract of land</div>
+          </div>
+          <div class="matching-def" style="margin-bottom: 1.4rem; font-size: 1.1rem; line-height: 1.5; min-height: 50px; display: flex; align-items: center;">
+            <div><strong style="color: var(--accent-burgundy); margin-right: 0.3rem;">B.</strong> living or growing in water</div>
+          </div>
+          <div class="matching-def" style="margin-bottom: 1.4rem; font-size: 1.1rem; line-height: 1.5; min-height: 50px; display: flex; align-items: center;">
+            <div><strong style="color: var(--accent-burgundy); margin-right: 0.3rem;">C.</strong> existing or located under the earth’s surface</div>
+          </div>
+          <div class="matching-def" style="margin-bottom: 1.4rem; font-size: 1.1rem; line-height: 1.5; min-height: 50px; display: flex; align-items: center;">
+            <div><strong style="color: var(--accent-burgundy); margin-right: 0.3rem;">D.</strong> farming or cultivation of water animals and plants</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="story-paragraph" style="font-style: italic; margin-top: 1.2rem;">
+        The root clues did not give you complete definitions as the following dictionary listings will. But they got you started by giving you part of the meaning.
+      </p>
+    </section>
+
+    <div class="flourish-divider">&#10087; &bull; &#10087; &bull; &#10087;</div>
+
+    <!-- Section II: Exercise A -->
+    <section class="exercise-section" data-problem-id="exercise_a" data-node-id="bb6632f5-ad47-5830-80d5-49becc468906" data-prompt="EXERCISE A: ANTONYMS">
+      <h2 class="exercise-heading">EXERCISE A: ANTONYMS</h2>
+      <p class="exercise-instructions">
+        Write the letter of the best ANTONYM (the word or phrase most nearly OPPOSITE in meaning to the word in bold-faced type).
+      </p>
+      
+      <div style="margin-bottom: 1.6rem; break-inside: avoid;">
+        <div style="display: flex; align-items: center; font-size: 1.15rem; margin-bottom: 0.5rem;">
+          <div class="stylus-bracket-blank short"></div>
+          <div><strong>1.</strong> aquatic creature</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.6rem 1rem; padding-left: 5rem; font-size: 1.05rem;">
+          <div><strong>a.</strong> marine</div><div><strong>b.</strong> water</div><div><strong>c.</strong> swimming</div><div><strong>d.</strong> terrestrial</div>
+        </div>
+      </div>
+      <div style="margin-bottom: 1.6rem; break-inside: avoid;">
+        <div style="display: flex; align-items: center; font-size: 1.15rem; margin-bottom: 0.5rem;">
+          <div class="stylus-bracket-blank short"></div>
+          <div><strong>2.</strong> subterranean tunnel</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.6rem 1rem; padding-left: 5rem; font-size: 1.05rem;">
+          <div><strong>a.</strong> sunken</div><div><strong>b.</strong> buried</div><div><strong>c.</strong> surface</div><div><strong>d.</strong> underground</div>
+        </div>
+      </div>
+      <div style="margin-bottom: 1.6rem; break-inside: avoid;">
+        <div style="display: flex; align-items: center; font-size: 1.15rem; margin-bottom: 0.5rem;">
+          <div class="stylus-bracket-blank short"></div>
+          <div><strong>3.</strong> rugged terrain</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.6rem 1rem; padding-left: 5rem; font-size: 1.05rem;">
+          <div><strong>a.</strong> ground</div><div><strong>b.</strong> rocky</div><div><strong>c.</strong> landscape</div><div><strong>d.</strong> flat land</div>
+        </div>
+      </div>
+      <div style="margin-bottom: 1.6rem; break-inside: avoid;">
+        <div style="display: flex; align-items: center; font-size: 1.15rem; margin-bottom: 0.5rem;">
+          <div class="stylus-bracket-blank short"></div>
+          <div><strong>4.</strong> unfamiliar territory</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.6rem 1rem; padding-left: 5rem; font-size: 1.05rem;">
+          <div><strong>a.</strong> region</div><div><strong>b.</strong> zone</div><div><strong>c.</strong> area</div><div><strong>d.</strong> home domain</div>
+        </div>
+      </div>
+      <div style="margin-bottom: 1.6rem; break-inside: avoid;">
+        <div style="display: flex; align-items: center; font-size: 1.15rem; margin-bottom: 0.5rem;">
+          <div class="stylus-bracket-blank short"></div>
+          <div><strong>5.</strong> aquamarine shade</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.6rem 1rem; padding-left: 5rem; font-size: 1.05rem;">
+          <div><strong>a.</strong> blue-green</div><div><strong>b.</strong> cyan</div><div><strong>c.</strong> sea-green 3 LESSON 5: LOOKING AT OUR PLANET 4</div><div><strong>d.</strong> red-orange</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flourish-divider">&#10087; &bull; &#10087; &bull; &#10087;</div>
+
+    <!-- Section III: Exercise B - Meaning in Context -->
+    <section class="exercise-section" data-problem-id="exercise_b_context" data-node-id="bb6632f5-ad47-5830-80d5-49becc468906" data-prompt="Exercise B: Meaning in Context">
+      <h2 class="exercise-heading">EXERCISE B: MEANING IN CONTEXT</h2>
+      <p class="exercise-instructions">
+        Use these words to fill in the blanks in the following paragraph. Transcribe the chosen word with your stylus into each handwriting blank.
+      </p>
+
+      <div class="word-bank-box">
+        <h3 class="word-bank-title">Word Bank</h3>
+        <div class="word-bank-grid">
+          <div class="word-bank-item">terrain</div>
+        </div>
+      </div>
+
+      <div style="font-size: 1.2rem; line-height: 2.3; text-align: justify; padding: 1.6rem 2rem; border: 1.5px solid var(--border-gold); background: var(--bg-paper-dark); border-radius: 4px; margin: 1.5rem 0;">
+        territory aquatic subterranean Geologists exploring northern Canada ventured into dangerous <strong>(1)</strong> <div class="stylus-bracket-blank"></div> across frozen rivers and rocky hills. They mapped vast stretches of wild <strong>(2)</strong> <div class="stylus-bracket-blank"></div> that had never been surveyed before. Near a deep canyon, they discovered an ancient <strong>(3)</strong> <div class="stylus-bracket-blank"></div> river flowing through limestone caves beneath the surface. Specialized <strong>(4)</strong> <div class="stylus-bracket-blank"></div> organisms were found thriving in the underground waters.
+      </div>
+    </section>
+
+    <div class="flourish-divider">&#10087; &bull; &#10087; &bull; &#10087;</div>
+
+    <!-- Section IV: Exercise C - Extend Your Vocabulary -->
+    <section class="exercise-section" data-problem-id="exercise_c_extend" data-node-id="bb6632f5-ad47-5830-80d5-49becc468906" data-prompt="EXERCISE C: EXTEND YOUR VOCABULARY">
+      <h2 class="exercise-heading">EXERCISE C: EXTEND YOUR VOCABULARY</h2>
+      <div class="study-box" style="margin-bottom: 1.8rem;">
+        <h3>The “sea” root: marin</h3>
+        <p>
+          Marin (from Latin marinus, derived from mare meaning “sea”) appears in words associated with the ocean and seafaring.
+        </p>
+      </div>
+
+      <p class="exercise-instructions">
+        Answer the following questions based upon the root study on the ruled baselines:
+      </p>
+      
+      <div style="margin-bottom: 1.8rem; break-inside: avoid;">
+        <div style="font-size: 1.15rem; margin-bottom: 0.4rem;"><strong>1.</strong> Does marine life refer to organisms in oceans or in desert sands?</div>
+        <div class="stylus-line"></div>
+      </div>
+      <div style="margin-bottom: 1.8rem; break-inside: avoid;">
+        <div style="font-size: 1.15rem; margin-bottom: 0.4rem;"><strong>2.</strong> Would a submarine travel above the clouds or below the ocean surface?</div>
+        <div class="stylus-line"></div>
+      </div>
+      <div style="margin-bottom: 1.8rem; break-inside: avoid;">
+        <div style="font-size: 1.15rem; margin-bottom: 0.4rem;"><strong>3.</strong> Is a mariner a sailor on the sea or a pilot in the sky?</div>
+        <div class="stylus-line"></div>
+      </div>
+      <div style="margin-bottom: 1.8rem; break-inside: avoid;">
+        <div style="font-size: 1.15rem; margin-bottom: 0.4rem;"><strong>4.</strong> Does maritime law govern ocean trade or highway traffic?</div>
+        <div class="stylus-line"></div>
+      </div>
+
+      <p class="exercise-instructions" style="margin-top: 2rem;">
+        Match each word in Column 1 with its description in Column 2. Write the matching letter in each bracket:
+      </p>
+
+      <div class="matching-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.8rem 0; align-items: start;">
+        <div class="matching-col-left">
+          <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: var(--accent-burgundy); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; border-bottom: 1.5px solid var(--border-gold-light); padding-bottom: 0.3rem;">Column 1</h4>
+          
+          <div class="matching-item" style="display: flex; align-items: center; margin-bottom: 1.4rem;">
+            <span style="font-weight: 700; min-width: 1.6rem; color: var(--accent-burgundy);">5.</span>
+            <div class="stylus-bracket-blank short" style="margin: 0 0.6rem 0 0;"></div>
+            <div class="matching-term" style="font-weight: 600; font-size: 1.15rem;">marine</div>
+          </div>
+          <div class="matching-item" style="display: flex; align-items: center; margin-bottom: 1.4rem;">
+            <span style="font-weight: 700; min-width: 1.6rem; color: var(--accent-burgundy);">6.</span>
+            <div class="stylus-bracket-blank short" style="margin: 0 0.6rem 0 0;"></div>
+            <div class="matching-term" style="font-weight: 600; font-size: 1.15rem;">submarine</div>
+          </div>
+          <div class="matching-item" style="display: flex; align-items: center; margin-bottom: 1.4rem;">
+            <span style="font-weight: 700; min-width: 1.6rem; color: var(--accent-burgundy);">7.</span>
+            <div class="stylus-bracket-blank short" style="margin: 0 0.6rem 0 0;"></div>
+            <div class="matching-term" style="font-weight: 600; font-size: 1.15rem;">mariner</div>
+          </div>
+          <div class="matching-item" style="display: flex; align-items: center; margin-bottom: 1.4rem;">
+            <span style="font-weight: 700; min-width: 1.6rem; color: var(--accent-burgundy);">8.</span>
+            <div class="stylus-bracket-blank short" style="margin: 0 0.6rem 0 0;"></div>
+            <div class="matching-term" style="font-weight: 600; font-size: 1.15rem;">maritime</div>
+          </div>
+        </div>
+        <div class="matching-col-right">
+          <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: var(--accent-burgundy); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; border-bottom: 1.5px solid var(--border-gold-light); padding-bottom: 0.3rem;">Column 2</h4>
+          
+          <div class="matching-def" style="margin-bottom: 1.4rem; font-size: 1.1rem; line-height: 1.5; min-height: 50px; display: flex; align-items: center;">
+            <div><strong style="color: var(--accent-burgundy); margin-right: 0.3rem;">A.</strong> relating to or found in the sea</div>
+          </div>
+          <div class="matching-def" style="margin-bottom: 1.4rem; font-size: 1.1rem; line-height: 1.5; min-height: 50px; display: flex; align-items: center;">
+            <div><strong style="color: var(--accent-burgundy); margin-right: 0.3rem;">B.</strong> connected with sea seafaring or nautical trade</div>
+          </div>
+          <div class="matching-def" style="margin-bottom: 1.4rem; font-size: 1.1rem; line-height: 1.5; min-height: 50px; display: flex; align-items: center;">
+            <div><strong style="color: var(--accent-burgundy); margin-right: 0.3rem;">C.</strong> a person who navigates a ship; sailor</div>
+          </div>
+          <div class="matching-def" style="margin-bottom: 1.4rem; font-size: 1.1rem; line-height: 1.5; min-height: 50px; display: flex; align-items: center;">
+            <div><strong style="color: var(--accent-burgundy); margin-right: 0.3rem;">D.</strong> a vessel capable of underwater operation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flourish-divider">&#10087; &bull; &#10087; &bull; &#10087;</div>
+
+    <!-- Section V: Exercise D - Dictionary Work -->
+    <section class="exercise-section" data-problem-id="exercise_d_dict" data-node-id="bb6632f5-ad47-5830-80d5-49becc468906" data-prompt="Exercise D: Dictionary Work">
+      <h2 class="exercise-heading">EXERCISE D: DICTIONARY WORK</h2>
+      <p class="exercise-instructions">
+        Look up each word below in a dictionary. Write down the definition with your stylus upon the ruled baselines:
+      </p>
+      
+      <div style="margin-bottom: 1.8rem; break-inside: avoid;">
+        <div style="font-size: 1.15rem; margin-bottom: 0.4rem;"><strong>1. aquifer</strong></div>
+        <div class="stylus-writing-area">
+          <div class="stylus-line"></div>
+          <div class="stylus-line"></div>
+        </div>
+      </div>
+      <div style="margin-bottom: 1.8rem; break-inside: avoid;">
+        <div style="font-size: 1.15rem; margin-bottom: 0.4rem;"><strong>2. terrestrial</strong></div>
+        <div class="stylus-writing-area">
+          <div class="stylus-line"></div>
+          <div class="stylus-line"></div>
+        </div>
+      </div>
+      <div style="margin-bottom: 1.8rem; break-inside: avoid;">
+        <div style="font-size: 1.15rem; margin-bottom: 0.4rem;"><strong>3. aquanaut</strong></div>
+        <div class="stylus-writing-area">
+          <div class="stylus-line"></div>
+          <div class="stylus-line"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="book-footer">
+      <p>The Primer Educational Series &bull; Book 5, L5: Looking at Our Planet (terr, aqua, marin) — Worksheet Exercises A–D</p>
+    </footer>
+
+  </article>
+
+  <!-- Tap Zones & Page Counter -->
+  <div id="eink-tap-left" class="eink-tap-zone eink-tap-left" title="Turn to Previous Page"></div>
+  <div id="eink-tap-right" class="eink-tap-zone eink-tap-right" title="Turn to Next Page"></div>
+  <div id="eink-page-bar" class="eink-page-bar">
+    <div class="eink-bar-left">
+      <a href="../index.html" class="eink-bar-btn eink-bar-home" title="Return to Index" aria-label="Return to Index">
+        <svg class="eink-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </a>
+      <button type="button" id="eink-submit-btn" class="eink-bar-btn eink-bar-submit" title="Complete &amp; Submit Exercises" aria-label="Complete &amp; Submit Exercises" data-primer-action="submit">
+        <svg class="eink-icon eink-submit-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="19" x2="12" y2="5"></line>
+          <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+      </button>
+    </div>
+    <span id="eink-page-text">Page 1 of 1 &bull; ⚡ E-Ink Paginated Layout</span>
+    <button type="button" id="eink-refresh-btn" class="eink-bar-btn eink-bar-refresh" title="Refresh Page" aria-label="Refresh Page">
+      <svg class="eink-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Dynamic Display Engine & Full-Page Turn Controller -->
+  <script>
+    (function() {
+      // Neutralize any injected scroll-snap stylesheets that force min-height: 100vh on section elements
+      function purgeScrollSnap() {
+        const snap = document.getElementById('primer-scroll-snap');
+        if (snap) {
+          snap.remove();
+        }
+      }
+      purgeScrollSnap();
+      if (window.MutationObserver) {
+        const snapObserver = new MutationObserver(purgeScrollSnap);
+        snapObserver.observe(document.head || document.documentElement, { childList: true, subtree: true });
+      }
+
+      const STORAGE_KEY = 'primer_reader_mode';
+
+      function getSystemMode() {
+        const savedMode = localStorage.getItem(STORAGE_KEY);
+        if (savedMode) return savedMode;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'lcd' || urlParams.get('lcd') === '1' || window.location.hash.includes('lcd')) {
+          return 'lcd';
+        }
+        if (urlParams.get('mode') === 'eink' || urlParams.get('eink') === '1' || window.location.hash.includes('eink')) {
+          return 'eink';
+        }
+
+        const ua = (navigator.userAgent || '').toLowerCase();
+        const platform = (navigator.platform || '').toLowerCase();
+        const vendor = (navigator.vendor || '').toLowerCase();
+
+        const einkKeywords = [
+          'boox', 'onyx', 'noteair', 'note air', 'noteair3', 'noteair3c', 'tabultra', 'tab ultra', 
+          'tabmini', 'palma', 'leaf', 'poke', 'max3', 'max2', 'nova', 'likebook', 'meebook', 
+          'kindle', 'kobo', 'tolino', 'nook', 'e-ink', 'eink', 'paperwhite', 'hisense'
+        ];
+        const isEinkHardwareUA = einkKeywords.some(keyword => ua.includes(keyword) || platform.includes(keyword) || vendor.includes(keyword));
+        if (isEinkHardwareUA) return 'eink';
+
+        const isSlowUpdate = window.matchMedia('(update: slow)').matches;
+        const prefersHighContrast = window.matchMedia('(prefers-contrast: more)').matches || window.matchMedia('(prefers-contrast: high)').matches;
+        const isForcedColors = window.matchMedia('(forced-colors: active)').matches;
+        const isMonochrome = window.matchMedia('(monochrome)').matches;
+        if (isSlowUpdate || prefersHighContrast || isForcedColors || isMonochrome) return 'eink';
+
+        const width = window.screen.width;
+        const height = window.screen.height;
+        const isAndroid = /android/i.test(ua);
+        const isEinkScreenRes = isAndroid && (
+          (width === 1404 && height === 1872) || (width === 1872 && height === 1404) ||
+          (width === 1860 && height === 2480) || (width === 2480 && height === 1860) ||
+          (width === 1200 && height === 1600) || (width === 1600 && height === 1200) ||
+          (width === 936  && height === 1248) || (width === 1248 && height === 936)
+        );
+        if (isEinkScreenRes) return 'eink';
+
+        return 'eink';
+      }
+
+      function applyMode(mode) {
+        document.body.classList.remove('mode-lcd', 'mode-eink', 'mode-lcd-user');
+        if (mode === 'eink') {
+          document.body.classList.add('mode-eink');
+        } else {
+          document.body.classList.add('mode-lcd', 'mode-lcd-user');
+        }
+        updateButtonLabel(mode);
+        updatePageCounter();
+      }
+
+      function updateButtonLabel(mode) {
+        const btn = document.getElementById('mode-toggle-btn');
+        if (btn) {
+          btn.innerHTML = mode === 'eink' ? '📜 Switch to Classic LCD' : '⚡ Switch to E-Ink Page Mode';
+        }
+      }
+
+      function toggleMode() {
+        const currentMode = document.body.classList.contains('mode-eink') ? 'eink' : 'lcd';
+        const newMode = currentMode === 'eink' ? 'lcd' : 'eink';
+        localStorage.setItem(STORAGE_KEY, newMode);
+        applyMode(newMode);
+      }
+
+      function getPaginatedContainer() {
+        return document.querySelector('.book-page');
+      }
+
+      function getCurrentPageInfo() {
+        const container = getPaginatedContainer();
+        if (!container || !document.body.classList.contains('mode-eink')) {
+          const pageHeight = window.innerHeight;
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const totalHeight = document.documentElement.scrollHeight;
+          const totalPages = Math.max(1, Math.ceil(totalHeight / pageHeight));
+          const currentPage = Math.min(totalPages, Math.floor(scrollTop / pageHeight) + 1);
+          return { currentPage, totalPages, pageHeight };
+        }
+
+        const pageWidth = container.clientWidth || window.innerWidth;
+        const scrollLeft = container.scrollLeft;
+        const totalWidth = container.scrollWidth;
+        const totalPages = Math.max(1, Math.round(totalWidth / pageWidth));
+        const currentPage = Math.min(totalPages, Math.round(scrollLeft / pageWidth) + 1);
+        return { currentPage, totalPages, pageWidth };
+      }
+
+      function updatePageCounter() {
+        const textSpan = document.getElementById('eink-page-text');
+        if (!textSpan || !document.body.classList.contains('mode-eink')) return;
+        const { currentPage, totalPages } = getCurrentPageInfo();
+        textSpan.innerHTML = `Page ${currentPage} of ${totalPages} &bull; ⚡ E-Ink Paginated Layout`;
+      }
+
+      function notifyPageChanged(fromPageIndex, toPageIndex) {
+        if (fromPageIndex === toPageIndex) return;
+        try {
+          if (window.AndroidBridge && typeof window.AndroidBridge.onPageChanged === 'function') {
+            window.AndroidBridge.onPageChanged(fromPageIndex, toPageIndex);
+          }
+        } catch (e) {
+          console.warn('AndroidBridge.onPageChanged failed', e);
+        }
+      }
+
+      function turnPage(direction) {
+        if (!document.body.classList.contains('mode-eink')) return;
+        const container = getPaginatedContainer();
+
+        if (!container) {
+          const pageHeight = window.innerHeight;
+          const currentScroll = window.scrollY || document.documentElement.scrollTop;
+          const totalHeight = document.documentElement.scrollHeight;
+          const totalPages = Math.max(1, Math.ceil(totalHeight / pageHeight));
+          const fromPage = Math.min(totalPages - 1, Math.max(0, Math.floor(currentScroll / pageHeight)));
+          let toPage = Math.min(totalPages - 1, Math.max(0, fromPage + direction));
+
+          if (fromPage !== toPage) {
+            notifyPageChanged(fromPage, toPage);
+            window.scrollTo({ top: toPage * pageHeight, behavior: 'instant' });
+            updatePageCounter();
+          }
+          return;
+        }
+
+        const pageWidth = container.clientWidth || window.innerWidth;
+        const currentScroll = container.scrollLeft;
+        const totalPages = Math.max(1, Math.round(container.scrollWidth / pageWidth));
+        const fromPage = Math.min(totalPages - 1, Math.max(0, Math.round(currentScroll / pageWidth)));
+        let toPage = Math.min(totalPages - 1, Math.max(0, fromPage + direction));
+
+        if (fromPage !== toPage) {
+          notifyPageChanged(fromPage, toPage);
+          container.scrollTo({
+            left: toPage * pageWidth,
+            behavior: 'instant'
+          });
+          updatePageCounter();
+        }
+      }
+
+      function goToPage(targetIndex) {
+        const info = getCurrentPageInfo();
+        const fromPage = info.currentPage - 1;
+        const toPage = Math.min(info.totalPages - 1, Math.max(0, targetIndex));
+        if (fromPage === toPage) return;
+
+        notifyPageChanged(fromPage, toPage);
+        const container = getPaginatedContainer();
+        if (container && document.body.classList.contains('mode-eink')) {
+          const pageWidth = container.clientWidth || window.innerWidth;
+          container.scrollTo({ left: toPage * pageWidth, behavior: 'instant' });
+        } else {
+          const pageHeight = window.innerHeight;
+          window.scrollTo({ top: toPage * pageHeight, behavior: 'instant' });
+        }
+        updatePageCounter();
+      }
+      window.primerGoToPage = goToPage;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const savedMode = localStorage.getItem(STORAGE_KEY);
+        const activeMode = savedMode ? savedMode : getSystemMode();
+        applyMode(activeMode);
+
+        const btn = document.getElementById('mode-toggle-btn');
+        if (btn) {
+          btn.addEventListener('click', toggleMode);
+        }
+
+        const tapLeft = document.getElementById('eink-tap-left');
+        const tapRight = document.getElementById('eink-tap-right');
+
+        if (tapLeft) {
+          tapLeft.addEventListener('click', function(e) {
+            e.stopPropagation();
+            turnPage(-1);
+          });
+        }
+        if (tapRight) {
+          tapRight.addEventListener('click', function(e) {
+            e.stopPropagation();
+            turnPage(1);
+          });
+        }
+
+        const refreshBtn = document.getElementById('eink-refresh-btn');
+        if (refreshBtn) {
+          refreshBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.location.reload();
+          });
+        }
+
+        window.addEventListener('keydown', function(e) {
+          if (!document.body.classList.contains('mode-eink')) return;
+          if (e.key === 'PageDown' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            turnPage(1);
+          } else if (e.key === 'PageUp' || e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            turnPage(-1);
+          }
+        });
+
+        const container = getPaginatedContainer();
+        if (container) {
+          container.addEventListener('scroll', updatePageCounter, { passive: true });
+        }
+        window.addEventListener('scroll', updatePageCounter, { passive: true });
+        window.addEventListener('resize', updatePageCounter, { passive: true });
+
+        // Inline Audio Playback for Dictation & Audio Badges (Plays without leaving page)
+        let currentAudio = null;
+        let activeAudioBtn = null;
+
+        document.addEventListener('click', function(e) {
+          const btn = e.target.closest('.audio-play-btn, .audio-prompt-btn');
+          if (!btn) return;
+
+          const audioSrc = btn.getAttribute('data-audio') || btn.getAttribute('href');
+          if (!audioSrc) return;
+
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            if (activeAudioBtn) {
+              activeAudioBtn.classList.remove('is-playing');
+            }
+          }
+
+          try {
+            const audio = new Audio();
+            audio.src = audioSrc;
+            audio.preload = 'auto';
+            currentAudio = audio;
+            activeAudioBtn = btn;
+            btn.classList.add('is-playing');
+
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(function(err) {
+                console.warn('Audio playback failed for ' + audioSrc + ':', err);
+                btn.classList.remove('is-playing');
+              });
+            }
+
+            audio.addEventListener('ended', function() {
+              btn.classList.remove('is-playing');
+              if (currentAudio === audio) {
+                currentAudio = null;
+                activeAudioBtn = null;
+              }
+            });
+
+            audio.addEventListener('error', function(err) {
+              console.error('Audio load error for ' + audioSrc + ':', audio.error || err);
+              btn.classList.remove('is-playing');
+            });
+          } catch (ex) {
+            console.error('Exception initiating Audio:', ex);
+            btn.classList.remove('is-playing');
+          }
+        });
+
+        // ── Exercise Target Resolution & Dedicated Submit Handler ───────
+        function findExerciseTargets() {
+          const container = getPaginatedContainer() || document.documentElement;
+          const isEink = document.body && document.body.classList.contains('mode-eink');
+          const pageWidth = container.clientWidth || window.innerWidth || 1;
+          const pageHeight = window.innerHeight || 1;
+
+          const exerciseSections = document.querySelectorAll('.exercise-section, .primer-exercise, .primer-capture');
+          const targets = [];
+          const metaNodeId = document.querySelector('meta[name="primer-uuid"]')?.content || '';
+
+          exerciseSections.forEach(function(el, idx) {
+            const sectionProblemId = el.dataset.problemId || ('exercise_part_' + (idx + 1));
+            const sectionNodeId = el.dataset.nodeId || metaNodeId;
+            const sectionPrompt = el.dataset.prompt || (el.querySelector('.exercise-heading')?.textContent?.trim() || '');
+            const sectionPages = new Set();
+
+            function addPoint(x, y) {
+              let p = 0;
+              if (isEink && container.scrollWidth > container.clientWidth) {
+                p = Math.max(0, Math.floor((x + container.scrollLeft) / pageWidth));
+              } else {
+                p = Math.max(0, Math.floor((y + (window.scrollY || document.documentElement.scrollTop)) / pageHeight));
+              }
+              sectionPages.add(p);
+            }
+
+            // Check bounding rects of the section (handles multi-column fragmentation)
+            const rects = el.getClientRects();
+            if (rects && rects.length > 0) {
+              for (let r = 0; r < rects.length; r++) {
+                addPoint(rects[r].left, rects[r].top);
+                addPoint(rects[r].right - 2, rects[r].bottom - 2);
+              }
+            } else {
+              addPoint(el.offsetLeft, el.offsetTop);
+              addPoint(el.offsetLeft + el.offsetWidth - 2, el.offsetTop + el.offsetHeight - 2);
+            }
+
+            // Check every interactive/content item within the section
+            const childItems = el.querySelectorAll('.dictation-item, .matching-item, .morphology-item, .stylus-writing-area, .word-bank-box, .exercise-heading, .exercise-instructions, p, h2, h3');
+            childItems.forEach(function(item) {
+              const ir = item.getBoundingClientRect();
+              if (ir.width > 0 || ir.height > 0) {
+                addPoint(ir.left, ir.top);
+                addPoint(ir.right - 2, ir.bottom - 2);
+              }
+            });
+
+            // If section spans multiple pages, register each page index
+            const sortedPages = Array.from(sectionPages).sort(function(a, b) { return a - b; });
+            sortedPages.forEach(function(pageIndex, subIdx) {
+              const subProblemId = sortedPages.length > 1 ? (sectionProblemId + '_p' + (subIdx + 1)) : sectionProblemId;
+              targets.push({
+                pageIndex: pageIndex,
+                problemId: subProblemId,
+                nodeId: sectionNodeId,
+                prompt: sectionPrompt + (sortedPages.length > 1 ? ' (Page ' + (subIdx + 1) + ')' : '')
+              });
+            });
+          });
+
+          // Sort all discovered exercise targets by page index
+          targets.sort(function(a, b) { return a.pageIndex - b.pageIndex; });
+          return targets;
+        }
+
+        // Auto-show submit button in bottom bar if exercise sections are present
+        const exerciseTargets = findExerciseTargets();
+        const submitBtn = document.getElementById('eink-submit-btn') || document.querySelector('.eink-bar-submit');
+        if (submitBtn && (exerciseTargets.length > 0 || document.querySelector('.exercise-section, .primer-exercise, .primer-capture'))) {
+          submitBtn.classList.add('is-visible');
+        }
+
+        document.addEventListener('click', function(e) {
+          const btn = e.target.closest('[data-primer-action="submit"], .eink-bar-submit, .primer-submit-btn');
+          if (!btn) return;
+
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (btn.disabled || btn.classList.contains('is-submitting') || btn.classList.contains('is-submitted')) return;
+
+          btn.disabled = true;
+          btn.classList.add('is-submitting');
+          btn.setAttribute('title', 'Saving & Submitting Exercises...');
+
+          const targets = findExerciseTargets();
+          const nextUrl = btn.dataset.nextUrl || btn.getAttribute('href') || '../index.html';
+          const metadata = {
+            uuid: document.querySelector('meta[name="primer-uuid"]')?.content || '',
+            intervention_id: document.querySelector('meta[name="primer-intervention-id"]')?.content || '',
+            is_intervention: document.querySelector('meta[name="primer-is-intervention"]')?.content === 'true' || !!document.querySelector('meta[name="primer-intervention-id"]')?.content,
+            key_path: document.querySelector('meta[name="primer-key-path"]')?.content || '',
+            week: document.querySelector('meta[name="primer-week"]')?.content || '',
+            day: document.querySelector('meta[name="primer-day"]')?.content || '',
+            title: document.title || '',
+            submittedAt: new Date().toISOString()
+          };
+
+          console.log('[PrimerReader] Bottom-bar submit button clicked. Target exercises:', targets, 'Metadata:', metadata);
+
+          function showSubmissionConfirmation(bundleId, totalPages, attemptedPages, msg) {
+            btn.classList.remove('is-submitting');
+            btn.classList.add('is-submitted');
+            btn.disabled = true;
+            btn.setAttribute('title', 'Exercises Submitted Successfully');
+            // Swap Upward Arrow to Check Mark SVG
+            btn.innerHTML = `
+              <svg class="eink-icon eink-submit-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            `;
+          }
+
+          // Global bridge callback hooks
+          window.onPrimerStagingComplete = function(bundleId, totalPages, attemptedPages, msg) {
+            showSubmissionConfirmation(bundleId, totalPages, attemptedPages, msg);
+          };
+          window.PrimerCallbacks = window.PrimerCallbacks || {};
+          window.PrimerCallbacks.onStagedCaptureComplete = window.onPrimerStagingComplete;
+
+          window.onUploadFailure = function(errorMsg) {
+            console.error('[PrimerReader] Submission Staging Error:', errorMsg);
+            btn.disabled = false;
+            btn.classList.remove('is-submitting');
+            btn.setAttribute('title', 'Submission Error. Click to retry.');
+            btn.innerHTML = `
+              <svg class="eink-icon eink-submit-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+              </svg>
+            `;
+          };
+
+          if (window.AndroidBridge && typeof window.AndroidBridge.requestStagedCapture === 'function') {
+            try {
+              window.AndroidBridge.requestStagedCapture(
+                nextUrl,
+                JSON.stringify(targets),
+                JSON.stringify(metadata)
+              );
+            } catch (err) {
+              console.error('AndroidBridge.requestStagedCapture call failed:', err);
+              btn.disabled = false;
+              btn.classList.remove('is-submitting');
+              btn.setAttribute('title', 'Complete & Submit Exercises');
+            }
+          } else if (window.AndroidBridge && typeof window.AndroidBridge.captureAndUpload === 'function') {
+            window.AndroidBridge.captureAndUpload(JSON.stringify(metadata));
+          } else {
+            // Browser / local preview fallback
+            setTimeout(function() {
+              showSubmissionConfirmation('browser_preview', targets.length, targets.length);
+            }, 600);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

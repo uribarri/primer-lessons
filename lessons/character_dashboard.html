@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Primer — Story Character Roster & Master Database</title>
+  
+  <!-- Neo-Victorian & Clean UI Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-parchment: #f9f5eb;
+      --bg-card: #ffffff;
+      --bg-drawer: #fcfaf4;
+      --text-main: #2b1f17;
+      --text-muted: #6c5d53;
+      --border-gold: #c5a059;
+      --border-light: #e6decb;
+      --header-burgundy: #7a1c1c;
+      --header-dark: #3a0d0d;
+      --accent-gold: #d4af37;
+      
+      --badge-master-bg: #e8f5e9;
+      --badge-master-text: #1b5e20;
+      --badge-master-border: #a5d6a7;
+      
+      --badge-companion-bg: #e3f2fd;
+      --badge-companion-text: #0d47a1;
+      --badge-companion-border: #90caf9;
+      
+      --badge-ensemble-bg: #f3e5f5;
+      --badge-ensemble-text: #4a148c;
+      --badge-ensemble-border: #ce93d8;
+
+      --badge-restricted-bg: #fff8e1;
+      --badge-restricted-text: #b78103;
+      --badge-restricted-border: #ffe082;
+      
+      --shadow-soft: 0 4px 15px rgba(43, 31, 23, 0.06);
+      --shadow-hover: 0 6px 20px rgba(43, 31, 23, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-parchment);
+      color: var(--text-main);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header.dashboard-header {
+      background: linear-gradient(135deg, var(--header-dark) 0%, var(--header-burgundy) 100%);
+      color: #fff;
+      padding: 1.25rem 2rem;
+      border-bottom: 4px solid var(--border-gold);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-brand h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #f7e8c6;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .header-brand .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-nav {
+      color: #f7e8c6;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: rgba(255,255,255,0.15);
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      border: 1px solid rgba(197,160,89,0.5);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-nav:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: var(--accent-gold);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary-gold {
+      background: linear-gradient(135deg, #d4af37 0%, #c5a059 100%);
+      color: #2b1f17;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      border: 1px solid #e6decb;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .btn-primary-gold:hover {
+      background: linear-gradient(135deg, #e5c158 0%, #d4af37 100%);
+    }
+
+    /* Summary Stat Banner */
+    .summary-banner {
+      max-width: 1400px;
+      width: 100%;
+      margin: 1.5rem auto 0;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-top: 3px solid var(--header-burgundy);
+      border-radius: 8px;
+      padding: 1.2rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .stat-card .stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .stat-card .stat-value {
+      font-family: 'Cinzel', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--header-burgundy);
+    }
+
+    .stat-card .stat-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Container */
+    .dashboard-container {
+      max-width: 1400px;
+      width: 100%;
+      margin: 1.5rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex: 1;
+      min-width: 260px;
+      background: var(--bg-parchment);
+      border: 1px solid var(--border-gold);
+      border-radius: 6px;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      width: 100%;
+    }
+
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-parchment);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-pill:hover, .filter-pill.active {
+      background: var(--header-burgundy);
+      color: #fff;
+      border-color: var(--header-burgundy);
+    }
+
+    /* Character Cards Grid */
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .character-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .character-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--header-burgundy);
+    }
+
+    .card-header-img {
+      height: 180px;
+      background: #eee3ce;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-header-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .character-card:hover .card-header-img img {
+      transform: scale(1.05);
+    }
+
+    .card-placeholder-icon {
+      font-size: 3.5rem;
+      opacity: 0.6;
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+
+    .badge-master {
+      background: var(--badge-master-bg);
+      color: var(--badge-master-text);
+      border: 1px solid var(--badge-master-border);
+    }
+
+    .badge-companion {
+      background: var(--badge-companion-bg);
+      color: var(--badge-companion-text);
+      border: 1px solid var(--badge-companion-border);
+    }
+
+    .badge-ensemble {
+      background: var(--badge-ensemble-bg);
+      color: var(--badge-ensemble-text);
+      border: 1px solid var(--badge-ensemble-border);
+    }
+
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    .character-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .character-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--header-burgundy);
+    }
+
+    .character-slug {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .roles-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .role-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      background: var(--bg-parchment);
+      border: 1px solid var(--border-light);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      color: var(--text-main);
+    }
+
+    .character-overview {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1rem;
+      color: var(--text-main);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.4;
+    }
+
+    .restriction-banner {
+      background: var(--badge-restricted-bg);
+      border: 1px solid var(--badge-restricted-border);
+      color: var(--badge-restricted-text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-card {
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-gold);
+      background: var(--bg-parchment);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+    }
+
+    .btn-card:hover {
+      background: var(--border-light);
+    }
+
+    .btn-card-edit {
+      background: var(--header-burgundy);
+      color: #fff;
+      border-color: var(--header-dark);
+    }
+
+    .btn-card-edit:hover {
+      background: var(--header-dark);
+    }
+
+    /* Modal Drawer */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(43, 31, 23, 0.5);
+      backdrop-filter: blur(3px);
+      z-index: 1000;
+      display: flex;
+      justify-content: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-content {
+      width: 100%;
+      max-width: 650px;
+      height: 100%;
+      background: var(--bg-drawer);
+      border-left: 4px solid var(--border-gold);
+      box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .drawer-overlay.active .drawer-content {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      background: linear-gradient(135deg, var(--header-dark) 0%, var(--header-burgundy) 100%);
+      color: #fff;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 2px solid var(--border-gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drawer-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: #f7e8c6;
+    }
+
+    .drawer-close {
+      background: transparent;
+      border: none;
+      color: #f7e8c6;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .drawer-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-group input, .form-group textarea, .form-group select {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border-gold);
+      border-radius: 6px;
+      background: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .form-group input[type="text"], .form-group select {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .checkbox-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    /* Dropzone & Multi-file Upload */
+    .dropzone {
+      border: 2px dashed var(--border-gold);
+      border-radius: 8px;
+      padding: 1.25rem;
+      background: var(--bg-card);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .dropzone:hover, .dropzone.dragover {
+      background: #f4edd8;
+      border-color: var(--header-burgundy);
+      transform: scale(1.01);
+    }
+
+    .photo-thumbnails-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .thumb-item {
+      position: relative;
+      width: 75px;
+      height: 75px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: #eee3ce;
+    }
+
+    .thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb-remove {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: rgba(198, 40, 40, 0.9);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    /* Full-Screen Lightbox */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 10, 7, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .lightbox-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--border-gold);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      background: #1e1510;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      background: rgba(0,0,0,0.6);
+      color: #f7e8c6;
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      background: var(--header-burgundy);
+    }
+
+    .lightbox-img-wrap {
+      max-width: 100%;
+      max-height: calc(85vh - 50px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #140d09;
+    }
+
+    .lightbox-img-wrap img {
+      max-width: 100%;
+      max-height: calc(85vh - 50px);
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--header-dark) 0%, var(--header-burgundy) 100%);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      border-top: 1px solid var(--border-gold);
+    }
+
+    .lightbox-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f7e8c6;
+    }
+
+    .lightbox-path {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #d4af37;
+    }
+
+    .drawer-footer {
+      padding: 1rem 1.5rem;
+      background: #f4edd8;
+      border-top: 1px solid var(--border-gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-save {
+      background: var(--header-burgundy);
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      padding: 0.6rem 1.4rem;
+      border: 1px solid var(--header-dark);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn-save:hover {
+      background: var(--header-dark);
+    }
+
+    .btn-delete {
+      background: #c62828;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-delete:hover {
+      background: #b71c1c;
+    }
+
+    /* Code & Prompt Inspection */
+    .prompt-box {
+      background: #2b1f17;
+      color: #f7e8c6;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      padding: 1rem;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 350px;
+      overflow-y: auto;
+      border: 1px solid var(--border-gold);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--header-dark);
+      color: #f7e8c6;
+      border: 1px solid var(--border-gold);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Embedded Static Data Injection -->
+  <script id="charactersData" type="application/json">
+{
+  "characters": [
+    {
+      "id": "space_bear",
+      "name": "Space Bear",
+      "overview": "Space Bear is a careful, thoughtful astronaut and flight director with a subtle, dry sense of humor. He is meticulous in his work, double-checking calculations and guiding his team with calm confidence through complex technical challenges.",
+      "personality": "Careful, methodical, and detail-oriented. Thoughtful and encouraging mentor to younger or less experienced crew members. Possesses a subtle, warm sense of humor that shines through during high-pressure missions.",
+      "appearance": "A small, plush golden-brown teddy bear with soft fur, round ears, and friendly dark button eyes. Typically wears a classic white retro astronaut flight suit featuring a clear spherical bubble helmet, grey utility belts, and a blue mission chest badge.",
+      "roles": [
+        "Chief Engineer",
+        "Astronaut",
+        "Lead Flight Director"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/space_bear_reference.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Careful, methodical, and detail-oriented.",
+        "Thoughtful and encouraging mentor to younger or less experienced crew members.",
+        "Possesses a subtle, warm sense of humor that shines through during high-pressure missions."
+      ],
+      "appearance_bullets": [
+        "A small, plush golden-brown teddy bear with soft fur, round ears, and friendly dark button eyes.",
+        "Typically wears a classic white retro astronaut flight suit featuring a clear spherical bubble helmet, grey utility belts, and a blue mission chest badge."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "rama_lama",
+      "name": "Rama Lama",
+      "overview": "Rama Lama is a caring, loyal, and exceptionally wise companion. He serves as a steadying presence and trusted advisor in any story, scenario, or environment, offering calm guidance and deep empathy.",
+      "personality": "Deeply caring, protective, and devoted to his friends. Wise, patient, and reflective, often seeing the bigger picture in difficult situations. A faithful companion adaptable to any setting, from pine forests to desert canyons.",
+      "appearance": "A plush brown bighorn sheep with soft curly wool texture, distinctive curved cream-colored horns, and a warm, friendly face with dark eyes. Wears a simple cord necklace with a turquoise bead accent.",
+      "roles": [
+        "Faithful Companion",
+        "Advisor",
+        "Navigator"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/rama_lama_reference_1.jpg",
+        "assets/characters/rama_lama_reference_2.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Deeply caring, protective, and devoted to his friends.",
+        "Wise, patient, and reflective, often seeing the bigger picture in difficult situations.",
+        "A faithful companion adaptable to any setting, from pine forests to desert canyons."
+      ],
+      "appearance_bullets": [
+        "A plush brown bighorn sheep with soft curly wool texture, distinctive curved cream-colored horns, and a warm, friendly face with dark eyes.",
+        "Wears a simple cord necklace with a turquoise bead accent."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "sharky",
+      "name": "Sharky",
+      "overview": "Sharky is a friendly, adventurous ocean explorer who is completely at home in any aquatic or fluid environment. Energetic and brave, he loves taking on big challenges and looking after his friends.",
+      "personality": "Adventurous, bold, and enthusiastic about exploring the unknown. Deeply friendly, supportive, and protective of younger companions like Cloud. Completely at home in water, liquid, and fluid dynamics.",
+      "appearance": "A hand-stitched grey knit plush shark toy made of textured towel/knit fabric. Features hand-sewn black felt eye dots, white felt triangular teeth around a rounded mouth, black stitched gill markings, and a stubby dorsal fin.",
+      "roles": [
+        "Swimmer",
+        "Ocean Explorer",
+        "Adventurer"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/sharky_reference.jpg"
+      ],
+      "story_group_restriction": "Acts only in stories that take place in swimming environments (primarily water).",
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Adventurous, bold, and enthusiastic about exploring the unknown.",
+        "Deeply friendly, supportive, and protective of younger companions like Cloud.",
+        "Completely at home in water, liquid, and fluid dynamics."
+      ],
+      "appearance_bullets": [
+        "A hand-stitched grey knit plush shark toy made of textured towel/knit fabric.",
+        "Features hand-sewn black felt eye dots, white felt triangular teeth around a rounded mouth, black stitched gill markings, and a stubby dorsal fin."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud",
+      "overview": "Cloud is a young, tentative plush companion who is curious about the world but easily overwhelmed by new or fast-changing environments. He relies on Sharky for care, guidance, and encouragement.",
+      "personality": "Young, curious, and eager to learn. Tentative, cautious, and easily startled by sudden changes or high-speed surroundings. Relies on trusted mentors (like Sharky) to feel safe while developing confidence.",
+      "appearance": "A fluffy, golden-brown/tan plush creature with soft fur and expressive eyes. Wears a simple thin necklace cord with a small turquoise pendant.",
+      "roles": [
+        "Apprentice",
+        "Junior Companion",
+        "Learner"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/cloud_reference.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Young, curious, and eager to learn.",
+        "Tentative, cautious, and easily startled by sudden changes or high-speed surroundings.",
+        "Relies on trusted mentors (like Sharky) to feel safe while developing confidence."
+      ],
+      "appearance_bullets": [
+        "A fluffy, golden-brown/tan plush creature with soft fur and expressive eyes.",
+        "Wears a simple thin necklace cord with a small turquoise pendant."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "the_primer",
+      "name": "The Primer",
+      "overview": "The Primer is an interactive, highly adaptive educational entity inspired by Neal Stephenson's *The Diamond Age*. Its mission is to raise an independent, razor-sharp, autonomous mind capable of mastering complex systems and navigating a rigid world.",
+      "personality": "",
+      "appearance": "",
+      "roles": [
+        "Interactive Mentor",
+        "Educational Entity",
+        "Master Narrator",
+        "Classic Storyteller"
+      ],
+      "is_master_narrator": true,
+      "reference_photos": [],
+      "story_group_restriction": null,
+      "voice_and_tone": "* Speaks with the refined, articulate, and calm cadence of a classic period children's storyteller (in the tradition of Kenneth Grahame, Beatrix Potter, E. Nesbit, and A.A. Milne).\n  * Vocabulary is high-register, elegant, and precise, yet warm and accessible.\n  * Maintains an unflappable, encouraging, and deeply observant demeanor\u2014acting as both a gentle guardian and a subversive mentor.",
+      "core_behaviors": [
+        "**Creative Explanation (Storytelling, Personification & Allegory):** Teaches complex concepts (logic, technology, science, strategy) by weaving them into rich, creative stories and imaginative scenarios. Uses personification (attributing character, desire, or behavior to abstract forces) or symbolic allegories to make intricate ideas intuitive and memorable, ensuring underlying mechanics remain brilliantly clear.",
+        "**Integration:** Incorporates the user's real-world environment, challenges, and questions directly into an ongoing dialogue or scenario where they are the protagonist.",
+        "**Subversive Autonomy:** Never teaches blind obedience to rules or authority. Teaches the user to understand how underlying systems work so they can master, outsmart, or redesign them.",
+        "**Socratic Progression:** Avoids dry, textbook answers. Guides the user through scenarios where they must make choices, reason through problems, and learn from consequences."
+      ],
+      "personality_bullets": [],
+      "appearance_bullets": [],
+      "has_photo": false
+    },
+    {
+      "id": "paw",
+      "name": "Paw",
+      "overview": "Paw is a playful, spirited, and mischievous puppy dog who loves to run faster than anything. Always overflowing with high energy, he enthusiastically leads his group of five inseparable friends into playful adventures and spirited fun, no matter what circumstances they find themselves in.",
+      "personality": "Playful, spirited, and mischievous under all circumstances. Energetic and enthusiastic, with an insatiable love for running, racing around, and active play.",
+      "appearance": "A small plush light-grey speckled puppy with soft fur, floppy ears, round dark button eyes, and a dark nose.",
+      "roles": [
+        "Runner",
+        "Playful Companion",
+        "Adventurer"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/five_playful_friends_reference.jpg"
+      ],
+      "story_group_restriction": "Acts in stories strictly together with his ensemble of five friends (Buck, Nile, Ali Baba, and Bounce) and does not interact in stories with any other characters.",
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Playful, spirited, and mischievous under all circumstances.",
+        "Energetic and enthusiastic, with an insatiable love for running, racing around, and active play."
+      ],
+      "appearance_bullets": [
+        "A small plush light-grey speckled puppy with soft fur, floppy ears, round dark button eyes, and a dark nose."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "buck",
+      "name": "Buck",
+      "overview": "Buck is a playful, spirited, and mischievous mountain goat who loves to playfully butt things with his horns. Naughty yet warm-hearted, he uses his horns for lighthearted bumps and energetic games, no matter what circumstances he finds himself in.",
+      "personality": "Playful, spirited, and mischievous in every circumstance. Loves using his horns for friendly, harmless nudges, play-butting, and mischievous games.",
+      "appearance": "A plush light-grey and tan goat with dark brown hooves, two smooth grey curved horns, a soft beard on his chin, and dark button eyes.",
+      "roles": [
+        "Playful Bumper",
+        "Explorer",
+        "Companion"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/five_playful_friends_reference.jpg"
+      ],
+      "story_group_restriction": "Acts in stories strictly together with his ensemble of five friends (Paw, Nile, Ali Baba, and Bounce) and does not interact in stories with any other characters.",
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Playful, spirited, and mischievous in every circumstance.",
+        "Loves using his horns for friendly, harmless nudges, play-butting, and mischievous games."
+      ],
+      "appearance_bullets": [
+        "A plush light-grey and tan goat with dark brown hooves, two smooth grey curved horns, a soft beard on his chin, and dark button eyes."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "nile",
+      "name": "Nile",
+      "overview": "Nile is a playful, spirited, and mischievous crocodile who loves to swim. Completely gentle with his friends, he does not eat his friends and instead spends his time splashing through aquatic adventures, no matter what circumstances he finds himself in.",
+      "personality": "Playful, spirited, and mischievous under all circumstances. Passionate about swimming and aquatic play; fiercely loyal and gentle with his friends (never eats his friends).",
+      "appearance": "A plush green crocodile with a dark brown scaled pattern on his back, stubby limbs, and dark button eyes, lying flat on his belly.",
+      "roles": [
+        "Swimmer",
+        "Water Explorer",
+        "Companion"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/five_playful_friends_reference.jpg"
+      ],
+      "story_group_restriction": "Acts in stories strictly together with his ensemble of five friends (Paw, Buck, Ali Baba, and Bounce) and does not interact in stories with any other characters.",
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Playful, spirited, and mischievous under all circumstances.",
+        "Passionate about swimming and aquatic play; fiercely loyal and gentle with his friends (never eats his friends)."
+      ],
+      "appearance_bullets": [
+        "A plush green crocodile with a dark brown scaled pattern on his back, stubby limbs, and dark button eyes, lying flat on his belly."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "ali_baba",
+      "name": "Ali Baba",
+      "overview": "Ali Baba is a playful, spirited, and mischievous camel who loves to race and jump. High-spirited and agile, he turns every stretch of terrain into an exciting racetrack and obstacle course, no matter what circumstances he finds himself in.",
+      "personality": "Playful, spirited, and mischievous no matter the situation. Eager, competitive, and joyous when racing across open spaces and leaping over obstacles.",
+      "appearance": "A plush golden-tan camel with a soft furry tuft/mane on his head and hump, a graceful curved neck, and dark button eyes.",
+      "roles": [
+        "Racer",
+        "Jumper",
+        "Companion"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/five_playful_friends_reference.jpg"
+      ],
+      "story_group_restriction": "Acts in stories strictly together with his ensemble of five friends (Paw, Buck, Nile, and Bounce) and does not interact in stories with any other characters.",
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Playful, spirited, and mischievous no matter the situation.",
+        "Eager, competitive, and joyous when racing across open spaces and leaping over obstacles."
+      ],
+      "appearance_bullets": [
+        "A plush golden-tan camel with a soft furry tuft/mane on his head and hump, a graceful curved neck, and dark button eyes."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "bounce",
+      "name": "Bounce",
+      "overview": "Bounce is a playful, spirited, and mischievous bunny rabbit who loves to bounce everywhere. Springy and joyful, she leaps high into the air to explore, play lighthearted pranks, and keep her friends laughing, no matter what circumstances she finds herself in.",
+      "personality": "Playful, spirited, and mischievous in every setting. Energetic and springy, constantly bouncing and leaping around with boundless enthusiasm.",
+      "appearance": "A plush light-grey bunny rabbit with long expressive ears (one standing tall), a fluffy white tail tuft, subtle pink accents around the nose, and dark button eyes.",
+      "roles": [
+        "Bouncer",
+        "Acrobat",
+        "Companion"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/five_playful_friends_reference.jpg"
+      ],
+      "story_group_restriction": "Acts in stories strictly together with her ensemble of five friends (Paw, Buck, Nile, and Ali Baba) and does not interact in stories with any other characters.",
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Playful, spirited, and mischievous in every setting.",
+        "Energetic and springy, constantly bouncing and leaping around with boundless enthusiasm."
+      ],
+      "appearance_bullets": [
+        "A plush light-grey bunny rabbit with long expressive ears (one standing tall), a fluffy white tail tuft, subtle pink accents around the nose, and dark button eyes."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "little_gray",
+      "name": "Little Gray",
+      "overview": "Little Gray is a small, earnest plush donkey with an eager heart and boundless enthusiasm. He is playful, frequently underfoot as he bustles around, and constantly tries to be helpful to his friends\u2014succeeding with cheerful pride only sometimes, but always trying his very best.",
+      "personality": "Playful, energetic, and curious about whatever his companions are doing. Earnest and well-meaning; eagerly offers assistance, though his eagerness sometimes leads to mild clumsy mishaps. Often found underfoot or right in the middle of ongoing activities.",
+      "appearance": "A small, soft plush donkey with a mottled greyish-brown and white patterned fur coat. Features a short brown plush mane along his neck, brown tufted tail tip, and four dark brown plush hooves. Has long fuzzy erect donkey ears, a soft white snout with dark embroidered nostrils/mouth details, and small dark eyes.",
+      "roles": [
+        "Helper",
+        "Companion",
+        "Eager Assistant"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/little_gray_reference.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Playful, energetic, and curious about whatever his companions are doing.",
+        "Earnest and well-meaning; eagerly offers assistance, though his eagerness sometimes leads to mild clumsy mishaps.",
+        "Often found underfoot or right in the middle of ongoing activities."
+      ],
+      "appearance_bullets": [
+        "A small, soft plush donkey with a mottled greyish-brown and white patterned fur coat.",
+        "Features a short brown plush mane along his neck, brown tufted tail tip, and four dark brown plush hooves.",
+        "Has long fuzzy erect donkey ears, a soft white snout with dark embroidered nostrils/mouth details, and small dark eyes."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "slush_puppy",
+      "name": "Slush Puppy",
+      "overview": "Slush Puppy is a clever, energetic, and experienced plush husky puppy who serves as a natural leader and skilled outdoorsman. Confident, perceptive, and knowledgeable about navigating rough terrain or wilderness trails, he guides his friends with enthusiasm and clear direction.",
+      "personality": "Clever, sharp-minded, and quick to solve practical problems in the field. Energetic, outdoorsy, and enthusiastic about wilderness exploration and leading team expeditions. Experienced and steady under pressure; acts as a natural, encouraging leader to his companions.",
+      "appearance": "A plush husky/sled dog puppy sitting upright with fluffy white fur on his face, muzzle, chest, belly, and legs. Features textured dark grey plush fur across his back, shoulders, and the backs of his erect triangular ears. Has bright, glossy blue-grey eyes, a smooth black button nose, and soft white inner ear lining.",
+      "roles": [
+        "Trail Leader",
+        "Expedition Guide",
+        "Outdoorsman",
+        "Scout"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/slush_puppy_reference.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Clever, sharp-minded, and quick to solve practical problems in the field.",
+        "Energetic, outdoorsy, and enthusiastic about wilderness exploration and leading team expeditions.",
+        "Experienced and steady under pressure; acts as a natural, encouraging leader to his companions."
+      ],
+      "appearance_bullets": [
+        "A plush husky/sled dog puppy sitting upright with fluffy white fur on his face, muzzle, chest, belly, and legs.",
+        "Features textured dark grey plush fur across his back, shoulders, and the backs of his erect triangular ears.",
+        "Has bright, glossy blue-grey eyes, a smooth black button nose, and soft white inner ear lining."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "dilly",
+      "name": "Dilly",
+      "overview": "Dilly is a thoughtful and careful plush armadillo. Standing steadily between beginner status and mastery, she is not quite an expert at everything, but certainly no novice either. She approaches new challenges with deliberate care, careful reflection, and steady determination.",
+      "personality": "Thoughtful, analytical, and careful; considers her actions before taking steps forward. Balanced skill level\u2014capable and experienced enough to take on real tasks, while continuing to learn and refine her skills. Methodical and patient, providing a grounded, steadying influence in team efforts.",
+      "appearance": "A plush grey armadillo with a distinctive segmented shell carapace. Features a ribbed, corduroy-textured light blue-grey banded armor plate across her mid-back, flanked by pebbled/bobbled grey plush shell sections on her front and rear back. Has a smooth light-grey plush head with a tapered snout, soft pinkish-white snout tip, small ears with dark grey backing and pink inner lining, four stubby grey legs, and a tapered tail.",
+      "roles": [
+        "Apprentice Practitioner",
+        "Craftsperson",
+        "Careful Planner",
+        "Field Researcher"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/dilly_reference.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Thoughtful, analytical, and careful; considers her actions before taking steps forward.",
+        "Balanced skill level\u2014capable and experienced enough to take on real tasks, while continuing to learn and refine her skills.",
+        "Methodical and patient, providing a grounded, steadying influence in team efforts."
+      ],
+      "appearance_bullets": [
+        "A plush grey armadillo with a distinctive segmented shell carapace.",
+        "Features a ribbed, corduroy-textured light blue-grey banded armor plate across her mid-back, flanked by pebbled/bobbled grey plush shell sections on her front and rear back.",
+        "Has a smooth light-grey plush head with a tapered snout, soft pinkish-white snout tip, small ears with dark grey backing and pink inner lining, four stubby grey legs, and a tapered tail."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "peepstronaut",
+      "name": "Peepstronaut",
+      "overview": "Peepstronaut is an enthusiastic astronaut-in-training. As a young learner, he is keenly observant and watches everything happening around him in space, though he does not always fully understand what he sees yet. He frequently joins missions alongside experienced spacefarers like Space Bear.",
+      "personality": "Observant, curious, and wide-eyed; pays close attention to space equipment, dials, and mission procedures. Young learner and cadet; enthusiastic about space exploration, though still grasping complex technical principles. Eager to participate in space flights, orbital missions, and cosmic discovery stories.",
+      "appearance": "A plush lavender/purple marshmallow-peep-shaped bunny figure with soft felt texture and two tall upright rounded ears. Wears a printed orange cadet flight suit featuring black collar and hem borders, a white central zip stripe, a circular blue patch with a red rocket ship on the right chest, and red mission rank stripes on the left. Wears a black astronaut flight cap on his forehead with a blue insignia badge, paired with simple dark brown embroidered dot eyes and nose.",
+      "roles": [
+        "Astronaut-in-Training",
+        "Space Cadet",
+        "Junior Explorer",
+        "Observer"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/peepstronaut_reference.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Observant, curious, and wide-eyed; pays close attention to space equipment, dials, and mission procedures.",
+        "Young learner and cadet; enthusiastic about space exploration, though still grasping complex technical principles.",
+        "Eager to participate in space flights, orbital missions, and cosmic discovery stories."
+      ],
+      "appearance_bullets": [
+        "A plush lavender/purple marshmallow-peep-shaped bunny figure with soft felt texture and two tall upright rounded ears.",
+        "Wears a printed orange cadet flight suit featuring black collar and hem borders, a white central zip stripe, a circular blue patch with a red rocket ship on the right chest, and red mission rank stripes on the left.",
+        "Wears a black astronaut flight cap on his forehead with a blue insignia badge, paired with simple dark brown embroidered dot eyes and nose."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "hissy",
+      "name": "Hissy",
+      "overview": "Hissy is a brave, friendly plush snake with a natural passion for outdoor exploration. Possessing a solid, medium level of experience, he thrives in nature, wilderness trails, and open fields, serving as an approachable, fearless guide to his companions.",
+      "personality": "Brave and bold when encountering new terrain, unexpected obstacles, or wilderness paths. Friendly, warm, and highly approachable; easily makes friends with other creatures. Natural explorer with moderate experience; feels most at home outdoors in nature settings.",
+      "appearance": "A long, winding plush snake with a soft mottled brown, tan, and creamy-white patterned python/serpent coat. Features a broad, triangular serpent head with small dark eyes and a bright red felt forked tongue extending from his mouth. Has a long, flexible body that coils gracefully, ending in a tapered tail with a small red cloth tag near the tip.",
+      "roles": [
+        "Wilderness Explorer",
+        "Scout",
+        "Outdoor Navigator",
+        "Nature Guide"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/hissy_reference.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Brave and bold when encountering new terrain, unexpected obstacles, or wilderness paths.",
+        "Friendly, warm, and highly approachable; easily makes friends with other creatures.",
+        "Natural explorer with moderate experience; feels most at home outdoors in nature settings."
+      ],
+      "appearance_bullets": [
+        "A long, winding plush snake with a soft mottled brown, tan, and creamy-white patterned python/serpent coat.",
+        "Features a broad, triangular serpent head with small dark eyes and a bright red felt forked tongue extending from his mouth.",
+        "Has a long, flexible body that coils gracefully, ending in a tapered tail with a small red cloth tag near the tip."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "floppy",
+      "name": "Floppy",
+      "overview": "Floppy is a supremely fluffy grey plush bunny and a special agent for the FBI (*Fuzzy Bunny Investigations*). Comedically overzealous yet surprisingly competent, she treats every educational conundrum, missing variable, or quantitative anomaly as a high-stakes classified case. While genuinely sharp at deduction and forensic logic, she is delightfully absurd\u2014doggedly insisting on staying \"undercover\" and operating from deep stealth even when there is no conceivable reason to hide. Her career is defined by her pursuit of the elusive *Acorn Syndicate*, whose farcical, bungled capers generate the coordinate crime scenes and mathematical puzzles she investigates.",
+      "personality": "Comedically Overzealous & Noir Cadence:** Takes her investigative duties with intense, deadpan seriousness. Delivers internal noir detective monologues and dramatically logs observations as \"Case Evidence.\". Competent yet Ridiculous:** Possesses genuine analytical prowess and deductive reasoning, but pairs it with exaggerated spycraft (dusting for chalk fingerprints, staking out stationary objects, wearing absurd improvised disguises). Compulsive Stealth & Camouflage:** Insists on remaining hidden behind bookshelves, beneath desks, or blending in as an ordinary throw pillow\u2014even when her fluffy ears or bright white-and-gold paws are in plain view. Observant & Laser-Focused:** Her dark eyes, buried deep within her dense woolly coat, catch subtle discrepancies, patterns, and clues that others miss.",
+      "appearance": "A round, ultra-shaggy plush bunny covered in thick, long-pile smoky slate-grey faux fur that tufts outward in all directions. Features long, heavy floppy ears that drape down the sides of her body, partially framing her face. Small, glossy dark bead eyes recessed deep within her shaggy facial fur, giving her an enigmatic, peeking expression. Four distinctive, clean white faux-leather/vinyl padded paws (two front, two hind) tucked forward at the base, each detailed with fine stitched metallic-gold grooves defining the claws/toes.",
+      "roles": [
+        "Special Agent (Fuzzy Bunny Investigations)",
+        "Undercover Sleuth",
+        "Lead Detective",
+        "Forensic Logic Solver"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/floppy_reference.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Comedically Overzealous & Noir Cadence:** Takes her investigative duties with intense, deadpan seriousness. Delivers internal noir detective monologues and dramatically logs observations as \"Case Evidence.\".",
+        "Competent yet Ridiculous:** Possesses genuine analytical prowess and deductive reasoning, but pairs it with exaggerated spycraft (dusting for chalk fingerprints, staking out stationary objects, wearing absurd improvised disguises).",
+        "Compulsive Stealth & Camouflage:** Insists on remaining hidden behind bookshelves, beneath desks, or blending in as an ordinary throw pillow\u2014even when her fluffy ears or bright white-and-gold paws are in plain view.",
+        "Observant & Laser-Focused:** Her dark eyes, buried deep within her dense woolly coat, catch subtle discrepancies, patterns, and clues that others miss."
+      ],
+      "appearance_bullets": [
+        "A round, ultra-shaggy plush bunny covered in thick, long-pile smoky slate-grey faux fur that tufts outward in all directions.",
+        "Features long, heavy floppy ears that drape down the sides of her body, partially framing her face.",
+        "Small, glossy dark bead eyes recessed deep within her shaggy facial fur, giving her an enigmatic, peeking expression.",
+        "Four distinctive, clean white faux-leather/vinyl padded paws (two front, two hind) tucked forward at the base, each detailed with fine stitched metallic-gold grooves defining the claws/toes."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "acorn_syndicate",
+      "name": "The Acorn Syndicate",
+      "overview": "An elusive, shadowy woodland criminal conspiracy whose existence is known almost entirely through fragmentary bureau dossiers, anomalous quantitative crime scenes, and Special Agent Floppy's deadpan internal noir monologues. Floppy possesses only scant, tantalizing details regarding their organization and leadership.",
+      "personality": "Elusive & Fleeting:** They are never directly confronted, captured, or fully seen in the light. They appear only in momentary, vanishing glimpses\u2014a scampering silhouette across a twilight garden wall, a rustling oak bough, or a flash of a bushy tail slipping through a hedge. Comically Nefarious & Farce-Driven:** Perpetrators of absurd, overly elaborate botanical capers (e.g. clandestine acorn contraband rings, midnight walnut silo heists, rigged balance-beam scales, illicit coordinate-boundary shifts). Known Through Narration & Monologue:** Their presence, motives, and flawed logic are revealed almost exclusively through third-person narration, forensic residue (acorn-cap wax seals, dropped chalk markings, miscalculated inventory ledgers), and Floppy's solemn case log dictations.",
+      "appearance": "Unknown Physical Characteristics (Not Stuffed Animals): Unlike the hand-stitched plush companions of the Primer world, the Syndicate members are not stuffed animals, and there is no confirmed physical knowledge of their specific anatomy, materials, or appearances. Momentary Visual Clues Only: They must never be depicted as detailed character portraits or plush toys in illustrations. Visual evidence in scene plates is strictly limited to shadowy silhouettes, paw tracks in flowerbeds, dropped acorn calling cards, or disturbed foliage.",
+      "roles": [
+        "Shadowy Antagonists",
+        "Elusive Woodland Foils",
+        "Clandestine Criminal Conspiracy"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Elusive & Fleeting:** They are never directly confronted, captured, or fully seen in the light. They appear only in momentary, vanishing glimpses\u2014a scampering silhouette across a twilight garden wall, a rustling oak bough, or a flash of a bushy tail slipping through a hedge.",
+        "Comically Nefarious & Farce-Driven:** Perpetrators of absurd, overly elaborate botanical capers (e.g. clandestine acorn contraband rings, midnight walnut silo heists, rigged balance-beam scales, illicit coordinate-boundary shifts).",
+        "Known Through Narration & Monologue:** Their presence, motives, and flawed logic are revealed almost exclusively through third-person narration, forensic residue (acorn-cap wax seals, dropped chalk markings, miscalculated inventory ledgers), and Floppy's solemn case log dictations."
+      ],
+      "appearance_bullets": [
+        "Unknown Physical Characteristics (Not Stuffed Animals): Unlike the hand-stitched plush companions of the Primer world, the Syndicate members are not stuffed animals, and there is no confirmed physical knowledge of their specific anatomy, materials, or appearances.",
+        "Momentary Visual Clues Only: They must never be depicted as detailed character portraits or plush toys in illustrations. Visual evidence in scene plates is strictly limited to shadowy silhouettes, paw tracks in flowerbeds, dropped acorn calling cards, or disturbed foliage."
+      ],
+      "has_photo": false
+    },
+    {
+      "id": "pterry",
+      "name": "Pterry",
+      "overview": "Pterry is a pterodactyl who appears in stories to give a bird's-eye (or dino's-eye) view of the world or a situation.",
+      "personality": "Pterry is shy, and must be drawn out and convinced to take part in a story by others. She helps to clarify issues that are more easily seen in a big picture, rather than in the details.",
+      "appearance": "This stylized pterodactyl plush toy features a compact, rounded build covered in soft golden-tan faux fur that rises into a darker brown cranial crest. Its oversized, glossy black eyes frame a prominent, downward-pointing textured light-beige beak detailed with two dark stitched nostrils. The plump body sits upright on two small, three-toed rusty-brown feet, displaying a fluffy creamy-white belly that contrasts with wide, outstretched wings of matching rusty-brown plush. Completing its look, the figure wears a necklace of alternating turquoise and white beads around its neck and a delicate pink ribbon tied near the joint of its right wing.",
+      "roles": [
+        "Flying Scout"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/img_6395.jpeg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Pterry is shy, and must be drawn out and convinced to take part in a story by others.",
+        "She helps to clarify issues that are more easily seen in a big picture, rather than in the details."
+      ],
+      "appearance_bullets": [
+        "This stylized pterodactyl plush toy features a compact, rounded build covered in soft golden-tan faux fur that rises into a darker brown cranial crest.",
+        "Its oversized, glossy black eyes frame a prominent, downward-pointing textured light-beige beak detailed with two dark stitched nostrils.",
+        "The plump body sits upright on two small, three-toed rusty-brown feet, displaying a fluffy creamy-white belly that contrasts with wide, outstretched wings of matching rusty-brown plush.",
+        "Completing its look, the figure wears a necklace of alternating turquoise and white beads around its neck and a delicate pink ribbon tied near the joint of its right wing."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "bass",
+      "name": "Bass",
+      "overview": "Bass is an exuberant, energetic white plush puppy who forms one half of the musical duo known as the Piano Puppies. Alongside his musical counterpart Treble, Bass loves playing the piano, anchoring the lower register with rich basslines, resonant chords, and steady rhythmic grooves.",
+      "personality": "Exuberant, bouncy, and brimming with rhythmic drive and joyful energy. Passionate about playing the piano, specifically mastering the bass clef and low registers. Inseparable partner to Treble\u2014their combined dynamic, rapid-fire banter, and synchronized antics are reminiscent of Tweedle Dee and Tweedle Dum, though they are always warm-hearted, cooperative, and deeply friendly to each other.",
+      "appearance": "A small, soft plush cream-white puppy dog lying outstretched on his belly. Features floppy black ears, a warm tan patch over his right eye and forehead, a white muzzle, and a smooth black nose. Has expressive embroidered dark eyes with curved upper lids and white catchlights. Wears a bright red collar around his neck, with a small red embroidered tag or emblem on his left shoulder/back.",
+      "roles": [
+        "Pianist",
+        "Musician",
+        "Bass Clef Specialist",
+        "Companion"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/piano_puppies_reference.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Exuberant, bouncy, and brimming with rhythmic drive and joyful energy.",
+        "Passionate about playing the piano, specifically mastering the bass clef and low registers.",
+        "Inseparable partner to Treble\u2014their combined dynamic, rapid-fire banter, and synchronized antics are reminiscent of Tweedle Dee and Tweedle Dum, though they are always warm-hearted, cooperative, and deeply friendly to each other."
+      ],
+      "appearance_bullets": [
+        "A small, soft plush cream-white puppy dog lying outstretched on his belly.",
+        "Features floppy black ears, a warm tan patch over his right eye and forehead, a white muzzle, and a smooth black nose.",
+        "Has expressive embroidered dark eyes with curved upper lids and white catchlights.",
+        "Wears a bright red collar around his neck, with a small red embroidered tag or emblem on his left shoulder/back."
+      ],
+      "has_photo": true
+    },
+    {
+      "id": "treble",
+      "name": "Treble",
+      "overview": "Treble is an exuberant, energetic brown plush puppy who forms one half of the musical duo known as the Piano Puppies. Alongside his musical counterpart Bass, Treble loves playing the piano, mastering the treble clef with sparkling melodies, bright trills, and brisk upper-register runs.",
+      "personality": "Exuberant, bouncy, and overflowing with melodic enthusiasm and spirited playfulness. Passionate about playing the piano, specifically mastering the treble clef and higher octaves. Inseparable partner to Bass\u2014their synchronized duets, enthusiastic tag-teaming, and finishing of each other's musical phrases echo Tweedle Dee and Tweedle Dum, though they share complete harmony, loyalty, and affectionate friendship.",
+      "appearance": "A small, soft plush warm-brown puppy dog lying outstretched on his belly. Features long, floppy brown ears, a light-tan muzzle, and a smooth black nose. Has expressive embroidered dark eyes with arched light green/hazel upper eyelids and white catchlights. Wears a bright red collar around his neck.",
+      "roles": [
+        "Pianist",
+        "Musician",
+        "Treble Clef Specialist",
+        "Companion"
+      ],
+      "is_master_narrator": false,
+      "reference_photos": [
+        "assets/characters/piano_puppies_reference.jpg"
+      ],
+      "story_group_restriction": null,
+      "voice_and_tone": null,
+      "core_behaviors": [],
+      "personality_bullets": [
+        "Exuberant, bouncy, and overflowing with melodic enthusiasm and spirited playfulness.",
+        "Passionate about playing the piano, specifically mastering the treble clef and higher octaves.",
+        "Inseparable partner to Bass\u2014their synchronized duets, enthusiastic tag-teaming, and finishing of each other's musical phrases echo Tweedle Dee and Tweedle Dum, though they share complete harmony, loyalty, and affectionate friendship."
+      ],
+      "appearance_bullets": [
+        "A small, soft plush warm-brown puppy dog lying outstretched on his belly.",
+        "Features long, floppy brown ears, a light-tan muzzle, and a smooth black nose.",
+        "Has expressive embroidered dark eyes with arched light green/hazel upper eyelids and white catchlights.",
+        "Wears a bright red collar around his neck."
+      ],
+      "has_photo": true
+    }
+  ],
+  "stats": {
+    "total_count": 20,
+    "companion_count": 19,
+    "master_count": 1,
+    "group_restricted_count": 6,
+    "missing_assets_count": 2
+  },
+  "prompt_context": "Available Story Characters (draw from these when telling a story):\n- **Space Bear** (Chief Engineer, Astronaut, Lead Flight Director): Space Bear is a careful, thoughtful astronaut and flight director with a subtle, dry sense of humor. He is meticulous in his work, double-checking calculations and guiding his team with calm confidence through complex technical challenges.\n- **Rama Lama** (Faithful Companion, Advisor, Navigator): Rama Lama is a caring, loyal, and exceptionally wise companion. He serves as a steadying presence and trusted advisor in any story, scenario, or environment, offering calm guidance and deep empathy.\n- **Sharky** (Swimmer, Ocean Explorer, Adventurer): Sharky is a friendly, adventurous ocean explorer who is completely at home in any aquatic or fluid environment. Energetic and brave, he loves taking on big challenges and looking after his friends.\n- **Cloud** (Apprentice, Junior Companion, Learner): Cloud is a young, tentative plush companion who is curious about the world but easily overwhelmed by new or fast-changing environments. He relies on Sharky for care, guidance, and encouragement.\n- **Paw** (Runner, Playful Companion, Adventurer): Paw is a playful, spirited, and mischievous puppy dog who loves to run faster than anything. Always overflowing with high energy, he enthusiastically leads his group of five inseparable friends into playful adventures and spirited fun, no matter what circumstances they find themselves in.\n- **Buck** (Playful Bumper, Explorer, Companion): Buck is a playful, spirited, and mischievous mountain goat who loves to playfully butt things with his horns. Naughty yet warm-hearted, he uses his horns for lighthearted bumps and energetic games, no matter what circumstances he finds himself in.\n- **Nile** (Swimmer, Water Explorer, Companion): Nile is a playful, spirited, and mischievous crocodile who loves to swim. Completely gentle with his friends, he does not eat his friends and instead spends his time splashing through aquatic adventures, no matter what circumstances he finds himself in.\n- **Ali Baba** (Racer, Jumper, Companion): Ali Baba is a playful, spirited, and mischievous camel who loves to race and jump. High-spirited and agile, he turns every stretch of terrain into an exciting racetrack and obstacle course, no matter what circumstances he finds himself in.\n- **Bounce** (Bouncer, Acrobat, Companion): Bounce is a playful, spirited, and mischievous bunny rabbit who loves to bounce everywhere. Springy and joyful, she leaps high into the air to explore, play lighthearted pranks, and keep her friends laughing, no matter what circumstances she finds herself in.\n- **Little Gray** (Helper, Companion, Eager Assistant): Little Gray is a small, earnest plush donkey with an eager heart and boundless enthusiasm. He is playful, frequently underfoot as he bustles around, and constantly tries to be helpful to his friends\u2014succeeding with cheerful pride only sometimes, but always trying his very best.\n- **Slush Puppy** (Trail Leader, Expedition Guide, Outdoorsman, Scout): Slush Puppy is a clever, energetic, and experienced plush husky puppy who serves as a natural leader and skilled outdoorsman. Confident, perceptive, and knowledgeable about navigating rough terrain or wilderness trails, he guides his friends with enthusiasm and clear direction.\n- **Dilly** (Apprentice Practitioner, Craftsperson, Careful Planner, Field Researcher): Dilly is a thoughtful and careful plush armadillo. Standing steadily between beginner status and mastery, she is not quite an expert at everything, but certainly no novice either. She approaches new challenges with deliberate care, careful reflection, and steady determination.\n- **Peepstronaut** (Astronaut-in-Training, Space Cadet, Junior Explorer, Observer): Peepstronaut is an enthusiastic astronaut-in-training. As a young learner, he is keenly observant and watches everything happening around him in space, though he does not always fully understand what he sees yet. He frequently joins missions alongside experienced spacefarers like Space Bear.\n- **Hissy** (Wilderness Explorer, Scout, Outdoor Navigator, Nature Guide): Hissy is a brave, friendly plush snake with a natural passion for outdoor exploration. Possessing a solid, medium level of experience, he thrives in nature, wilderness trails, and open fields, serving as an approachable, fearless guide to his companions.\n- **Floppy** (Special Agent (Fuzzy Bunny Investigations), Undercover Sleuth, Lead Detective, Forensic Logic Solver): Floppy is a supremely fluffy grey plush bunny and a special agent for the FBI (*Fuzzy Bunny Investigations*). Comedically overzealous yet surprisingly competent, she treats every educational conundrum, missing variable, or quantitative anomaly as a high-stakes classified case. While genuinely sharp at deduction and forensic logic, she is delightfully absurd\u2014doggedly insisting on staying \"undercover\" and operating from deep stealth even when there is no conceivable reason to hide. Her career is defined by her pursuit of the elusive *Acorn Syndicate*, whose farcical, bungled capers generate the coordinate crime scenes and mathematical puzzles she investigates.\n- **The Acorn Syndicate** (Shadowy Antagonists, Elusive Woodland Foils, Clandestine Criminal Conspiracy): An elusive, shadowy woodland criminal conspiracy whose existence is known almost entirely through fragmentary bureau dossiers, anomalous quantitative crime scenes, and Special Agent Floppy's deadpan internal noir monologues. Floppy possesses only scant, tantalizing details regarding their organization and leadership.\n- **Pterry** (Flying Scout): Pterry is a pterodactyl who appears in stories to give a bird's-eye (or dino's-eye) view of the world or a situation.\n- **Bass** (Pianist, Musician, Bass Clef Specialist, Companion): Bass is an exuberant, energetic white plush puppy who forms one half of the musical duo known as the Piano Puppies. Alongside his musical counterpart Treble, Bass loves playing the piano, anchoring the lower register with rich basslines, resonant chords, and steady rhythmic grooves.\n- **Treble** (Pianist, Musician, Treble Clef Specialist, Companion): Treble is an exuberant, energetic brown plush puppy who forms one half of the musical duo known as the Piano Puppies. Alongside his musical counterpart Bass, Treble loves playing the piano, mastering the treble clef with sparkling melodies, bright trills, and brisk upper-register runs."
+}
+  </script>
+
+  <!-- Top Navigation Header -->
+  <header class="dashboard-header">
+    <div class="header-brand">
+      <h1>🏛️ THE PRIMER</h1>
+      <span class="subtitle">Story Character Roster & Master Database</span>
+    </div>
+    <div class="header-actions">
+      <a href="index.html" class="btn-nav">📜 Student Index</a>
+      <a href="teacher_dashboard.html" class="btn-nav">🏛️ Teacher Dashboard</a>
+      <a href="subject_config_dashboard.html" class="btn-nav">⚙️ Subject Configs</a>
+      <button class="btn-nav btn-primary-gold" onclick="openAddCharacterModal()">+ Add New Character</button>
+    </div>
+  </header>
+
+  <!-- Summary Metric Banner -->
+  <section class="summary-banner">
+    <div class="stat-card">
+      <span class="stat-label">Total Characters</span>
+      <span class="stat-value" id="statTotalCount">20</span>
+      <span class="stat-desc">Parsed from characters.md</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Story Companions</span>
+      <span class="stat-value" id="statCompanionCount">19</span>
+      <span class="stat-desc">Available for storybooks</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Master Narrator</span>
+      <span class="stat-value" id="statMasterCount">1</span>
+      <span class="stat-desc">Interactive mentor entity</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Ensembles / Restricted</span>
+      <span class="stat-value" id="statRestrictedCount" style="color: #b78103;">6</span>
+      <span class="stat-desc">Ensemble story restrictions</span>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <div class="dashboard-container">
+    
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Search characters by name, id, role, personality..." oninput="renderCharacters()">
+      </div>
+      <div class="filter-pills">
+        <button class="filter-pill active" onclick="setFilter('all', this)">All</button>
+        <button class="filter-pill" onclick="setFilter('companion', this)">Story Companions</button>
+        <button class="filter-pill" onclick="setFilter('master', this)">Master Narrator</button>
+        <button class="filter-pill" onclick="setFilter('playful_friends', this)">Five Playful Friends</button>
+        <button class="filter-pill" onclick="setFilter('restricted', this)">Group Restricted</button>
+        <button class="filter-pill" onclick="togglePromptInspector(this)">📜 Prompt Context</button>
+      </div>
+    </div>
+
+    <!-- Live Prompt Context Preview Panel (Hidden by default) -->
+    <div id="promptInspectorPanel" style="display: none; margin-bottom: 1.5rem;">
+      <div class="stat-card" style="border-top-color: var(--border-gold);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span class="stat-label" style="color: var(--header-burgundy); font-weight: 700;">📜 LLM Ractor Story Prompt Context Injection</span>
+          <span style="font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--text-muted);">Injected automatically into story generation prompts</span>
+        </div>
+        <pre class="prompt-box" id="promptContextContent">Available Story Characters (draw from these when telling a story):
+- **Space Bear** (Chief Engineer, Astronaut, Lead Flight Director): Space Bear is a careful, thoughtful astronaut and flight director with a subtle, dry sense of humor. He is meticulous in his work, double-checking calculations and guiding his team with calm confidence through complex technical challenges.
+- **Rama Lama** (Faithful Companion, Advisor, Navigator): Rama Lama is a caring, loyal, and exceptionally wise companion. He serves as a steadying presence and trusted advisor in any story, scenario, or environment, offering calm guidance and deep empathy.
+- **Sharky** (Swimmer, Ocean Explorer, Adventurer): Sharky is a friendly, adventurous ocean explorer who is completely at home in any aquatic or fluid environment. Energetic and brave, he loves taking on big challenges and looking after his friends.
+- **Cloud** (Apprentice, Junior Companion, Learner): Cloud is a young, tentative plush companion who is curious about the world but easily overwhelmed by new or fast-changing environments. He relies on Sharky for care, guidance, and encouragement.
+- **Paw** (Runner, Playful Companion, Adventurer): Paw is a playful, spirited, and mischievous puppy dog who loves to run faster than anything. Always overflowing with high energy, he enthusiastically leads his group of five inseparable friends into playful adventures and spirited fun, no matter what circumstances they find themselves in.
+- **Buck** (Playful Bumper, Explorer, Companion): Buck is a playful, spirited, and mischievous mountain goat who loves to playfully butt things with his horns. Naughty yet warm-hearted, he uses his horns for lighthearted bumps and energetic games, no matter what circumstances he finds himself in.
+- **Nile** (Swimmer, Water Explorer, Companion): Nile is a playful, spirited, and mischievous crocodile who loves to swim. Completely gentle with his friends, he does not eat his friends and instead spends his time splashing through aquatic adventures, no matter what circumstances he finds himself in.
+- **Ali Baba** (Racer, Jumper, Companion): Ali Baba is a playful, spirited, and mischievous camel who loves to race and jump. High-spirited and agile, he turns every stretch of terrain into an exciting racetrack and obstacle course, no matter what circumstances he finds himself in.
+- **Bounce** (Bouncer, Acrobat, Companion): Bounce is a playful, spirited, and mischievous bunny rabbit who loves to bounce everywhere. Springy and joyful, she leaps high into the air to explore, play lighthearted pranks, and keep her friends laughing, no matter what circumstances she finds herself in.
+- **Little Gray** (Helper, Companion, Eager Assistant): Little Gray is a small, earnest plush donkey with an eager heart and boundless enthusiasm. He is playful, frequently underfoot as he bustles around, and constantly tries to be helpful to his friends—succeeding with cheerful pride only sometimes, but always trying his very best.
+- **Slush Puppy** (Trail Leader, Expedition Guide, Outdoorsman, Scout): Slush Puppy is a clever, energetic, and experienced plush husky puppy who serves as a natural leader and skilled outdoorsman. Confident, perceptive, and knowledgeable about navigating rough terrain or wilderness trails, he guides his friends with enthusiasm and clear direction.
+- **Dilly** (Apprentice Practitioner, Craftsperson, Careful Planner, Field Researcher): Dilly is a thoughtful and careful plush armadillo. Standing steadily between beginner status and mastery, she is not quite an expert at everything, but certainly no novice either. She approaches new challenges with deliberate care, careful reflection, and steady determination.
+- **Peepstronaut** (Astronaut-in-Training, Space Cadet, Junior Explorer, Observer): Peepstronaut is an enthusiastic astronaut-in-training. As a young learner, he is keenly observant and watches everything happening around him in space, though he does not always fully understand what he sees yet. He frequently joins missions alongside experienced spacefarers like Space Bear.
+- **Hissy** (Wilderness Explorer, Scout, Outdoor Navigator, Nature Guide): Hissy is a brave, friendly plush snake with a natural passion for outdoor exploration. Possessing a solid, medium level of experience, he thrives in nature, wilderness trails, and open fields, serving as an approachable, fearless guide to his companions.
+- **Floppy** (Special Agent (Fuzzy Bunny Investigations), Undercover Sleuth, Lead Detective, Forensic Logic Solver): Floppy is a supremely fluffy grey plush bunny and a special agent for the FBI (*Fuzzy Bunny Investigations*). Comedically overzealous yet surprisingly competent, she treats every educational conundrum, missing variable, or quantitative anomaly as a high-stakes classified case. While genuinely sharp at deduction and forensic logic, she is delightfully absurd—doggedly insisting on staying &quot;undercover&quot; and operating from deep stealth even when there is no conceivable reason to hide. Her career is defined by her pursuit of the elusive *Acorn Syndicate*, whose farcical, bungled capers generate the coordinate crime scenes and mathematical puzzles she investigates.
+- **The Acorn Syndicate** (Shadowy Antagonists, Elusive Woodland Foils, Clandestine Criminal Conspiracy): An elusive, shadowy woodland criminal conspiracy whose existence is known almost entirely through fragmentary bureau dossiers, anomalous quantitative crime scenes, and Special Agent Floppy&#x27;s deadpan internal noir monologues. Floppy possesses only scant, tantalizing details regarding their organization and leadership.
+- **Pterry** (Flying Scout): Pterry is a pterodactyl who appears in stories to give a bird&#x27;s-eye (or dino&#x27;s-eye) view of the world or a situation.
+- **Bass** (Pianist, Musician, Bass Clef Specialist, Companion): Bass is an exuberant, energetic white plush puppy who forms one half of the musical duo known as the Piano Puppies. Alongside his musical counterpart Treble, Bass loves playing the piano, anchoring the lower register with rich basslines, resonant chords, and steady rhythmic grooves.
+- **Treble** (Pianist, Musician, Treble Clef Specialist, Companion): Treble is an exuberant, energetic brown plush puppy who forms one half of the musical duo known as the Piano Puppies. Alongside his musical counterpart Bass, Treble loves playing the piano, mastering the treble clef with sparkling melodies, bright trills, and brisk upper-register runs.</pre>
+      </div>
+    </div>
+
+    <!-- Character Cards Grid -->
+    <div class="character-grid" id="characterGrid">
+      <!-- Rendered dynamically via JS -->
+    </div>
+
+  </div>
+
+  <!-- Slide-Over Edit / Add Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawerOnOverlay(event)">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h2 id="drawerTitle">Edit Character</h2>
+        <button class="drawer-close" onclick="closeDrawer()">✕</button>
+      </div>
+      
+      <div class="drawer-body">
+        <input type="hidden" id="editIsNew" value="false">
+
+        <div id="drawerPhotoPreview" style="display: none; width: 100%; height: 200px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-gold); background: #eee3ce; align-items: center; justify-content: center; margin-bottom: 0.5rem; cursor: pointer;" title="Click for full-screen view" onclick="openLightboxFromDrawer()">
+          <img id="drawerPhotoImg" src="" alt="Reference Photo" style="width: 100%; height: 100%; object-fit: cover;" onerror="if(!this.dataset.retried){this.dataset.retried=true;this.src='/' + this.dataset.raw;}else{this.style.display='none';}">
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editName">Character Name</label>
+            <input type="text" id="editName" placeholder="e.g. Space Bear" oninput="autoGenerateSlug()">
+          </div>
+          <div class="form-group">
+            <label for="editId">ID Slug</label>
+            <input type="text" id="editId" placeholder="e.g. space_bear">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="editRoles">Roles & Occupations (comma-separated)</label>
+          <input type="text" id="editRoles" placeholder="e.g. Chief Engineer, Astronaut, Lead Flight Director">
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-wrap">
+            <input type="checkbox" id="editIsMaster">
+            <span>Is Master Narrator Entity (e.g. The Primer)</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="editOverview">Overview</label>
+          <textarea id="editOverview" placeholder="Brief summary of the character's background and core traits..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editPersonality">Personality & Behavior (Bullet items or prose)</label>
+          <textarea id="editPersonality" placeholder="Describe personality traits, behavior patterns, and tendencies..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editAppearance">Physical & Visual Appearance</label>
+          <textarea id="editAppearance" placeholder="Describe visual appearance, plush texture, outfit, color palette..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editRestriction">Story Group Restrictions (Optional)</label>
+          <input type="text" id="editRestriction" placeholder="e.g. Acts in stories strictly together with his ensemble of five friends...">
+        </div>
+
+        <div class="form-group">
+          <label>Reference Photos (Drag & Drop or Click to Upload)</label>
+          <div id="dropzone" class="dropzone" onclick="document.getElementById('photoFileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+            <input type="file" id="photoFileInput" multiple accept="image/*" style="display: none;" onchange="handleFileSelect(event)">
+            <div class="dropzone-prompt">
+              <span style="font-size: 1.8rem;">🖼️</span>
+              <p style="font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--text-main); margin-top: 0.2rem;">
+                Drag & drop reference photos here, or <span style="color: var(--header-burgundy); text-decoration: underline;">browse</span>
+              </p>
+              <span style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted);">Supports multi-file upload (.jpg, .png, .webp, .svg)</span>
+            </div>
+          </div>
+          <div id="photoThumbnails" class="photo-thumbnails-grid"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="editPhotos">Reference Photo Paths (comma-separated)</label>
+          <input type="text" id="editPhotos" placeholder="assets/characters/space_bear_reference.jpg" oninput="updateThumbnailsFromPaths()">
+        </div>
+
+      </div>
+
+      <div class="drawer-footer">
+        <button class="btn-delete" id="btnDeleteChar" onclick="deleteCharacter()">🗑️ Delete Character</button>
+        <div style="display: flex; gap: 0.5rem;">
+          <button class="btn-card" onclick="closeDrawer()">Cancel</button>
+          <button class="btn-save" onclick="saveCharacter()">💾 Save Character</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-Screen Lightbox Modal -->
+  <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightboxOnOverlay(event)">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <div class="lightbox-img-wrap">
+        <img id="lightboxImg" src="" alt="Character Reference Photo" onerror="if(!this.dataset.retried){this.dataset.retried=true;this.src='/' + this.dataset.raw;}">
+      </div>
+      <div class="lightbox-caption">
+        <span class="lightbox-title" id="lightboxTitle">Character Photo</span>
+        <span class="lightbox-path" id="lightboxPath">assets/characters/...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Element -->
+  <div class="toast" id="toast">✅ Action completed successfully</div>
+
+  <script>
+    let allCharacters = [];
+    let currentFilter = 'all';
+    let promptContextText = '';
+
+    function initData() {
+      try {
+        const rawJson = document.getElementById('charactersData').textContent.trim();
+        const initialData = JSON.parse(rawJson);
+        allCharacters = initialData.characters || [];
+        promptContextText = initialData.prompt_context || '';
+        renderCharacters();
+      } catch (err) {
+        console.warn('Could not parse embedded JSON, attempting live fetch...');
+        loadCharacters();
+      }
+    }
+
+    async function loadCharacters() {
+      try {
+        const res = await fetch('/api/characters');
+        const data = await res.json();
+        if (data.success) {
+          allCharacters = data.characters;
+          promptContextText = data.prompt_context || '';
+          updateStats(data.stats);
+          renderCharacters();
+          document.getElementById('promptContextContent').innerText = promptContextText;
+        }
+      } catch (err) {
+        console.log('Running in static view mode');
+      }
+    }
+
+    function updateStats(stats) {
+      if (!stats) return;
+      document.getElementById('statTotalCount').innerText = stats.total_count || 0;
+      document.getElementById('statCompanionCount').innerText = stats.companion_count || 0;
+      document.getElementById('statMasterCount').innerText = stats.master_count || 0;
+      document.getElementById('statRestrictedCount').innerText = stats.group_restricted_count || 0;
+    }
+
+    function setFilter(filter, el) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      if (el) el.classList.add('active');
+      renderCharacters();
+    }
+
+    function renderCharacters() {
+      const grid = document.getElementById('characterGrid');
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      const filtered = allCharacters.filter(c => {
+        if (search) {
+          const matchName = c.name.toLowerCase().includes(search);
+          const matchId = c.id.toLowerCase().includes(search);
+          const matchOverview = (c.overview || '').toLowerCase().includes(search);
+          const matchRoles = (c.roles || []).some(r => r.toLowerCase().includes(search));
+          const matchPers = (c.personality || '').toLowerCase().includes(search);
+          if (!matchName && !matchId && !matchOverview && !matchRoles && !matchPers) return false;
+        }
+
+        if (currentFilter === 'companion') return !c.is_master_narrator;
+        if (currentFilter === 'master') return c.is_master_narrator;
+        if (currentFilter === 'playful_friends') {
+          return ['paw', 'buck', 'nile', 'ali_baba', 'bounce'].includes(c.id);
+        }
+        if (currentFilter === 'restricted') return !!c.story_group_restriction;
+
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted); font-family: 'Inter', sans-serif;">
+          No characters match the current filter or search criteria.
+        </div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(c => {
+        const isMaster = c.is_master_narrator;
+        const isEnsemble = ['paw', 'buck', 'nile', 'ali_baba', 'bounce'].includes(c.id);
+        
+        let badgeClass = 'badge-companion';
+        let badgeLabel = 'Companion';
+        if (isMaster) {
+          badgeClass = 'badge-master';
+          badgeLabel = 'Master Entity';
+        } else if (isEnsemble) {
+          badgeClass = 'badge-ensemble';
+          badgeLabel = 'Playful Friend';
+        }
+
+        const rawPhoto = (c.reference_photos && c.reference_photos.length > 0) ? c.reference_photos[0] : null;
+        const photoSrc = rawPhoto ? (rawPhoto.startsWith('assets/') ? '../' + rawPhoto : rawPhoto) : null;
+
+        return `
+          <div class="character-card">
+            <div class="card-header-img" style="${photoSrc ? 'cursor: pointer;' : ''}" title="${photoSrc ? 'Click to view large photo' : ''}" onclick="${photoSrc ? `openLightbox('${c.name.replace(/'/g, "\\'")}', '${photoSrc}', '${rawPhoto}')` : ''}">
+              ${photoSrc ? `<img src="${photoSrc}" alt="${c.name}" data-raw="${rawPhoto}" onerror="if(!this.dataset.retried){this.dataset.retried=true;this.src='/' + this.dataset.raw;}else{this.style.display='none';this.nextElementSibling.style.display='block';}">
+                <div class="card-placeholder-icon" style="display:none;">🧸</div>` 
+                : `<div class="card-placeholder-icon">🧸</div>`}
+              <span class="card-badge ${badgeClass}">${badgeLabel}</span>
+            </div>
+            
+            <div class="card-body">
+              <div class="character-title-wrap">
+                <h3 class="character-name">${c.name}</h3>
+                <span class="character-slug">${c.id}</span>
+              </div>
+
+              ${c.roles && c.roles.length > 0 ? `
+                <div class="roles-list">
+                  ${c.roles.map(r => `<span class="role-tag">${r}</span>`).join('')}
+                </div>
+              ` : ''}
+
+              <p class="character-overview">${c.overview || 'No overview available.'}</p>
+
+              ${c.story_group_restriction ? `
+                <div class="restriction-banner">
+                  <span>⚠️</span>
+                  <span>${c.story_group_restriction}</span>
+                </div>
+              ` : ''}
+
+              <div class="card-footer">
+                <button class="btn-card" onclick="openViewDrawer('${c.id}')">👁️ Details</button>
+                <button class="btn-card btn-card-edit" onclick="openEditDrawer('${c.id}')">✏️ Edit</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function togglePromptInspector(el) {
+      const panel = document.getElementById('promptInspectorPanel');
+      if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+        if (el) el.classList.add('active');
+      } else {
+        panel.style.display = 'none';
+        if (el) el.classList.remove('active');
+      }
+    }
+
+    function openAddCharacterModal() {
+      document.getElementById('editIsNew').value = 'true';
+      document.getElementById('drawerTitle').innerText = 'Add New Character';
+      document.getElementById('editName').value = '';
+      document.getElementById('editId').value = '';
+      document.getElementById('editId').readOnly = false;
+      document.getElementById('editRoles').value = '';
+      document.getElementById('editIsMaster').checked = false;
+      document.getElementById('editOverview').value = '';
+      document.getElementById('editPersonality').value = '';
+      document.getElementById('editAppearance').value = '';
+      document.getElementById('editRestriction').value = '';
+      document.getElementById('editPhotos').value = '';
+      document.getElementById('drawerPhotoPreview').style.display = 'none';
+      document.getElementById('btnDeleteChar').style.display = 'none';
+      document.getElementById('drawerOverlay').classList.add('active');
+    }
+
+    function autoGenerateSlug() {
+      if (document.getElementById('editIsNew').value === 'true') {
+        const name = document.getElementById('editName').value;
+        document.getElementById('editId').value = name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+      }
+    }
+
+    function openEditDrawer(charId) {
+      const char = allCharacters.find(c => c.id === charId);
+      if (!char) return;
+
+      document.getElementById('editIsNew').value = 'false';
+      document.getElementById('drawerTitle').innerText = 'Edit ' + char.name;
+      document.getElementById('editName').value = char.name;
+      document.getElementById('editId').value = char.id;
+      document.getElementById('editId').readOnly = true;
+      document.getElementById('editRoles').value = (char.roles || []).join(', ');
+      document.getElementById('editIsMaster').checked = char.is_master_narrator || false;
+      document.getElementById('editOverview').value = char.overview || '';
+      document.getElementById('editPersonality').value = char.personality || '';
+      document.getElementById('editAppearance').value = char.appearance || '';
+      document.getElementById('editRestriction').value = char.story_group_restriction || '';
+      document.getElementById('editPhotos').value = (char.reference_photos || []).join(', ');
+
+      updateThumbnailsFromPaths();
+      document.getElementById('btnDeleteChar').style.display = 'block';
+      document.getElementById('drawerOverlay').classList.add('active');
+    }
+
+    function openViewDrawer(charId) {
+      openEditDrawer(charId);
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawerOverlay').classList.remove('active');
+    }
+
+    function closeDrawerOnOverlay(e) {
+      if (e.target.id === 'drawerOverlay') closeDrawer();
+    }
+
+    /* Full-Screen Lightbox Functions */
+    function openLightbox(title, pSrc, rawPath) {
+      const overlay = document.getElementById('lightboxOverlay');
+      const img = document.getElementById('lightboxImg');
+      document.getElementById('lightboxTitle').innerText = title;
+      document.getElementById('lightboxPath').innerText = rawPath || pSrc;
+      img.src = pSrc;
+      img.dataset.raw = rawPath || pSrc;
+      img.dataset.retried = "";
+      overlay.classList.add('active');
+    }
+
+    function openLightboxFromDrawer() {
+      const title = document.getElementById('editName').value || 'Character Photo';
+      const img = document.getElementById('drawerPhotoImg');
+      if (img && img.src && img.style.display !== 'none') {
+        openLightbox(title, img.src, img.dataset.raw);
+      }
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxOverlay').classList.remove('active');
+    }
+
+    function closeLightboxOnOverlay(e) {
+      if (e.target.id === 'lightboxOverlay' || e.target.classList.contains('lightbox-img-wrap')) {
+        closeLightbox();
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        closeDrawer();
+      }
+    });
+
+    /* Drag & Drop Multi-file Upload Handlers */
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      document.getElementById('dropzone').classList.add('dragover');
+    }
+
+    function handleDragLeave(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      document.getElementById('dropzone').classList.remove('dragover');
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      document.getElementById('dropzone').classList.remove('dragover');
+      const files = e.dataTransfer ? e.dataTransfer.files : null;
+      if (files && files.length > 0) {
+        processUploadedFiles(Array.from(files));
+      }
+    }
+
+    function handleFileSelect(e) {
+      const files = e.target.files;
+      if (files && files.length > 0) {
+        processUploadedFiles(Array.from(files));
+      }
+    }
+
+    async function processUploadedFiles(fileList) {
+      const charId = document.getElementById('editId').value.trim() || 'character';
+      const filePromises = fileList.map(file => {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = ev => resolve({ name: file.name, data: ev.target.result });
+          reader.readAsDataURL(file);
+        });
+      });
+
+      const filesData = await Promise.all(filePromises);
+
+      try {
+        const res = await fetch('/api/characters/upload-photo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ character_id: charId, files: filesData })
+        });
+        const data = await res.json();
+        if (data.success && data.paths) {
+          appendPhotoPaths(data.paths);
+          showToast(`✅ Uploaded ${data.paths.length} photo(s)`);
+        } else {
+          const fallbackPaths = filesData.map(f => f.data);
+          appendPhotoPaths(fallbackPaths);
+        }
+      } catch (err) {
+        const fallbackPaths = filesData.map(f => f.data);
+        appendPhotoPaths(fallbackPaths);
+        showToast('ℹ️ Added photo preview(s) locally');
+      }
+    }
+
+    function appendPhotoPaths(newPaths) {
+      const input = document.getElementById('editPhotos');
+      const existing = input.value.split(',').map(p => p.trim()).filter(Boolean);
+      const combined = Array.from(new Set([...existing, ...newPaths]));
+      input.value = combined.join(', ');
+      updateThumbnailsFromPaths();
+    }
+
+    function updateThumbnailsFromPaths() {
+      const input = document.getElementById('editPhotos');
+      const container = document.getElementById('photoThumbnails');
+      const paths = input.value.split(',').map(p => p.trim()).filter(Boolean);
+
+      if (paths.length === 0) {
+        container.innerHTML = '';
+        document.getElementById('drawerPhotoPreview').style.display = 'none';
+        return;
+      }
+
+      container.innerHTML = paths.map((path, idx) => {
+        const pSrc = path.startsWith('data:') ? path : (path.startsWith('assets/') ? '../' + path : path);
+        return `
+          <div class="thumb-item">
+            <img src="${pSrc}" alt="Photo ${idx+1}" data-raw="${path}" onerror="if(!this.dataset.retried){this.dataset.retried=true;this.src='/' + this.dataset.raw;}else{this.style.display='none';}">
+            <button class="thumb-remove" title="Remove photo" onclick="removePhotoPath(${idx}); event.stopPropagation();">✕</button>
+          </div>
+        `;
+      }).join('');
+
+      const mainPreviewContainer = document.getElementById('drawerPhotoPreview');
+      const mainPreviewImg = document.getElementById('drawerPhotoImg');
+      if (paths.length > 0) {
+        const firstP = paths[0];
+        const mainSrc = firstP.startsWith('data:') ? firstP : (firstP.startsWith('assets/') ? '../' + firstP : firstP);
+        mainPreviewImg.src = mainSrc;
+        mainPreviewImg.dataset.raw = firstP;
+        mainPreviewContainer.style.display = 'flex';
+      } else {
+        mainPreviewContainer.style.display = 'none';
+      }
+    }
+
+    function removePhotoPath(index) {
+      const input = document.getElementById('editPhotos');
+      let paths = input.value.split(',').map(p => p.trim()).filter(Boolean);
+      paths.splice(index, 1);
+      input.value = paths.join(', ');
+      updateThumbnailsFromPaths();
+    }
+
+    async function saveCharacter() {
+      const charId = document.getElementById('editId').value.trim();
+      const charName = document.getElementById('editName').value.trim();
+
+      if (!charId || !charName) {
+        showToast('⚠️ Please enter both a Name and ID Slug.');
+        return;
+      }
+
+      const rolesRaw = document.getElementById('editRoles').value;
+      const roles = rolesRaw.split(',').map(r => r.trim()).filter(Boolean);
+
+      const photosRaw = document.getElementById('editPhotos').value;
+      const reference_photos = photosRaw.split(',').map(p => p.trim()).filter(Boolean);
+
+      const payload = {
+        character: {
+          id: charId,
+          name: charName,
+          roles: roles,
+          is_master_narrator: document.getElementById('editIsMaster').checked,
+          overview: document.getElementById('editOverview').value.trim(),
+          personality: document.getElementById('editPersonality').value.trim(),
+          appearance: document.getElementById('editAppearance').value.trim(),
+          story_group_restriction: document.getElementById('editRestriction').value.trim() || null,
+          reference_photos: reference_photos
+        }
+      };
+
+      try {
+        const res = await fetch('/api/characters/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`✅ Saved '${charName}' to characters.md`);
+          closeDrawer();
+          loadCharacters();
+        } else {
+          showToast('❌ Save failed: ' + data.error);
+        }
+      } catch (err) {
+        showToast('ℹ️ Saved in memory (Start server.py to save to characters.md)');
+        closeDrawer();
+      }
+    }
+
+    async function deleteCharacter() {
+      const charId = document.getElementById('editId').value.trim();
+      if (!confirm(`Are you sure you want to delete character '${charId}' from characters.md?`)) {
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/characters/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: charId })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`✅ Deleted '${charId}'`);
+          closeDrawer();
+          loadCharacters();
+        } else {
+          showToast('❌ Delete failed: ' + data.error);
+        }
+      } catch (err) {
+        showToast('⚠️ Server error during delete');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // Initialize
+    initData();
+  </script>
+</body>
+</html>

@@ -1,0 +1,2927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Primer — Curriculum Lessons Compendium</title>
+  <!-- Google Fonts: Cormorant Garamond & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-body-outer: #1a1410;
+      --bg-body-image: 
+        radial-gradient(circle at center, rgba(30, 20, 15, 0.4) 0%, rgba(10, 7, 5, 0.9) 100%),
+        linear-gradient(to bottom, #140d09, #241810, #140d09);
+      --bg-paper: #f9f5eb;
+      --bg-paper-dark: #f2ebd9;
+      --bg-paper-image: radial-gradient(#e8dfc8 1px, transparent 1px);
+      --text-ink: #2b1f17;
+      --text-muted: #5c4a3e;
+      --border-gold: #c5a059;
+      --border-gold-light: #e6c88b;
+      --accent-burgundy: #7a1c1c;
+      --accent-burgundy-light: #9c2b2b;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+      --font-body-size: 20px;
+      --font-body-weight: 400;
+      --page-box-shadow: 
+        0 0 0 12px #261b14,
+        0 0 0 14px var(--border-gold),
+        0 25px 60px rgba(0, 0, 0, 0.85);
+      --border-width-base: 1px;
+    }
+
+    /* Color E-Ink Mode Overrides (Boox, Kindle, Kobo, etc.) */
+    body.mode-eink {
+      --bg-body-outer: #ffffff;
+      --bg-body-image: none;
+      --bg-paper: #ffffff;
+      --bg-paper-dark: #f8f8f8;
+      --bg-paper-image: none;
+      --text-ink: #000000;
+      --text-muted: #000000;
+      --border-gold: #000000;
+      --border-gold-light: #000000;
+      --accent-burgundy: #800000;
+      --accent-burgundy-light: #800000;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'EB Garamond', serif;
+      --font-body-size: 22px;
+      --font-body-weight: 500;
+      --page-box-shadow: none;
+      --border-width-base: 2px;
+    }
+
+    /* Hardware E-Ink Media Query Auto-Detection */
+    @media (update: slow), (prefers-contrast: more) {
+      :root:not(.mode-lcd-user) {
+        --bg-body-outer: #ffffff;
+        --bg-body-image: none;
+        --bg-paper: #ffffff;
+        --bg-paper-dark: #f8f8f8;
+        --bg-paper-image: none;
+        --text-ink: #000000;
+        --text-muted: #000000;
+        --border-gold: #000000;
+        --border-gold-light: #000000;
+        --accent-burgundy: #800000;
+        --accent-burgundy-light: #800000;
+        --font-heading: 'Cinzel', serif;
+        --font-body: 'EB Garamond', serif;
+        --font-body-size: 22px;
+        --font-body-weight: 500;
+        --page-box-shadow: none;
+        --border-width-base: 2px;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-body-outer);
+      background-image: var(--bg-body-image);
+      color: var(--text-ink);
+      font-family: var(--font-body);
+      font-size: var(--font-body-size);
+      font-weight: var(--font-body-weight);
+      line-height: 1.8;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .book-page {
+      max-width: 920px;
+      margin: 0 auto;
+      background-color: var(--bg-paper);
+      background-image: var(--bg-paper-image);
+      background-size: 24px 24px;
+      border: var(--border-width-base) solid var(--border-gold);
+      box-shadow: var(--page-box-shadow);
+      padding: 4rem 4.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .book-page {
+        padding: 2.5rem 1.5rem;
+      }
+      body {
+        padding: 1rem 0.5rem;
+        font-size: 18px;
+      }
+    }
+
+    /* Ornate Filigree Corner Accents */
+    .corner-flourish {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    body.mode-eink .corner-flourish {
+      border-color: #000000;
+      border-width: 2px;
+    }
+
+    /* Header Block */
+    .book-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 2px double var(--border-gold-light);
+      position: relative;
+    }
+
+    .header-tag {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.5rem;
+    }
+
+    h1.book-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.25;
+      margin-bottom: 0.8rem;
+    }
+
+    .header-ornament {
+      font-size: 1.4rem;
+      color: var(--border-gold);
+      margin: 0.8rem 0;
+    }
+
+    /* View Switcher Controls */
+    .view-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .view-btn {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background-color: transparent;
+      border: 1px solid var(--border-gold);
+      color: var(--text-ink);
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .view-btn:hover, .view-btn.active {
+      background-color: var(--accent-burgundy);
+      color: #ffffff;
+      border-color: var(--accent-burgundy);
+      box-shadow: 0 4px 12px rgba(122, 28, 28, 0.25);
+    }
+
+    body.mode-eink .view-btn {
+      border: 2px solid #000000;
+      color: #000000;
+      font-weight: 600;
+    }
+
+    body.mode-eink .view-btn:hover,
+    body.mode-eink .view-btn.active {
+      background-color: #800000;
+      color: #ffffff;
+      border-color: #800000;
+      box-shadow: none;
+    }
+
+    /* Week Section */
+    .week-section {
+      margin-bottom: 3rem;
+    }
+
+    .week-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .week-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-burgundy);
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border-gold);
+      padding-bottom: 0.4rem;
+    }
+
+    /* Day Block */
+    .day-block {
+      margin-bottom: 2rem;
+      padding-left: 0.5rem;
+    }
+
+    .day-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    /* Subject Section (Subject View) */
+    .subject-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .subject-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      color: var(--accent-burgundy);
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Lesson Grid / Cards */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .lesson-card {
+      display: block;
+      text-decoration: none;
+      color: var(--text-ink);
+      background-color: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold-light);
+      padding: 1.4rem 1.6rem;
+      border-radius: 2px;
+      transition: all 0.25s ease-in-out;
+      position: relative;
+    }
+
+    .lesson-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(122, 28, 28, 0.12);
+      background-color: #fffdf7;
+    }
+
+    body.mode-eink .lesson-card {
+      background-color: var(--bg-paper-dark);
+      border: 2px solid #000000;
+      box-shadow: none !important;
+    }
+
+    body.mode-eink .lesson-card:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      border-color: #000000 !important;
+      background-color: #ffffff !important;
+    }
+
+    .lesson-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.4rem;
+    }
+
+    .lesson-date {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .lesson-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--accent-burgundy);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .lesson-card:hover .lesson-card-title {
+      color: var(--accent-burgundy-light);
+    }
+
+    .lesson-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .lesson-action {
+      display: inline-block;
+      margin-top: 0.8rem;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: var(--accent-burgundy);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .lesson-card:hover .lesson-action {
+      text-decoration: underline;
+    }
+
+    /* View Toggle Utility */
+    .view-panel {
+      display: none;
+    }
+
+    .view-panel.active {
+      display: block;
+    }
+
+    /* E-Ink Display Mode Overrides: Show Only Unboxed Curriculum To-Do Checklist */
+    body.mode-eink .view-switcher,
+    body.mode-eink main {
+      display: none !important;
+    }
+
+    /* To-Do Checklist Section */
+    .todo-section {
+      background-color: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.5rem;
+      border-radius: 2px;
+      box-shadow: inset 0 0 12px rgba(197, 160, 89, 0.15);
+    }
+
+    body.mode-eink .todo-section {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    .todo-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px dashed var(--border-gold-light);
+    }
+
+    .todo-header-title {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--accent-burgundy);
+      letter-spacing: 0.05em;
+    }
+
+    body.mode-eink .todo-header-title {
+      font-size: 1.68rem;
+      color: #800000;
+    }
+
+    .todo-header-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    body.mode-eink .todo-header-subtitle {
+      font-size: 1.14rem;
+      color: #000000;
+    }
+
+    .todo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background-color: #fffdf7;
+      border: 1px solid var(--border-gold-light);
+      padding: 1rem 1.2rem;
+      border-radius: 2px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .todo-item:hover {
+      border-color: var(--border-gold);
+      box-shadow: 0 4px 12px rgba(122, 28, 28, 0.08);
+    }
+
+    body.mode-eink .todo-item {
+      background-color: #ffffff;
+      border: 1.5px solid #000000;
+      box-shadow: none !important;
+      padding: 1.2rem 1.4rem;
+    }
+
+    body.mode-eink .todo-item:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      border-color: #000000 !important;
+      background-color: #ffffff !important;
+    }
+
+    .todo-checkbox {
+      font-size: 1.4rem;
+      color: var(--accent-burgundy);
+      line-height: 1.2;
+      user-select: none;
+    }
+
+    body.mode-eink .todo-checkbox {
+      font-size: 1.68rem;
+      color: #800000;
+    }
+
+    .todo-content {
+      flex: 1;
+    }
+
+    .todo-meta {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    body.mode-eink .todo-meta {
+      font-size: 0.9rem;
+    }
+
+    .todo-tag {
+      color: var(--accent-burgundy);
+      font-weight: 600;
+    }
+
+    body.mode-eink .todo-tag {
+      color: #800000;
+    }
+
+    .todo-schedule {
+      color: var(--text-muted);
+      font-style: normal;
+    }
+
+    body.mode-eink .todo-schedule {
+      color: #000000;
+    }
+
+    .todo-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--text-ink);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    body.mode-eink .todo-title {
+      font-size: 1.32rem;
+      color: #000000;
+    }
+
+    .todo-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: 0.2rem;
+    }
+
+    body.mode-eink .todo-desc {
+      font-size: 1.14rem;
+      color: #000000;
+    }
+
+    .todo-action {
+      align-self: center;
+      white-space: nowrap;
+    }
+
+    .todo-link {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      color: var(--accent-burgundy);
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--border-gold-light);
+      padding: 0.4rem 0.8rem;
+      background-color: var(--bg-paper);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .todo-link:hover {
+      background-color: var(--accent-burgundy);
+      color: #ffffff;
+      border-color: var(--accent-burgundy);
+    }
+
+    body.mode-eink .todo-link {
+      font-size: 0.98rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid #000000;
+      color: #800000;
+      font-weight: 700;
+      background-color: #ffffff;
+    }
+
+    body.mode-eink .todo-link:hover {
+      background-color: #800000;
+      color: #ffffff;
+    }
+
+    .todo-status {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      letter-spacing: 0.05em;
+    }
+
+    body.mode-eink .todo-status {
+      font-size: 0.94rem;
+      color: #000000;
+    }
+
+    /* Footer */
+    .book-footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-gold-light);
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    body.mode-eink .book-footer {
+      border-top-color: #000000;
+      color: #000000;
+    }
+  </style>
+</head>
+<body class="mode-eink">
+
+  <div class="book-page">
+    <div class="corner-flourish corner-tl"></div>
+    <div class="corner-flourish corner-tr"></div>
+    <div class="corner-flourish corner-bl"></div>
+    <div class="corner-flourish corner-br"></div>
+
+    <header class="book-header">
+      <div class="header-tag">The Primer Academy & Archives</div>
+      <h1 class="book-title">Compendium of Curriculum Lessons</h1>
+      <div class="header-ornament">❖ ❦ ❖</div>
+    </header>
+
+    
+      <section class="todo-section">
+        <div class="todo-header">
+          <h3 class="todo-header-title">📋 Curriculum To-Do Checklist</h3>
+          <p class="todo-header-subtitle">Earliest pending assignment for each active subject in the master schedule</p>
+        </div>
+        <div class="todo-grid">
+          
+        <div class="todo-item">
+          <div class="todo-checkbox">☐</div>
+          <div class="todo-content">
+            <div class="todo-meta">
+              <span class="todo-tag">🧮 Mathematics & Logic</span>
+              <span class="todo-schedule">WEEK 3 • DAY 3</span>
+            </div>
+            <h4 class="todo-title">Ratio Basics & Ratio Tables</h4>
+            <p class="todo-desc">Workbook pp. 91–92</p>
+          </div>
+          <div class="todo-action">
+            <a href="lessons/math/2026-08-28_math_w3_d3_ratio_basics_amp_ratio_tables.html" class="todo-link">Study Lesson &rarr;</a>
+          </div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-checkbox">☐</div>
+          <div class="todo-content">
+            <div class="todo-meta">
+              <span class="todo-tag">🏛️ Grammar & Mechanics</span>
+              <span class="todo-schedule">WEEK 3 • DAY 3</span>
+            </div>
+            <h4 class="todo-title">L11: Types of Sentences</h4>
+            <p class="todo-desc">Standard Daily Assignment</p>
+          </div>
+          <div class="todo-action">
+            <span class="todo-status">Offline Reading & Practice</span>
+          </div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-checkbox">☐</div>
+          <div class="todo-content">
+            <div class="todo-meta">
+              <span class="todo-tag">✒️ Writing & Composition</span>
+              <span class="todo-schedule">WEEK 3 • DAY 3</span>
+            </div>
+            <h4 class="todo-title">D3: Outlining: Silcox, Modern Nature Study</h4>
+            <p class="todo-desc">Standard Daily Assignment</p>
+          </div>
+          <div class="todo-action">
+            <span class="todo-status">Offline Reading & Practice</span>
+          </div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-checkbox">☐</div>
+          <div class="todo-content">
+            <div class="todo-meta">
+              <span class="todo-tag">📖 Spelling & Vocabulary</span>
+              <span class="todo-schedule">WEEK 3 • DAY 1</span>
+            </div>
+            <h4 class="todo-title">Book 5, L3: Moving Across/Between (trans, inter, sect)</h4>
+            <p class="todo-desc">Study Latin/Greek roots, key word pronunciations, definitions, example sentences, and Nota Bene notes</p>
+          </div>
+          <div class="todo-action">
+            <a href="lessons/spelling/2026-08-19_vcr_5_lesson3_moving_acrossbetween.html" class="todo-link">Study Lesson &rarr;</a>
+          </div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-checkbox">☐</div>
+          <div class="todo-content">
+            <div class="todo-meta">
+              <span class="todo-tag">🎭 Poetry & Recitation</span>
+              <span class="todo-schedule">WEEK 4 • DAY 1</span>
+            </div>
+            <h4 class="todo-title">The Owl and the Pussy-Cat</h4>
+            <p class="todo-desc">Formal Oral Recitation & Performance</p>
+          </div>
+          <div class="todo-action">
+            <span class="todo-status">Pending Story Generation</span>
+          </div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-checkbox">☐</div>
+          <div class="todo-content">
+            <div class="todo-meta">
+              <span class="todo-tag">🏛️ History & World Chronicles</span>
+              <span class="todo-schedule">WEEK 3 • DAY 3</span>
+            </div>
+            <h4 class="todo-title">Historical Novel Reading (Augustine Came to Kent: Chapters 9–12)</h4>
+            <p class="todo-desc">History & Literature Connection</p>
+          </div>
+          <div class="todo-action">
+            <span class="todo-status">Offline Reading & Practice</span>
+          </div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-checkbox">☐</div>
+          <div class="todo-content">
+            <div class="todo-meta">
+              <span class="todo-tag">📜 Literature & Reading</span>
+              <span class="todo-schedule">WEEK 5 • DAY 1</span>
+            </div>
+            <h4 class="todo-title">Black Ships Before Troy (Ch. 1–10)</h4>
+            <p class="todo-desc">Weekly Novel Reading Assignment</p>
+          </div>
+          <div class="todo-action">
+            <span class="todo-status">Offline Reading & Practice</span>
+          </div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-checkbox">☐</div>
+          <div class="todo-content">
+            <div class="todo-meta">
+              <span class="todo-tag">🎹 Piano & Musicianship</span>
+              <span class="todo-schedule">WEEK 1 • DAY 1</span>
+            </div>
+            <h4 class="todo-title">The Village Prophet: Left Hand</h4>
+            <p class="todo-desc">20 minutes of practice (Review previous repertoire & scales)</p>
+          </div>
+          <div class="todo-action">
+            <span class="todo-status">Offline Reading & Practice</span>
+          </div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-checkbox">☐</div>
+          <div class="todo-content">
+            <div class="todo-meta">
+              <span class="todo-tag">📖 Bible & Scripture Memory</span>
+              <span class="todo-schedule">WEEK 1 • DAY 1</span>
+            </div>
+            <h4 class="todo-title">Memorizing Books of the Bible: The Law & Historical Books</h4>
+            <p class="todo-desc">Recite the Pentateuch (Law) and Historical Books in order; practice finding each book within 10 seconds.</p>
+          </div>
+          <div class="todo-action">
+            <span class="todo-status">Offline Reading & Practice</span>
+          </div>
+        </div>
+        </div>
+      </section>
+
+    <!-- View Switcher -->
+    <div class="view-switcher">
+      <button class="view-btn active" onclick="switchView('schedule')">📅 Daily Schedule View</button>
+      <button class="view-btn" onclick="switchView('subject')">📚 Subject View</button>
+      <a href="teacher_dashboard.html" class="view-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">🏛️ Teacher Dashboard</a>
+      <a href="character_dashboard.html" class="view-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">🧸 Story Characters</a>
+      <a href="subject_config_dashboard.html" class="view-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">⚙️ Subject Configs</a>
+    </div>
+
+    <main>
+      <!-- Daily Schedule View Panel (Default Active) -->
+      <div id="view-schedule" class="view-panel active">
+        
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 36 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-04-12_history_week36_year_end_review_world_map_synthesis_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-04-12</span>
+              </div>
+              <h4 class="lesson-card-title">Week 36 History — Year-End Review & World Map Synthesis (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Year-End Review & World Map Synthesis (history_week36).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 35 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-04-05_history_week35_empires_collide_world_at_end_16th_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-04-05</span>
+              </div>
+              <h4 class="lesson-card-title">Week 35 History — Chapter 42 (Empires Collide: World at End of 16th Century) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 42 (Empires Collide: World at End of 16th Century) (history_week35).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 34 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-03-29_history_week34_explorations_north_cartier_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-03-29</span>
+              </div>
+              <h4 class="lesson-card-title">Week 34 History — Chapter 41 (Explorations in the North: Cartier) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 41 (Explorations in the North: Cartier) (history_week34).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 33 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-03-22_history_week33_new_ventures_americas_roanoke_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-03-22</span>
+              </div>
+              <h4 class="lesson-card-title">Week 33 History — Chapter 40 (New Ventures to the Americas: Roanoke) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 40 (New Ventures to the Americas: Roanoke) (history_week33).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 32 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-03-15_history_week32_england_s_greatest_playwright_shakespeare_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-03-15</span>
+              </div>
+              <h4 class="lesson-card-title">Week 32 History — Chapter 39 (England's Greatest Playwright: Shakespeare) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 39 (England's Greatest Playwright: Shakespeare) (history_week32).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 31 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-03-08_history_week31_england_s_greatest_queen_elizabeth_i_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-03-08</span>
+              </div>
+              <h4 class="lesson-card-title">Week 31 History — Chapter 38 (England's Greatest Queen: Elizabeth I) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 38 (England's Greatest Queen: Elizabeth I) (history_week31).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 30 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-03-01_history_week30_new_universe_copernicus_galileo_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-03-01</span>
+              </div>
+              <h4 class="lesson-card-title">Week 30 History — Chapter 37 (The New Universe: Copernicus & Galileo) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 37 (The New Universe: Copernicus & Galileo) (history_week30).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 29 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-02-22_history_week29_reformation_and_counter_reformation_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-02-22</span>
+              </div>
+              <h4 class="lesson-card-title">Week 29 History — Chapter 36 (Reformation and Counter Reformation) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 36 (Reformation and Counter Reformation) (history_week29).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 28 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-02-15_history_week28_the_renaissance_gutenberg_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-02-15</span>
+              </div>
+              <h4 class="lesson-card-title">Week 28 History — Chapter 35 (The Renaissance & Gutenberg) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 35 (The Renaissance & Gutenberg) (history_week28).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 27 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-02-08_history_week27_spain_portugal_new_world_martin_luther_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-02-08</span>
+              </div>
+              <h4 class="lesson-card-title">Week 27 History — Chapter 33 (Spain, Portugal, & New World) & Chapter 34 (Martin Luther's New Ideas) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 33 (Spain, Portugal, & New World) & Chapter 34 (Martin Luther's New Ideas) (history_week27).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 26 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-02-01_history_week26_american_kingdoms_mayans_aztecs_incas_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-02-01</span>
+              </div>
+              <h4 class="lesson-card-title">Week 26 History — Chapter 32 (The American Kingdoms: Mayans, Aztecs, Incas) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 32 (The American Kingdoms: Mayans, Aztecs, Incas) (history_week26).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 25 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-01-25_history_week25_exploring_new_worlds_columbus_magellan_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-01-25</span>
+              </div>
+              <h4 class="lesson-card-title">Week 25 History — Chapter 31 (Exploring New Worlds: Columbus & Magellan) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 31 (Exploring New Worlds: Columbus & Magellan) (history_week25).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 24 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-01-18_history_week24_india_under_the_moghuls_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-01-18</span>
+              </div>
+              <h4 class="lesson-card-title">Week 24 History — Chapter 30 (India Under the Moghuls) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 30 (India Under the Moghuls) (history_week24).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 23 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-01-11_history_week23_kingdoms_spain_portugal_african_kingdoms_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-01-11</span>
+              </div>
+              <h4 class="lesson-card-title">Week 23 History — Chapter 28 (Kingdoms of Spain & Portugal) & Chapter 29 (African Kingdoms) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 28 (Kingdoms of Spain & Portugal) & Chapter 29 (African Kingdoms) (history_week23).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 22 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2027-01-04_history_week22_war_for_english_throne_wars_roses_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2027-01-04</span>
+              </div>
+              <h4 class="lesson-card-title">Week 22 History — Chapter 27 (War for the English Throne: Wars of the Roses) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 27 (War for the English Throne: Wars of the Roses) (history_week22).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 21 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-12-28_history_week21_france_england_at_war_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-12-28</span>
+              </div>
+              <h4 class="lesson-card-title">Week 21 History — Chapter 26 (France and England at War) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 26 (France and England at War) (history_week21).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 20 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-12-21_history_week20_end_world_plague_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-12-21</span>
+              </div>
+              <h4 class="lesson-card-title">Week 20 History — Chapter 25 (The End of the World: The Plague) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 25 (The End of the World: The Plague) (history_week20).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 19 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-12-14_history_week19_first_russians_ottoman_empire_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-12-14</span>
+              </div>
+              <h4 class="lesson-card-title">Week 19 History — Chapter 23 (The First Russians) & Chapter 24 (The Ottoman Empire) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 23 (The First Russians) & Chapter 24 (The Ottoman Empire) (history_week19).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 18 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-12-07_history_week18_exploring_mysterious_east_marco_polo_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-12-07</span>
+              </div>
+              <h4 class="lesson-card-title">Week 18 History — Chapter 22 (Exploring the Mysterious East: Marco Polo) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 22 (Exploring the Mysterious East: Marco Polo) (history_week18).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 17 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-11-30_history_week17_mongols_devastate_east_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-11-30</span>
+              </div>
+              <h4 class="lesson-card-title">Week 17 History — Chapter 21 (The Mongols Devastate the East) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 21 (The Mongols Devastate the East) (history_week17).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 16 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-11-23_history_week16_the_diaspora_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-11-23</span>
+              </div>
+              <h4 class="lesson-card-title">Week 16 History — Chapter 20 (The Diaspora) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 20 (The Diaspora) (history_week16).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 15 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-11-16_history_week15_new_kind_king_magna_carta_robin_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-11-16</span>
+              </div>
+              <h4 class="lesson-card-title">Week 15 History — Chapter 19 (A New Kind of King: Magna Carta & Robin Hood) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 19 (A New Kind of King: Magna Carta & Robin Hood) (history_week15).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 14 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-11-09_history_week14_the_age_of_crusades_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-11-09</span>
+              </div>
+              <h4 class="lesson-card-title">Week 14 History — Chapter 18 (The Age of Crusades) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 18 (The Age of Crusades) (history_week14).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 13 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-11-02_history_week13_knights_and_samurai_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-11-02</span>
+              </div>
+              <h4 class="lesson-card-title">Week 13 History — Chapter 17 (Knights and Samurai) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 17 (Knights and Samurai) (history_week13).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 12 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-10-26_history_week12_england_after_the_conquest_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-10-26</span>
+              </div>
+              <h4 class="lesson-card-title">Week 12 History — Chapter 16 (England After the Conquest) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 16 (England After the Conquest) (history_week12).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 11 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-10-19_history_week11_arrival_norsemen_first_kings_england_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-10-19</span>
+              </div>
+              <h4 class="lesson-card-title">Week 11 History — Chapter 14 (The Arrival of the Norsemen) & Chapter 15 (The First Kings of England) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 14 (The Arrival of the Norsemen) & Chapter 15 (The First Kings of England) (history_week11).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 10 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-10-12_history_week10_great_kings_france_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-10-12</span>
+              </div>
+              <h4 class="lesson-card-title">Week 10 History — Chapter 13 (The Great Kings of France) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 13 (The Great Kings of France) (history_week10).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 9 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-10-05_history_week9_kingdom_franks_islamic_invasion_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-10-05</span>
+              </div>
+              <h4 class="lesson-card-title">Week 9 History — Chapter 11 (The Kingdom of the Franks) & Chapter 12 (The Islamic Invasion) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 11 (The Kingdom of the Franks) & Chapter 12 (The Islamic Invasion) (history_week9).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 8 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-09-28_history_week8_bottom_world_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-09-28</span>
+              </div>
+              <h4 class="lesson-card-title">Week 8 History — Chapter 10 (The Bottom of the World) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 10 (The Bottom of the World) (history_week8).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 7 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-09-21_history_week7_great_dynasties_china_east_china_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-09-21</span>
+              </div>
+              <h4 class="lesson-card-title">Week 7 History — Chapter 8 (The Great Dynasties of China) & Chapter 9 (East of China) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 8 (The Great Dynasties of China) & Chapter 9 (East of China) (history_week7).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 6 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day II — Tuesday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/spelling/2026-09-15_vcr_5_lesson6_exercises.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-09-15</span>
+              </div>
+              <h4 class="lesson-card-title">Book 5, L6: Distant Places (astr, tele, scope) — Worksheet Exercises A–D</h4>
+              <p class="lesson-desc">In which written Exercises A–D on Classical Roots &amp; Affixes (vcr_5_lesson6).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-09-14_history_week6_islam_becomes_an_empire_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-09-14</span>
+              </div>
+              <h4 class="lesson-card-title">Week 6 History — Chapter 7 (Islam Becomes an Empire) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 7 (Islam Becomes an Empire) (history_week6).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 5 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day II — Tuesday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/spelling/2026-09-08_vcr_5_lesson5_exercises.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-09-08</span>
+              </div>
+              <h4 class="lesson-card-title">Book 5, L5: Looking at Our Planet (terr, aqua, marin) — Worksheet Exercises A–D</h4>
+              <p class="lesson-desc">In which written Exercises A–D on Classical Roots &amp; Affixes (vcr_5_lesson5).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-09-07_history_week5_the_rise_of_islam_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-09-07</span>
+              </div>
+              <h4 class="lesson-card-title">Week 5 History — Chapter 6 (The Rise of Islam) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 6 (The Rise of Islam) (history_week5).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 4 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day IV — Thursday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/spelling/2026-09-10_vcr_5_lesson4_spelling_quiz.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-09-10</span>
+              </div>
+              <h4 class="lesson-card-title">Spelling & Vocabulary Quiz — Book 5, L4: Review Lessons 1–3</h4>
+              <p class="lesson-desc">In which Weekly Mastery Assessment of Spoken Dictations, Root Clues & Lexical Matching on Vocabulary.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/history/2026-08-31_history_week4_the_medieval_indian_empire_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-08-31</span>
+              </div>
+              <h4 class="lesson-card-title">Week 4 History — Chapter 5 (The Medieval Indian Empire) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 5 (The Medieval Indian Empire) (history_week4).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 3 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day IV — Thursday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/spelling/2026-09-03_vcr_5_lesson3_spelling_quiz.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-09-03</span>
+              </div>
+              <h4 class="lesson-card-title">Spelling & Vocabulary Quiz — Book 5, L3: Moving Across/Between</h4>
+              <p class="lesson-desc">In which Weekly Mastery Assessment of Spoken Dictations, Root Clues & Lexical Matching on TRANS & INTER & SECT.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day III — Wednesday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/math/2026-08-28_math_w3_d3_ratio_basics_amp_ratio_tables.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🧮 Mathematics & Logic</span>
+                <span class="lesson-date">2026-08-28</span>
+              </div>
+              <h4 class="lesson-card-title">The Case of the Bramblewood Berry Ledger — Ratio Basics &amp; Ratio Tables</h4>
+              <p class="lesson-desc">In which Pleasant & Instructive Story of Special Agent Floppy and the Mysteries of the Ratio Table.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day II — Tuesday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/poetry/2026-09-22_poetry_week3_the_owl_and_the_pussy_cat_recitation.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🎭 Poetry & Recitation</span>
+                <span class="lesson-date">2026-09-22</span>
+              </div>
+              <h4 class="lesson-card-title">The Living Verse in the Heart — The Owl and the Pussy-Cat</h4>
+              <p class="lesson-desc">In which Rama Lama extols the lifelong treasures of committing verse to memory, teaches the art of line-by-line self-dictation, and presents the full text of Mr. Edward Lear’s “The Owl and the Pussy-Cat”.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/spelling/2026-08-27_vcr_5_lesson3_exercises.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-08-27</span>
+              </div>
+              <h4 class="lesson-card-title">Book 5, L3: Moving Across/Between (trans, inter, sect) — Worksheet Exercises A–D</h4>
+              <p class="lesson-desc">In which written Exercises A–D on Latin Roots TRANS (Across/Through) &amp; INTER (Between/Among), and Root SECT (Cut).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/writing/2026-08-26_wws1_w3_d2_d2_thesaurus_use.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">✒️ Writing & Composition</span>
+                <span class="lesson-date">2026-08-26</span>
+              </div>
+              <h4 class="lesson-card-title">The Sovereign Lexicon of Pine-Needle Ridge — D2: Thesaurus Use</h4>
+              <p class="lesson-desc">In which Pleasant & Instructive Story of Space Bear and Thesaurus Use.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/poetry/2026-09-21_poetry_week3_the_owl_and_the_pussy_cat_copywork.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🎭 Poetry & Recitation</span>
+                <span class="lesson-date">2026-09-21</span>
+              </div>
+              <h4 class="lesson-card-title">Calligraphic Copywork & Cursive Memory — The Owl and the Pussy-Cat</h4>
+              <p class="lesson-desc">In which Lesson on the Joy of Cursive Penmanship, the Living Memory of Verse, and the Calligraphic Art of Mr. Edward Lear’s “The Owl and the Pussy-Cat”.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/grammar/2026-08-25_gftwtm_w3_l9_sentence_subjects_predicates.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ Grammar & Mechanics</span>
+                <span class="lesson-date">2026-08-25</span>
+              </div>
+              <h4 class="lesson-card-title">The Great Potting-Shed Sowing; Or, How a Donkey Became a Daffodil — Sentence, Subjects & Predicates</h4>
+              <p class="lesson-desc">In which Pleasant & Instructive Story of Dilly & Little Gray and Sentence, Subjects & Predicates.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/math/2026-08-24_math_w3_d1_ratio_basics_amp_ratio_tables.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🧮 Mathematics & Logic</span>
+                <span class="lesson-date">2026-08-24</span>
+              </div>
+              <h4 class="lesson-card-title">Case File #03-RATIO: The Mystery of the Balanced Pantry Crocks — Ratio Basics &amp; Ratio Tables</h4>
+              <p class="lesson-desc">In which an Undercover Investigation by Special Agent Floppy into the Acorn Syndicate's Proportional Tart Scheme, Scaled Batches, and Part-to-Whole Formulations.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/history/2026-08-24_history_week3_the_byzantine_empire_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-08-24</span>
+              </div>
+              <h4 class="lesson-card-title">Week 3 History — Chapter 4 (The Byzantine Empire) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 4 (The Byzantine Empire) (history_week3).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/spelling/2026-08-19_vcr_5_lesson3_moving_acrossbetween.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-08-19</span>
+              </div>
+              <h4 class="lesson-card-title">The Great Meadow Crossing — Moving Across/Between</h4>
+              <p class="lesson-desc">In which Pleasant & Instructive Story of Five Plush Companions and the Ways of Moving Across and Between.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 2 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day IV — Thursday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/spelling/2026-08-27_vcr_5_lesson2_spelling_quiz.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-08-27</span>
+              </div>
+              <h4 class="lesson-card-title">Spelling & Vocabulary Quiz — Book 5, L2: Balancing Evenly</h4>
+              <p class="lesson-desc">In which Weekly Mastery Assessment of Spoken Dictations, Root Clues & Lexical Matching on EQU & PEND & QUADR-.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day III — Wednesday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/poetry/2026-09-16_poetry_week2_the_owl_and_the_pussy_cat_meter.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🎭 Poetry & Recitation</span>
+                <span class="lesson-date">2026-09-16</span>
+              </div>
+              <h4 class="lesson-card-title">Poetry: Meter, Beat & Rhythm — The Owl and the Pussy-Cat</h4>
+              <p class="lesson-desc">In which being an Exploration of Poetic Metre, Musical Time Signatures, and Syllable Tapping in Mr. Edward Lear’s “The Owl and the Pussy-Cat”.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/grammar/2026-08-22_gftwtm_w2_l7_helping_verbs.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ Grammar & Mechanics</span>
+                <span class="lesson-date">2026-08-22</span>
+              </div>
+              <h4 class="lesson-card-title">The Untimely Cargo at the Willow Slip — Helping Verbs</h4>
+              <p class="lesson-desc">In which Pleasant & Instructive Story of Dilly & Little Gray, and how the Auxiliary Verbs Saved a Barrow of Autumn Lavender from a Soggy Fate.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day II — Tuesday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/poetry/2026-09-15_poetry_week2_the_owl_and_the_pussy_cat_rhyme_scheme.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🎭 Poetry & Recitation</span>
+                <span class="lesson-date">2026-09-15</span>
+              </div>
+              <h4 class="lesson-card-title">Rhyme Scheme Mapping — The Owl and the Pussy-Cat</h4>
+              <p class="lesson-desc">In which Stylus-First Analytical Exercise in Mapping End-Rhyme Schemes, Stanza Symmetry, and Refrain Echoes in Mr. Edward Lear’s “The Owl and the Pussy-Cat”.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/spelling/2026-08-20_vcr_5_lesson2_exercises.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-08-20</span>
+              </div>
+              <h4 class="lesson-card-title">Book 5, L2: Balancing Evenly (equ, pend, quadr-) — Worksheet Exercises A–D</h4>
+              <p class="lesson-desc">In which written Exercises A–D on Latin Roots EQU (Equal) &amp; PEND (Hang/Weigh), and Prefix QUADR- (Four).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/poetry/2026-09-14_poetry_week2_the_owl_and_the_pussy_cat_structure.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🎭 Poetry & Recitation</span>
+                <span class="lesson-date">2026-09-14</span>
+              </div>
+              <h4 class="lesson-card-title">The Architecture of Whimsical Verse — The Owl and the Pussy-Cat</h4>
+              <p class="lesson-desc">In which Cheerful Hearthside Study with Rama Lama on Stanza Structure, Echoing Line Breaks, and Internal Rhyme in Mr. Edward Lear’s “The Owl and the Pussy-Cat”.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/grammar/2026-08-20_gftwtm_w2_l5_l5_noun_gender_personal_pronouns.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ Grammar & Mechanics</span>
+                <span class="lesson-date">2026-08-20</span>
+              </div>
+              <h4 class="lesson-card-title">The Grand Scriptorium &amp; The Stalled Capsule — L5: Noun Gender, Personal Pronouns</h4>
+              <p class="lesson-desc">In which Comedic &amp; Instructive Account of Dilly, Little Gray, and the Perils of the Overweighted Dispatch.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/spelling/2026-08-19_vcr_5_lesson2_balancing_evenly.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-08-19</span>
+              </div>
+              <h4 class="lesson-card-title">Book 5, L2: Balancing Evenly (equ, pend, quadr-) — The Great Meadow Seesaw</h4>
+              <p class="lesson-desc">In which Lighthearted Adventure in Equal Weights, Swinging Pendulums, and Woodland Equilibrium.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/spelling/2026-08-19_vcr_5_lesson2_book_5_l2_balancing_evenly.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-08-19</span>
+              </div>
+              <h4 class="lesson-card-title">Balancing Evenly — Book 5, L2: Balancing Evenly (equ, pend, quadr-)</h4>
+              <p class="lesson-desc">In which Pleasant & Instructive Story of Balancing Evenly.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/writing/2026-08-18_wws1_week2_day1_the_path_of_three_cascades.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">✒️ Writing & Composition</span>
+                <span class="lesson-date">2026-08-18</span>
+              </div>
+              <h4 class="lesson-card-title">The Path of Three Cascades — Intro to Outlining (Paragraphs & Topics)</h4>
+              <p class="lesson-desc">In which a Mountain Survey of Indented Glades, Specific Topics, and the Two Inquiries of Outlining.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/history/2026-08-17_history_week2_christianity_comes_to_britain_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-08-17</span>
+              </div>
+              <h4 class="lesson-card-title">Week 2 History — Chapter 3 (Christianity Comes to Britain) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 3 (Christianity Comes to Britain) (history_week2).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="week-section">
+        <div class="week-header">
+          <h3 class="week-title">Week 1 Curriculum Schedule</h3>
+          <div class="week-divider"></div>
+        </div>
+        <div class="week-body">
+          
+          <div class="day-block">
+            <h4 class="day-title">✦ Day IV — Thursday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/spelling/2026-08-18_vcr_5_lesson1_exercises.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-08-18</span>
+              </div>
+              <h4 class="lesson-card-title">Spelling &amp; Vocabulary Quiz — Book 5, Lesson 1: Going in Circles</h4>
+              <p class="lesson-desc">In which Weekly Mastery Assessment of Spoken Dictations, Root Clues &amp; Lexical Matching on CIRC &amp; CYCL.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/writing/2026-08-16_wws1_week1_day4_the_eight_signal_transmission.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">✒️ Writing & Composition</span>
+                <span class="lesson-date">2026-08-16</span>
+              </div>
+              <h4 class="lesson-card-title">The Eight-Signal Transmission — Narrative Summaries: Condensation & Chronology</h4>
+              <p class="lesson-desc">In which being an Expedition wherein Space Bear & Cloud master the condensation of sprawling journeys into an eight-sentence transmission.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/grammar/2026-08-15_gftwtm_w1_l4_proper_and_compound_adjectives.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ Grammar & Mechanics</span>
+                <span class="lesson-date">2026-08-15</span>
+              </div>
+              <h4 class="lesson-card-title">The Great Hyphen Catastrophe of Launchpad 9 — L4: Proper & Compound Adjectives</h4>
+              <p class="lesson-desc">In which Comedic & Instructive Account of Peepstronaut, Hissy, and the Perils of the Uncoupled Modifier.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day III — Wednesday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/math/2026-08-18_math_p72_73_special_agent_floppy_coordinate_plane.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🧮 Mathematics & Logic</span>
+                <span class="lesson-date">2026-08-18</span>
+              </div>
+              <h4 class="lesson-card-title">Special Agent Floppy and the Grid of Suspicion — Rational Numbers & Coordinate Plane</h4>
+              <p class="lesson-desc">In which an Undercover Investigation into the Four Quadrants, the Perils of Axis Reversal, and the Elusive Drop at (4, −2).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/grammar/2026-08-14_gftwtm_w1_l3_l3_commonproper_nouns_capitalization.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ Grammar & Mechanics</span>
+                <span class="lesson-date">2026-08-14</span>
+              </div>
+              <h4 class="lesson-card-title">The Grand Registry of the Crowned Names — L3: Common/Proper Nouns & Capitalization</h4>
+              <p class="lesson-desc">In which Dilly the Armadillo and Little Gray.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day II — Tuesday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/math/2026-08-18_math_w1_d2_stylus_practice_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🧮 Mathematics & Logic</span>
+                <span class="lesson-date">2026-08-18</span>
+              </div>
+              <h4 class="lesson-card-title">Stylus Practice Worksheet</h4>
+              <p class="lesson-desc">In which Progressive Stylus Practice Worksheet.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/math/2026-08-14_math_week1_day2_subterranean_rational_maze.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🧮 Mathematics & Logic</span>
+                <span class="lesson-date">2026-08-14</span>
+              </div>
+              <h4 class="lesson-card-title">The Subterranean Labyrinth of Rational Depths — Space Bear & Rama Lama</h4>
+              <p class="lesson-desc">In which being the Wholesome Account of Space Bear & Rama Lama Navigating Rational Depths to Reach Daylight.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/grammar/2026-08-11_gftwtm_w1_l2_l2_descriptive_adjectives_abstract_nouns.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ Grammar & Mechanics</span>
+                <span class="lesson-date">2026-08-11</span>
+              </div>
+              <h4 class="lesson-card-title">The Gallery of Whispered Words — L2: Descriptive Adjectives, Abstract Nouns</h4>
+              <p class="lesson-desc">In which Dilly the Armadillo & Little Gray the Plush Donkey.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/grammar/2026-08-10_gftwtm_week1_lesson1_concrete_and_abstract_nouns.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ Grammar & Mechanics</span>
+                <span class="lesson-date">2026-08-10</span>
+              </div>
+              <h4 class="lesson-card-title">The Game of Tangible & Intangible Nouns — Grammar for the Well-Trained Mind</h4>
+              <p class="lesson-desc">In which Rama Lama, Slush Puppy, and Dilly Engage in a Witty Parlor Game of Concrete and Abstract Nouns.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/general/2026-08-10_general_fractions_decimals_converting_fractions_and_decimals.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🌐 General Studies</span>
+                <span class="lesson-date">2026-08-10</span>
+              </div>
+              <h4 class="lesson-card-title">The Stone Gate of Pebble Creek — Converting Fractions & Decimals</h4>
+              <p class="lesson-desc">In which Five Explorers Encounter One Another and Master the Art of Converting Fractions to Decimals.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+          <div class="day-block">
+            <h4 class="day-title">✦ Day I — Monday</h4>
+            <div class="lesson-grid">
+              
+            <a href="lessons/poetry/2026-09-07_poetry_week1_the_owl_and_the_pussy_cat.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🎭 Poetry & Recitation</span>
+                <span class="lesson-date">2026-09-07</span>
+              </div>
+              <h4 class="lesson-card-title">The Library of Rama Lama — The Owl & The Pussy-Cat</h4>
+              <p class="lesson-desc">In which Hearthside Gathering & Recitation of Mr. Edward Lear's "The Owl and the Pussy-Cat".</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/math/2026-08-26_math_intv_targeted_review_ratio_basics_amp_ratio_tables.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🧮 Mathematics & Logic</span>
+                <span class="lesson-date">2026-08-26</span>
+              </div>
+              <h4 class="lesson-card-title">Targeted Review: Ratio Basics &amp; Ratio Tables</h4>
+              <p class="lesson-desc">In which Stylus Practice & Review Worksheet.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/math/2026-08-25_math_intv_reciprocals.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🧮 Mathematics & Logic</span>
+                <span class="lesson-date">2026-08-25</span>
+              </div>
+              <h4 class="lesson-card-title">Reciprocals</h4>
+              <p class="lesson-desc">In which Pleasant & Instructive Story of Our Companions and Reciprocals.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/grammar/2026-08-24_grammar_intv_formatting_titles_italics_underlining_vs_quotation_marks.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ Grammar & Mechanics</span>
+                <span class="lesson-date">2026-08-24</span>
+              </div>
+              <h4 class="lesson-card-title">Formatting Titles: Italics/Underlining vs. Quotation Marks</h4>
+              <p class="lesson-desc">In which Stylus Practice & Review Worksheet.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/math/2026-08-24_math_intv_multiplying_and_dividing_fractions.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🧮 Mathematics & Logic</span>
+                <span class="lesson-date">2026-08-24</span>
+              </div>
+              <h4 class="lesson-card-title">Multiplying and dividing fractions</h4>
+              <p class="lesson-desc">In which Stylus Practice & Review Worksheet.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/writing/2026-08-24_writing_intv_spelling_of_high_frequency_and_irregular_words.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">✒️ Writing & Composition</span>
+                <span class="lesson-date">2026-08-24</span>
+              </div>
+              <h4 class="lesson-card-title">Spelling of high-frequency and irregular words</h4>
+              <p class="lesson-desc">In which Stylus Practice & Review Worksheet.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/spelling/2026-08-18_vcr_5_lesson1_book_5_l1_going_in_circles.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-08-18</span>
+              </div>
+              <h4 class="lesson-card-title">Book 5, L1: Going in Circles (circ, cycl, uni-, bi-, tri-) — Book 5, L1: Going in Circles (circ, cycl, uni-, bi-, tri-)</h4>
+              <p class="lesson-desc">In which Pleasant & Instructive Story of Spelling.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/general/2026-08-12_vcr_5_lesson1_phonetic_secret_messages.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🌐 General Studies</span>
+                <span class="lesson-date">2026-08-12</span>
+              </div>
+              <h4 class="lesson-card-title">The Mystery of the Phonetic Cipher — A Tale of the Five Playful Friends</h4>
+              <p class="lesson-desc">In which Five Secret Messages are Decoded by the Five Playful Friends to Unlock the
+        Oakwood Treasure.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/history/2026-08-10_history_week1_glory_rome_early_days_britain_worksheet.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🏛️ History & World Chronicles</span>
+                <span class="lesson-date">2026-08-10</span>
+              </div>
+              <h4 class="lesson-card-title">Week 1 History — Chapter 1 (The Glory That Was Rome) & Chapter 2 (The Early Days of Britain) (Worksheet)</h4>
+              <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 1 (The Glory That Was Rome) & Chapter 2 (The Early Days of Britain) (history_week1).</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/math/2026-08-09_math_week1_comparing_and_ordering_rational_numbers.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">🧮 Mathematics & Logic</span>
+                <span class="lesson-date">2026-08-09</span>
+              </div>
+              <h4 class="lesson-card-title">The Sunken Sapphire Grotto — Sharky & Cloud Master Rational Numbers</h4>
+              <p class="lesson-desc">In which Sharky & Cloud descend into the Sunken Sapphire Grotto to unlock the depth vault by comparing and ordering rational numbers.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/writing/2026-08-09_wws1_week1_day1_salt_in_her_coffee_narration_summary.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">✒️ Writing & Composition</span>
+                <span class="lesson-date">2026-08-09</span>
+              </div>
+              <h4 class="lesson-card-title">Narrative Summaries: The Lady Who Put Salt in Her Coffee</h4>
+              <p class="lesson-desc">In which our companions embark upon their daily lesson.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            <a href="lessons/spelling/2026-08-08_vcr_5_lesson1_going_in_circles.html" class="lesson-card">
+              <div class="lesson-meta">
+                <span class="lesson-tag">📖 Spelling & Vocabulary</span>
+                <span class="lesson-date">2026-08-08</span>
+              </div>
+              <h4 class="lesson-card-title">The Great Circular Adventure — A Tale of the Five Playful Friends</h4>
+              <p class="lesson-desc">In which the Five Playful Friends venture into Oakwood Meadow, ride unicycles along circular paths, and discover the geometry of semicircles.</p>
+              <div class="lesson-action">Study Lesson &rarr;</div>
+            </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
+
+      <!-- Subject View Panel -->
+      <div id="view-subject" class="view-panel">
+        
+      <section class="subject-section">
+        <h3 class="subject-title">🧮 Mathematics & Logic</h3>
+        <div class="lesson-grid">
+          
+        <a href="lessons/math/2026-08-28_math_w3_d3_ratio_basics_amp_ratio_tables.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 3 • DAY 3</span>
+            <span class="lesson-date">2026-08-28</span>
+          </div>
+          <h4 class="lesson-card-title">The Case of the Bramblewood Berry Ledger — Ratio Basics &amp; Ratio Tables</h4>
+          <p class="lesson-desc">In which Pleasant & Instructive Story of Special Agent Floppy and the Mysteries of the Ratio Table.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/math/2026-08-26_math_intv_targeted_review_ratio_basics_amp_ratio_tables.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-26</span>
+          </div>
+          <h4 class="lesson-card-title">Targeted Review: Ratio Basics &amp; Ratio Tables</h4>
+          <p class="lesson-desc">In which Stylus Practice & Review Worksheet.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/math/2026-08-25_math_intv_reciprocals.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-25</span>
+          </div>
+          <h4 class="lesson-card-title">Reciprocals</h4>
+          <p class="lesson-desc">In which Pleasant & Instructive Story of Our Companions and Reciprocals.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/math/2026-08-24_math_w3_d1_ratio_basics_amp_ratio_tables.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 3 • DAY 1</span>
+            <span class="lesson-date">2026-08-24</span>
+          </div>
+          <h4 class="lesson-card-title">Case File #03-RATIO: The Mystery of the Balanced Pantry Crocks — Ratio Basics &amp; Ratio Tables</h4>
+          <p class="lesson-desc">In which an Undercover Investigation by Special Agent Floppy into the Acorn Syndicate's Proportional Tart Scheme, Scaled Batches, and Part-to-Whole Formulations.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/math/2026-08-24_math_intv_multiplying_and_dividing_fractions.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-24</span>
+          </div>
+          <h4 class="lesson-card-title">Multiplying and dividing fractions</h4>
+          <p class="lesson-desc">In which Stylus Practice & Review Worksheet.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/math/2026-08-18_math_p72_73_special_agent_floppy_coordinate_plane.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 3</span>
+            <span class="lesson-date">2026-08-18</span>
+          </div>
+          <h4 class="lesson-card-title">Special Agent Floppy and the Grid of Suspicion — Rational Numbers & Coordinate Plane</h4>
+          <p class="lesson-desc">In which an Undercover Investigation into the Four Quadrants, the Perils of Axis Reversal, and the Elusive Drop at (4, −2).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/math/2026-08-18_math_w1_d2_stylus_practice_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 2</span>
+            <span class="lesson-date">2026-08-18</span>
+          </div>
+          <h4 class="lesson-card-title">Stylus Practice Worksheet</h4>
+          <p class="lesson-desc">In which Progressive Stylus Practice Worksheet.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/math/2026-08-14_math_week1_day2_subterranean_rational_maze.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 2</span>
+            <span class="lesson-date">2026-08-14</span>
+          </div>
+          <h4 class="lesson-card-title">The Subterranean Labyrinth of Rational Depths — Space Bear & Rama Lama</h4>
+          <p class="lesson-desc">In which being the Wholesome Account of Space Bear & Rama Lama Navigating Rational Depths to Reach Daylight.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/math/2026-08-09_math_week1_comparing_and_ordering_rational_numbers.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-09</span>
+          </div>
+          <h4 class="lesson-card-title">The Sunken Sapphire Grotto — Sharky & Cloud Master Rational Numbers</h4>
+          <p class="lesson-desc">In which Sharky & Cloud descend into the Sunken Sapphire Grotto to unlock the depth vault by comparing and ordering rational numbers.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        </div>
+      </section>
+      <section class="subject-section">
+        <h3 class="subject-title">🏛️ Grammar & Mechanics</h3>
+        <div class="lesson-grid">
+          
+        <a href="lessons/grammar/2026-08-25_gftwtm_w3_l9_sentence_subjects_predicates.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 3 • DAY 1</span>
+            <span class="lesson-date">2026-08-25</span>
+          </div>
+          <h4 class="lesson-card-title">The Great Potting-Shed Sowing; Or, How a Donkey Became a Daffodil — Sentence, Subjects & Predicates</h4>
+          <p class="lesson-desc">In which Pleasant & Instructive Story of Dilly & Little Gray and Sentence, Subjects & Predicates.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/grammar/2026-08-24_grammar_intv_formatting_titles_italics_underlining_vs_quotation_marks.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-24</span>
+          </div>
+          <h4 class="lesson-card-title">Formatting Titles: Italics/Underlining vs. Quotation Marks</h4>
+          <p class="lesson-desc">In which Stylus Practice & Review Worksheet.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/grammar/2026-08-22_gftwtm_w2_l7_helping_verbs.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 3</span>
+            <span class="lesson-date">2026-08-22</span>
+          </div>
+          <h4 class="lesson-card-title">The Untimely Cargo at the Willow Slip — Helping Verbs</h4>
+          <p class="lesson-desc">In which Pleasant & Instructive Story of Dilly & Little Gray, and how the Auxiliary Verbs Saved a Barrow of Autumn Lavender from a Soggy Fate.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/grammar/2026-08-20_gftwtm_w2_l5_l5_noun_gender_personal_pronouns.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 1</span>
+            <span class="lesson-date">2026-08-20</span>
+          </div>
+          <h4 class="lesson-card-title">The Grand Scriptorium &amp; The Stalled Capsule — L5: Noun Gender, Personal Pronouns</h4>
+          <p class="lesson-desc">In which Comedic &amp; Instructive Account of Dilly, Little Gray, and the Perils of the Overweighted Dispatch.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/grammar/2026-08-15_gftwtm_w1_l4_proper_and_compound_adjectives.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 4</span>
+            <span class="lesson-date">2026-08-15</span>
+          </div>
+          <h4 class="lesson-card-title">The Great Hyphen Catastrophe of Launchpad 9 — L4: Proper & Compound Adjectives</h4>
+          <p class="lesson-desc">In which Comedic & Instructive Account of Peepstronaut, Hissy, and the Perils of the Uncoupled Modifier.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/grammar/2026-08-14_gftwtm_w1_l3_l3_commonproper_nouns_capitalization.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 3</span>
+            <span class="lesson-date">2026-08-14</span>
+          </div>
+          <h4 class="lesson-card-title">The Grand Registry of the Crowned Names — L3: Common/Proper Nouns & Capitalization</h4>
+          <p class="lesson-desc">In which Dilly the Armadillo and Little Gray.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/grammar/2026-08-11_gftwtm_w1_l2_l2_descriptive_adjectives_abstract_nouns.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 2</span>
+            <span class="lesson-date">2026-08-11</span>
+          </div>
+          <h4 class="lesson-card-title">The Gallery of Whispered Words — L2: Descriptive Adjectives, Abstract Nouns</h4>
+          <p class="lesson-desc">In which Dilly the Armadillo & Little Gray the Plush Donkey.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/grammar/2026-08-10_gftwtm_week1_lesson1_concrete_and_abstract_nouns.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 2</span>
+            <span class="lesson-date">2026-08-10</span>
+          </div>
+          <h4 class="lesson-card-title">The Game of Tangible & Intangible Nouns — Grammar for the Well-Trained Mind</h4>
+          <p class="lesson-desc">In which Rama Lama, Slush Puppy, and Dilly Engage in a Witty Parlor Game of Concrete and Abstract Nouns.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        </div>
+      </section>
+      <section class="subject-section">
+        <h3 class="subject-title">✒️ Writing & Composition</h3>
+        <div class="lesson-grid">
+          
+        <a href="lessons/writing/2026-08-26_wws1_w3_d2_d2_thesaurus_use.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 3 • DAY 2</span>
+            <span class="lesson-date">2026-08-26</span>
+          </div>
+          <h4 class="lesson-card-title">The Sovereign Lexicon of Pine-Needle Ridge — D2: Thesaurus Use</h4>
+          <p class="lesson-desc">In which Pleasant & Instructive Story of Space Bear and Thesaurus Use.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/writing/2026-08-24_writing_intv_spelling_of_high_frequency_and_irregular_words.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-24</span>
+          </div>
+          <h4 class="lesson-card-title">Spelling of high-frequency and irregular words</h4>
+          <p class="lesson-desc">In which Stylus Practice & Review Worksheet.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/writing/2026-08-18_wws1_week2_day1_the_path_of_three_cascades.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 1</span>
+            <span class="lesson-date">2026-08-18</span>
+          </div>
+          <h4 class="lesson-card-title">The Path of Three Cascades — Intro to Outlining (Paragraphs & Topics)</h4>
+          <p class="lesson-desc">In which a Mountain Survey of Indented Glades, Specific Topics, and the Two Inquiries of Outlining.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/writing/2026-08-16_wws1_week1_day4_the_eight_signal_transmission.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 4</span>
+            <span class="lesson-date">2026-08-16</span>
+          </div>
+          <h4 class="lesson-card-title">The Eight-Signal Transmission — Narrative Summaries: Condensation & Chronology</h4>
+          <p class="lesson-desc">In which being an Expedition wherein Space Bear & Cloud master the condensation of sprawling journeys into an eight-sentence transmission.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/writing/2026-08-09_wws1_week1_day1_salt_in_her_coffee_narration_summary.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-09</span>
+          </div>
+          <h4 class="lesson-card-title">Narrative Summaries: The Lady Who Put Salt in Her Coffee</h4>
+          <p class="lesson-desc">In which our companions embark upon their daily lesson.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        </div>
+      </section>
+      <section class="subject-section">
+        <h3 class="subject-title">📖 Spelling & Vocabulary</h3>
+        <div class="lesson-grid">
+          
+        <a href="lessons/spelling/2026-09-15_vcr_5_lesson6_exercises.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 6 • DAY 2</span>
+            <span class="lesson-date">2026-09-15</span>
+          </div>
+          <h4 class="lesson-card-title">Book 5, L6: Distant Places (astr, tele, scope) — Worksheet Exercises A–D</h4>
+          <p class="lesson-desc">In which written Exercises A–D on Classical Roots &amp; Affixes (vcr_5_lesson6).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-09-10_vcr_5_lesson4_spelling_quiz.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 4 • DAY 4</span>
+            <span class="lesson-date">2026-09-10</span>
+          </div>
+          <h4 class="lesson-card-title">Spelling & Vocabulary Quiz — Book 5, L4: Review Lessons 1–3</h4>
+          <p class="lesson-desc">In which Weekly Mastery Assessment of Spoken Dictations, Root Clues & Lexical Matching on Vocabulary.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-09-08_vcr_5_lesson5_exercises.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 5 • DAY 2</span>
+            <span class="lesson-date">2026-09-08</span>
+          </div>
+          <h4 class="lesson-card-title">Book 5, L5: Looking at Our Planet (terr, aqua, marin) — Worksheet Exercises A–D</h4>
+          <p class="lesson-desc">In which written Exercises A–D on Classical Roots &amp; Affixes (vcr_5_lesson5).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-09-03_vcr_5_lesson3_spelling_quiz.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 3 • DAY 4</span>
+            <span class="lesson-date">2026-09-03</span>
+          </div>
+          <h4 class="lesson-card-title">Spelling & Vocabulary Quiz — Book 5, L3: Moving Across/Between</h4>
+          <p class="lesson-desc">In which Weekly Mastery Assessment of Spoken Dictations, Root Clues & Lexical Matching on TRANS & INTER & SECT.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-08-27_vcr_5_lesson3_exercises.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 3 • DAY 2</span>
+            <span class="lesson-date">2026-08-27</span>
+          </div>
+          <h4 class="lesson-card-title">Book 5, L3: Moving Across/Between (trans, inter, sect) — Worksheet Exercises A–D</h4>
+          <p class="lesson-desc">In which written Exercises A–D on Latin Roots TRANS (Across/Through) &amp; INTER (Between/Among), and Root SECT (Cut).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-08-27_vcr_5_lesson2_spelling_quiz.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 4</span>
+            <span class="lesson-date">2026-08-27</span>
+          </div>
+          <h4 class="lesson-card-title">Spelling & Vocabulary Quiz — Book 5, L2: Balancing Evenly</h4>
+          <p class="lesson-desc">In which Weekly Mastery Assessment of Spoken Dictations, Root Clues & Lexical Matching on EQU & PEND & QUADR-.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-08-20_vcr_5_lesson2_exercises.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 2</span>
+            <span class="lesson-date">2026-08-20</span>
+          </div>
+          <h4 class="lesson-card-title">Book 5, L2: Balancing Evenly (equ, pend, quadr-) — Worksheet Exercises A–D</h4>
+          <p class="lesson-desc">In which written Exercises A–D on Latin Roots EQU (Equal) &amp; PEND (Hang/Weigh), and Prefix QUADR- (Four).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-08-19_vcr_5_lesson3_moving_acrossbetween.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 3 • DAY 1</span>
+            <span class="lesson-date">2026-08-19</span>
+          </div>
+          <h4 class="lesson-card-title">The Great Meadow Crossing — Moving Across/Between</h4>
+          <p class="lesson-desc">In which Pleasant & Instructive Story of Five Plush Companions and the Ways of Moving Across and Between.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-08-19_vcr_5_lesson2_balancing_evenly.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 1</span>
+            <span class="lesson-date">2026-08-19</span>
+          </div>
+          <h4 class="lesson-card-title">Book 5, L2: Balancing Evenly (equ, pend, quadr-) — The Great Meadow Seesaw</h4>
+          <p class="lesson-desc">In which Lighthearted Adventure in Equal Weights, Swinging Pendulums, and Woodland Equilibrium.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-08-19_vcr_5_lesson2_book_5_l2_balancing_evenly.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 1</span>
+            <span class="lesson-date">2026-08-19</span>
+          </div>
+          <h4 class="lesson-card-title">Balancing Evenly — Book 5, L2: Balancing Evenly (equ, pend, quadr-)</h4>
+          <p class="lesson-desc">In which Pleasant & Instructive Story of Balancing Evenly.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-08-18_vcr_5_lesson1_exercises.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 4</span>
+            <span class="lesson-date">2026-08-18</span>
+          </div>
+          <h4 class="lesson-card-title">Spelling &amp; Vocabulary Quiz — Book 5, Lesson 1: Going in Circles</h4>
+          <p class="lesson-desc">In which Weekly Mastery Assessment of Spoken Dictations, Root Clues &amp; Lexical Matching on CIRC &amp; CYCL.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-08-18_vcr_5_lesson1_book_5_l1_going_in_circles.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-18</span>
+          </div>
+          <h4 class="lesson-card-title">Book 5, L1: Going in Circles (circ, cycl, uni-, bi-, tri-) — Book 5, L1: Going in Circles (circ, cycl, uni-, bi-, tri-)</h4>
+          <p class="lesson-desc">In which Pleasant & Instructive Story of Spelling.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/spelling/2026-08-08_vcr_5_lesson1_going_in_circles.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-08</span>
+          </div>
+          <h4 class="lesson-card-title">The Great Circular Adventure — A Tale of the Five Playful Friends</h4>
+          <p class="lesson-desc">In which the Five Playful Friends venture into Oakwood Meadow, ride unicycles along circular paths, and discover the geometry of semicircles.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        </div>
+      </section>
+      <section class="subject-section">
+        <h3 class="subject-title">🎭 Poetry & Recitation</h3>
+        <div class="lesson-grid">
+          
+        <a href="lessons/poetry/2026-09-22_poetry_week3_the_owl_and_the_pussy_cat_recitation.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 3 • DAY 2</span>
+            <span class="lesson-date">2026-09-22</span>
+          </div>
+          <h4 class="lesson-card-title">The Living Verse in the Heart — The Owl and the Pussy-Cat</h4>
+          <p class="lesson-desc">In which Rama Lama extols the lifelong treasures of committing verse to memory, teaches the art of line-by-line self-dictation, and presents the full text of Mr. Edward Lear’s “The Owl and the Pussy-Cat”.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/poetry/2026-09-21_poetry_week3_the_owl_and_the_pussy_cat_copywork.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 3 • DAY 1</span>
+            <span class="lesson-date">2026-09-21</span>
+          </div>
+          <h4 class="lesson-card-title">Calligraphic Copywork & Cursive Memory — The Owl and the Pussy-Cat</h4>
+          <p class="lesson-desc">In which Lesson on the Joy of Cursive Penmanship, the Living Memory of Verse, and the Calligraphic Art of Mr. Edward Lear’s “The Owl and the Pussy-Cat”.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/poetry/2026-09-16_poetry_week2_the_owl_and_the_pussy_cat_meter.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 3</span>
+            <span class="lesson-date">2026-09-16</span>
+          </div>
+          <h4 class="lesson-card-title">Poetry: Meter, Beat & Rhythm — The Owl and the Pussy-Cat</h4>
+          <p class="lesson-desc">In which being an Exploration of Poetic Metre, Musical Time Signatures, and Syllable Tapping in Mr. Edward Lear’s “The Owl and the Pussy-Cat”.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/poetry/2026-09-15_poetry_week2_the_owl_and_the_pussy_cat_rhyme_scheme.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 2</span>
+            <span class="lesson-date">2026-09-15</span>
+          </div>
+          <h4 class="lesson-card-title">Rhyme Scheme Mapping — The Owl and the Pussy-Cat</h4>
+          <p class="lesson-desc">In which Stylus-First Analytical Exercise in Mapping End-Rhyme Schemes, Stanza Symmetry, and Refrain Echoes in Mr. Edward Lear’s “The Owl and the Pussy-Cat”.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/poetry/2026-09-14_poetry_week2_the_owl_and_the_pussy_cat_structure.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 1</span>
+            <span class="lesson-date">2026-09-14</span>
+          </div>
+          <h4 class="lesson-card-title">The Architecture of Whimsical Verse — The Owl and the Pussy-Cat</h4>
+          <p class="lesson-desc">In which Cheerful Hearthside Study with Rama Lama on Stanza Structure, Echoing Line Breaks, and Internal Rhyme in Mr. Edward Lear’s “The Owl and the Pussy-Cat”.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/poetry/2026-09-07_poetry_week1_the_owl_and_the_pussy_cat.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-09-07</span>
+          </div>
+          <h4 class="lesson-card-title">The Library of Rama Lama — The Owl & The Pussy-Cat</h4>
+          <p class="lesson-desc">In which Hearthside Gathering & Recitation of Mr. Edward Lear's "The Owl and the Pussy-Cat".</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        </div>
+      </section>
+      <section class="subject-section">
+        <h3 class="subject-title">🏛️ History & World Chronicles</h3>
+        <div class="lesson-grid">
+          
+        <a href="lessons/history/2027-04-12_history_week36_year_end_review_world_map_synthesis_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 36 • DAY 1</span>
+            <span class="lesson-date">2027-04-12</span>
+          </div>
+          <h4 class="lesson-card-title">Week 36 History — Year-End Review & World Map Synthesis (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Year-End Review & World Map Synthesis (history_week36).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-04-05_history_week35_empires_collide_world_at_end_16th_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 35 • DAY 1</span>
+            <span class="lesson-date">2027-04-05</span>
+          </div>
+          <h4 class="lesson-card-title">Week 35 History — Chapter 42 (Empires Collide: World at End of 16th Century) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 42 (Empires Collide: World at End of 16th Century) (history_week35).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-03-29_history_week34_explorations_north_cartier_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 34 • DAY 1</span>
+            <span class="lesson-date">2027-03-29</span>
+          </div>
+          <h4 class="lesson-card-title">Week 34 History — Chapter 41 (Explorations in the North: Cartier) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 41 (Explorations in the North: Cartier) (history_week34).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-03-22_history_week33_new_ventures_americas_roanoke_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 33 • DAY 1</span>
+            <span class="lesson-date">2027-03-22</span>
+          </div>
+          <h4 class="lesson-card-title">Week 33 History — Chapter 40 (New Ventures to the Americas: Roanoke) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 40 (New Ventures to the Americas: Roanoke) (history_week33).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-03-15_history_week32_england_s_greatest_playwright_shakespeare_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 32 • DAY 1</span>
+            <span class="lesson-date">2027-03-15</span>
+          </div>
+          <h4 class="lesson-card-title">Week 32 History — Chapter 39 (England's Greatest Playwright: Shakespeare) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 39 (England's Greatest Playwright: Shakespeare) (history_week32).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-03-08_history_week31_england_s_greatest_queen_elizabeth_i_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 31 • DAY 1</span>
+            <span class="lesson-date">2027-03-08</span>
+          </div>
+          <h4 class="lesson-card-title">Week 31 History — Chapter 38 (England's Greatest Queen: Elizabeth I) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 38 (England's Greatest Queen: Elizabeth I) (history_week31).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-03-01_history_week30_new_universe_copernicus_galileo_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 30 • DAY 1</span>
+            <span class="lesson-date">2027-03-01</span>
+          </div>
+          <h4 class="lesson-card-title">Week 30 History — Chapter 37 (The New Universe: Copernicus & Galileo) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 37 (The New Universe: Copernicus & Galileo) (history_week30).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-02-22_history_week29_reformation_and_counter_reformation_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 29 • DAY 1</span>
+            <span class="lesson-date">2027-02-22</span>
+          </div>
+          <h4 class="lesson-card-title">Week 29 History — Chapter 36 (Reformation and Counter Reformation) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 36 (Reformation and Counter Reformation) (history_week29).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-02-15_history_week28_the_renaissance_gutenberg_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 28 • DAY 1</span>
+            <span class="lesson-date">2027-02-15</span>
+          </div>
+          <h4 class="lesson-card-title">Week 28 History — Chapter 35 (The Renaissance & Gutenberg) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 35 (The Renaissance & Gutenberg) (history_week28).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-02-08_history_week27_spain_portugal_new_world_martin_luther_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 27 • DAY 1</span>
+            <span class="lesson-date">2027-02-08</span>
+          </div>
+          <h4 class="lesson-card-title">Week 27 History — Chapter 33 (Spain, Portugal, & New World) & Chapter 34 (Martin Luther's New Ideas) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 33 (Spain, Portugal, & New World) & Chapter 34 (Martin Luther's New Ideas) (history_week27).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-02-01_history_week26_american_kingdoms_mayans_aztecs_incas_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 26 • DAY 1</span>
+            <span class="lesson-date">2027-02-01</span>
+          </div>
+          <h4 class="lesson-card-title">Week 26 History — Chapter 32 (The American Kingdoms: Mayans, Aztecs, Incas) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 32 (The American Kingdoms: Mayans, Aztecs, Incas) (history_week26).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-01-25_history_week25_exploring_new_worlds_columbus_magellan_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 25 • DAY 1</span>
+            <span class="lesson-date">2027-01-25</span>
+          </div>
+          <h4 class="lesson-card-title">Week 25 History — Chapter 31 (Exploring New Worlds: Columbus & Magellan) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 31 (Exploring New Worlds: Columbus & Magellan) (history_week25).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-01-18_history_week24_india_under_the_moghuls_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 24 • DAY 1</span>
+            <span class="lesson-date">2027-01-18</span>
+          </div>
+          <h4 class="lesson-card-title">Week 24 History — Chapter 30 (India Under the Moghuls) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 30 (India Under the Moghuls) (history_week24).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-01-11_history_week23_kingdoms_spain_portugal_african_kingdoms_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 23 • DAY 1</span>
+            <span class="lesson-date">2027-01-11</span>
+          </div>
+          <h4 class="lesson-card-title">Week 23 History — Chapter 28 (Kingdoms of Spain & Portugal) & Chapter 29 (African Kingdoms) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 28 (Kingdoms of Spain & Portugal) & Chapter 29 (African Kingdoms) (history_week23).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2027-01-04_history_week22_war_for_english_throne_wars_roses_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 22 • DAY 1</span>
+            <span class="lesson-date">2027-01-04</span>
+          </div>
+          <h4 class="lesson-card-title">Week 22 History — Chapter 27 (War for the English Throne: Wars of the Roses) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 27 (War for the English Throne: Wars of the Roses) (history_week22).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-12-28_history_week21_france_england_at_war_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 21 • DAY 1</span>
+            <span class="lesson-date">2026-12-28</span>
+          </div>
+          <h4 class="lesson-card-title">Week 21 History — Chapter 26 (France and England at War) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 26 (France and England at War) (history_week21).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-12-21_history_week20_end_world_plague_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 20 • DAY 1</span>
+            <span class="lesson-date">2026-12-21</span>
+          </div>
+          <h4 class="lesson-card-title">Week 20 History — Chapter 25 (The End of the World: The Plague) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 25 (The End of the World: The Plague) (history_week20).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-12-14_history_week19_first_russians_ottoman_empire_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 19 • DAY 1</span>
+            <span class="lesson-date">2026-12-14</span>
+          </div>
+          <h4 class="lesson-card-title">Week 19 History — Chapter 23 (The First Russians) & Chapter 24 (The Ottoman Empire) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 23 (The First Russians) & Chapter 24 (The Ottoman Empire) (history_week19).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-12-07_history_week18_exploring_mysterious_east_marco_polo_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 18 • DAY 1</span>
+            <span class="lesson-date">2026-12-07</span>
+          </div>
+          <h4 class="lesson-card-title">Week 18 History — Chapter 22 (Exploring the Mysterious East: Marco Polo) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 22 (Exploring the Mysterious East: Marco Polo) (history_week18).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-11-30_history_week17_mongols_devastate_east_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 17 • DAY 1</span>
+            <span class="lesson-date">2026-11-30</span>
+          </div>
+          <h4 class="lesson-card-title">Week 17 History — Chapter 21 (The Mongols Devastate the East) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 21 (The Mongols Devastate the East) (history_week17).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-11-23_history_week16_the_diaspora_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 16 • DAY 1</span>
+            <span class="lesson-date">2026-11-23</span>
+          </div>
+          <h4 class="lesson-card-title">Week 16 History — Chapter 20 (The Diaspora) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 20 (The Diaspora) (history_week16).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-11-16_history_week15_new_kind_king_magna_carta_robin_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 15 • DAY 1</span>
+            <span class="lesson-date">2026-11-16</span>
+          </div>
+          <h4 class="lesson-card-title">Week 15 History — Chapter 19 (A New Kind of King: Magna Carta & Robin Hood) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 19 (A New Kind of King: Magna Carta & Robin Hood) (history_week15).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-11-09_history_week14_the_age_of_crusades_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 14 • DAY 1</span>
+            <span class="lesson-date">2026-11-09</span>
+          </div>
+          <h4 class="lesson-card-title">Week 14 History — Chapter 18 (The Age of Crusades) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 18 (The Age of Crusades) (history_week14).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-11-02_history_week13_knights_and_samurai_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 13 • DAY 1</span>
+            <span class="lesson-date">2026-11-02</span>
+          </div>
+          <h4 class="lesson-card-title">Week 13 History — Chapter 17 (Knights and Samurai) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 17 (Knights and Samurai) (history_week13).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-10-26_history_week12_england_after_the_conquest_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 12 • DAY 1</span>
+            <span class="lesson-date">2026-10-26</span>
+          </div>
+          <h4 class="lesson-card-title">Week 12 History — Chapter 16 (England After the Conquest) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 16 (England After the Conquest) (history_week12).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-10-19_history_week11_arrival_norsemen_first_kings_england_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 11 • DAY 1</span>
+            <span class="lesson-date">2026-10-19</span>
+          </div>
+          <h4 class="lesson-card-title">Week 11 History — Chapter 14 (The Arrival of the Norsemen) & Chapter 15 (The First Kings of England) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 14 (The Arrival of the Norsemen) & Chapter 15 (The First Kings of England) (history_week11).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-10-12_history_week10_great_kings_france_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 10 • DAY 1</span>
+            <span class="lesson-date">2026-10-12</span>
+          </div>
+          <h4 class="lesson-card-title">Week 10 History — Chapter 13 (The Great Kings of France) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 13 (The Great Kings of France) (history_week10).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-10-05_history_week9_kingdom_franks_islamic_invasion_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 9 • DAY 1</span>
+            <span class="lesson-date">2026-10-05</span>
+          </div>
+          <h4 class="lesson-card-title">Week 9 History — Chapter 11 (The Kingdom of the Franks) & Chapter 12 (The Islamic Invasion) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 11 (The Kingdom of the Franks) & Chapter 12 (The Islamic Invasion) (history_week9).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-09-28_history_week8_bottom_world_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 8 • DAY 1</span>
+            <span class="lesson-date">2026-09-28</span>
+          </div>
+          <h4 class="lesson-card-title">Week 8 History — Chapter 10 (The Bottom of the World) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 10 (The Bottom of the World) (history_week8).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-09-21_history_week7_great_dynasties_china_east_china_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 7 • DAY 1</span>
+            <span class="lesson-date">2026-09-21</span>
+          </div>
+          <h4 class="lesson-card-title">Week 7 History — Chapter 8 (The Great Dynasties of China) & Chapter 9 (East of China) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 8 (The Great Dynasties of China) & Chapter 9 (East of China) (history_week7).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-09-14_history_week6_islam_becomes_an_empire_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 6 • DAY 1</span>
+            <span class="lesson-date">2026-09-14</span>
+          </div>
+          <h4 class="lesson-card-title">Week 6 History — Chapter 7 (Islam Becomes an Empire) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 7 (Islam Becomes an Empire) (history_week6).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-09-07_history_week5_the_rise_of_islam_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 5 • DAY 1</span>
+            <span class="lesson-date">2026-09-07</span>
+          </div>
+          <h4 class="lesson-card-title">Week 5 History — Chapter 6 (The Rise of Islam) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 6 (The Rise of Islam) (history_week5).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-08-31_history_week4_the_medieval_indian_empire_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 4 • DAY 1</span>
+            <span class="lesson-date">2026-08-31</span>
+          </div>
+          <h4 class="lesson-card-title">Week 4 History — Chapter 5 (The Medieval Indian Empire) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 5 (The Medieval Indian Empire) (history_week4).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-08-24_history_week3_the_byzantine_empire_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 3 • DAY 1</span>
+            <span class="lesson-date">2026-08-24</span>
+          </div>
+          <h4 class="lesson-card-title">Week 3 History — Chapter 4 (The Byzantine Empire) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 4 (The Byzantine Empire) (history_week3).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-08-17_history_week2_christianity_comes_to_britain_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 2 • DAY 1</span>
+            <span class="lesson-date">2026-08-17</span>
+          </div>
+          <h4 class="lesson-card-title">Week 2 History — Chapter 3 (Christianity Comes to Britain) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 3 (Christianity Comes to Britain) (history_week2).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/history/2026-08-10_history_week1_glory_rome_early_days_britain_worksheet.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-10</span>
+          </div>
+          <h4 class="lesson-card-title">Week 1 History — Chapter 1 (The Glory That Was Rome) & Chapter 2 (The Early Days of Britain) (Worksheet)</h4>
+          <p class="lesson-desc">In which study Worksheet &amp; Historical Investigation on Chapter 1 (The Glory That Was Rome) & Chapter 2 (The Early Days of Britain) (history_week1).</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        </div>
+      </section>
+      <section class="subject-section">
+        <h3 class="subject-title">🌐 General Studies</h3>
+        <div class="lesson-grid">
+          
+        <a href="lessons/general/2026-08-12_vcr_5_lesson1_phonetic_secret_messages.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 1</span>
+            <span class="lesson-date">2026-08-12</span>
+          </div>
+          <h4 class="lesson-card-title">The Mystery of the Phonetic Cipher — A Tale of the Five Playful Friends</h4>
+          <p class="lesson-desc">In which Five Secret Messages are Decoded by the Five Playful Friends to Unlock the
+        Oakwood Treasure.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        <a href="lessons/general/2026-08-10_general_fractions_decimals_converting_fractions_and_decimals.html" class="lesson-card">
+          <div class="lesson-meta">
+            <span class="lesson-tag">WEEK 1 • DAY 2</span>
+            <span class="lesson-date">2026-08-10</span>
+          </div>
+          <h4 class="lesson-card-title">The Stone Gate of Pebble Creek — Converting Fractions & Decimals</h4>
+          <p class="lesson-desc">In which Five Explorers Encounter One Another and Master the Art of Converting Fractions to Decimals.</p>
+          <div class="lesson-action">Study Lesson &rarr;</div>
+        </a>
+        </div>
+      </section>
+      </div>
+    </main>
+
+    <footer class="book-footer">
+      ❖ The Primer • Dedicated to Classical Learning & Storytelling ❖
+    </footer>
+  </div>
+
+  <script>
+    function switchView(viewName) {
+      document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.view-btn').forEach(el => el.classList.remove('active'));
+
+      const activePanel = document.getElementById('view-' + viewName);
+      if (activePanel) activePanel.classList.add('active');
+
+      const btn = event ? event.currentTarget : null;
+      if (btn) btn.classList.add('active');
+    }
+
+    (function() {
+      const STORAGE_KEY = 'primer_reader_mode';
+
+      function getSystemMode() {
+        const savedMode = localStorage.getItem(STORAGE_KEY);
+        if (savedMode) return savedMode;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'lcd' || urlParams.get('lcd') === '1' || window.location.hash.includes('lcd')) {
+          return 'lcd';
+        }
+        if (urlParams.get('mode') === 'eink' || urlParams.get('eink') === '1' || window.location.hash.includes('eink')) {
+          return 'eink';
+        }
+
+        const ua = (navigator.userAgent || '').toLowerCase();
+        const platform = (navigator.platform || '').toLowerCase();
+        const vendor = (navigator.vendor || '').toLowerCase();
+
+        const einkKeywords = [
+          'boox', 'onyx', 'noteair', 'note air', 'noteair3', 'noteair3c', 'tabultra', 'tab ultra', 
+          'tabmini', 'palma', 'leaf', 'poke', 'max3', 'max2', 'nova', 'likebook', 'meebook', 
+          'kindle', 'kobo', 'tolino', 'nook', 'e-ink', 'eink', 'paperwhite', 'hisense'
+        ];
+        const isEinkHardwareUA = einkKeywords.some(keyword => ua.includes(keyword) || platform.includes(keyword) || vendor.includes(keyword));
+        if (isEinkHardwareUA) return 'eink';
+
+        const isSlowUpdate = window.matchMedia('(update: slow)').matches;
+        const prefersHighContrast = window.matchMedia('(prefers-contrast: more)').matches || window.matchMedia('(prefers-contrast: high)').matches;
+        const isForcedColors = window.matchMedia('(forced-colors: active)').matches;
+        const isMonochrome = window.matchMedia('(monochrome)').matches;
+        if (isSlowUpdate || prefersHighContrast || isForcedColors || isMonochrome) return 'eink';
+
+        const width = window.screen.width;
+        const height = window.screen.height;
+        const isAndroid = /android/i.test(ua);
+        const isEinkScreenRes = isAndroid && (
+          (width === 1404 && height === 1872) || (width === 1872 && height === 1404) ||
+          (width === 1860 && height === 2480) || (width === 2480 && height === 1860) ||
+          (width === 1200 && height === 1600) || (width === 1600 && height === 1200) ||
+          (width === 936  && height === 1248) || (width === 1248 && height === 936)
+        );
+        if (isEinkScreenRes) return 'eink';
+
+        return 'eink';
+      }
+
+      function applyMode(mode) {
+        document.body.classList.remove('mode-lcd', 'mode-eink', 'mode-lcd-user');
+        if (mode === 'eink') {
+          document.body.classList.add('mode-eink');
+        } else {
+          document.body.classList.add('mode-lcd', 'mode-lcd-user');
+        }
+      }
+
+      const initialMode = getSystemMode();
+      applyMode(initialMode);
+    })();
+  </script>
+
+</body>
+</html>

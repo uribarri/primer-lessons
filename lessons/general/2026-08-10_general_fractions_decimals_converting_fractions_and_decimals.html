@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="primer-week" content="1">
+  <meta name="primer-day" content="2">
+  <title>The Stone Gate of Pebble Creek — Converting Fractions & Decimals</title>
+  <!-- Google Fonts: Cormorant Garamond & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Neo-Victorian Paper & Typography Palette */
+    :root {
+      --bg-paper: #f9f5eb;
+      --bg-paper-dark: #f2ebd9;
+      --text-ink: #2b1f17;
+      --text-muted: #5c4a3e;
+      --border-gold: #c5a059;
+      --border-gold-light: #e6c88b;
+      --accent-burgundy: #7a1c1c;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #1a1410;
+      background-image: 
+        radial-gradient(circle at center, rgba(30, 20, 15, 0.4) 0%, rgba(10, 7, 5, 0.9) 100%),
+        linear-gradient(to bottom, #140d09, #241810, #140d09);
+      color: var(--text-ink);
+      font-family: var(--font-body);
+      font-size: 21px;
+      line-height: 1.85;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+    }
+
+    /* Book Page Container */
+    .book-page {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--bg-paper);
+      background-image: radial-gradient(#e8dfc8 1px, transparent 1px);
+      background-size: 24px 24px;
+      border: 1px solid var(--border-gold);
+      box-shadow: 
+        0 0 0 12px #261b14,
+        0 0 0 14px var(--border-gold),
+        0 25px 60px rgba(0, 0, 0, 0.85);
+      padding: 4rem 4.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .book-page {
+        padding: 2.5rem 1.8rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      }
+      body {
+        padding: 1rem 0.5rem;
+        font-size: 19px;
+      }
+    }
+
+    /* Ornate Filigree Corner Accents */
+    .corner-flourish {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    /* Header & Title Block */
+    .book-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      position: relative;
+    }
+
+    .header-tag {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 600;
+    }
+
+    h1.book-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.8rem;
+    }
+
+    .book-subtitle {
+      font-style: italic;
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Victorian Decorative Rule */
+    .flourish-divider {
+      text-align: center;
+      margin: 2.5rem 0;
+      color: var(--border-gold);
+      font-size: 1.5rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* Chapter Formatting */
+    .chapter {
+      margin-bottom: 3.5rem;
+    }
+
+    .chapter-heading {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-burgundy);
+      text-align: center;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px dashed var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Paragraphs & Drop Caps */
+    p.story-paragraph {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+      text-indent: 2em;
+    }
+
+    p.story-paragraph.first-para {
+      text-indent: 0;
+    }
+
+    p.story-paragraph.first-para::first-letter {
+      font-family: var(--font-heading);
+      font-size: 3.8em;
+      float: left;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+    }
+
+    /* Math Vocabulary & Concept Highlight Styling */
+    .vocab {
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    /* Key Equation / Math Box */
+    .math-callout {
+      background: var(--bg-paper-dark);
+      border-left: 4px solid var(--accent-burgundy);
+      border-right: 1px solid var(--border-gold-light);
+      border-top: 1px solid var(--border-gold-light);
+      border-bottom: 1px solid var(--border-gold-light);
+      padding: 1.2rem 1.6rem;
+      margin: 2rem 0;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      color: var(--text-ink);
+      text-align: center;
+    }
+
+    .math-callout p {
+      margin: 0.4rem 0;
+    }
+
+    /* Book Plate Illustrations */
+    .book-plate {
+      margin: 3rem 0;
+      text-align: center;
+      background: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      padding: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .book-plate img {
+      max-width: 100%;
+      height: auto;
+      max-height: 480px;
+      border: 1px solid var(--border-gold-light);
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .book-plate figcaption {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Footer */
+    .book-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-gold-light);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="book-page">
+    <div class="corner-flourish corner-tl"></div>
+    <div class="corner-flourish corner-tr"></div>
+    <div class="corner-flourish corner-bl"></div>
+    <div class="corner-flourish corner-br"></div>
+
+    <!-- Header Block -->
+    <header class="book-header">
+      <span class="header-tag">General Mathematics &bull; Storybook Lesson</span>
+      <h1 class="book-title">The Stone Gate of Pebble Creek</h1>
+      <p class="book-subtitle">Wherein Five Explorers Encounter One Another and Master the Art of Converting Fractions to Decimals</p>
+    </header>
+
+    <!-- Chapter I -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter I: The Stepping Stones of the Creek</h2>
+      
+      <p class="story-paragraph first-para">
+        The morning sun cast long, golden shafts of light across the forest trail when <span class="vocab">Slush Puppy</span>, the experienced trail leader, trotted up to the banks of Pebble Creek. Standing beside the rushing water was <span class="vocab">Hissy</span>, a brave and friendly serpent who had been exploring the wild mossy rocks. In the middle of the stream lay a series of ancient stone tablets embedded in the water, each carved with mysterious numbers. To step across safely, one had to match each stone engraved with a <span class="vocab">fraction</span> to a corresponding pillar engraved with its equivalent <span class="vocab">decimal</span> value.
+      </p>
+
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/pebble_creek_slush_puppy_hissy.jpg" alt="Slush Puppy and Hissy at Pebble Creek">
+        <figcaption>Plate I: Slush Puppy and Hissy examining the numbered stepping stones of Pebble Creek.</figcaption>
+      </figure>
+
+      <p class="story-paragraph">
+        "Good morning, traveler!" hissed Hissy cheerfully, coiling his long python body along a smooth boulder. "I've been examining these stones. The first pillar is marked <strong>0.5</strong>, but the stepping stone in front of me says <strong>&frac12;</strong>. Are they the same amount?"
+      </p>
+
+      <p class="story-paragraph">
+        Slush Puppy gave an encouraging nod. "Indeed they are! To convert a fraction like <strong>&frac12;</strong> into a decimal, we want to express it in terms of <span class="vocab">tenths</span> or <span class="vocab">hundredths</span>. Since 2 multiplies by 5 to make 10, we multiply both the top and bottom by 5, giving us <strong><sup>5</sup>&frasl;<sub>10</sub></strong>, which is written in decimal form as <strong>0.5</strong>."
+      </p>
+
+      <div class="math-callout">
+        <p><strong>Fraction to Decimal Conversion (Tenths &amp; Hundredths):</strong></p>
+        <p>&frac12; = (1 &times; 5) / (2 &times; 5) = <sup>5</sup>&frasl;<sub>10</sub> = <strong>0.5</strong></p>
+        <p>&frac14; = (1 &times; 25) / (4 &times; 25) = <sup>25</sup>&frasl;<sub>100</sub> = <strong>0.25</strong></p>
+      </div>
+
+      <p class="story-paragraph">
+        Hissy stretched his tail gracefully to press the stone marked <strong>&frac12;</strong> against the pillar marked <strong>0.5</strong>, and with a soft click, the first stepping stone rose securely out of the water!
+      </p>
+    </section>
+
+    <div class="flourish-divider">&#10087; &bull; &#10087; &bull; &#10087;</div>
+
+    <!-- Chapter II -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter II: The Armadillo's Careful Measure</h2>
+
+      <p class="story-paragraph first-para">
+        As the two friends watched the waters settle, a rustle came from the ferns. Out stepped <span class="vocab">Dilly</span>, the armadillo. She carried her measuring calipers and notebook, examining the second set of pillars with deliberate, thoughtful care.
+      </p>
+
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/pebble_creek_dilly_armadillo.jpg" alt="Dilly the Armadillo calculating fractions">
+        <figcaption>Plate II: Dilly, measuring the stone pillars with careful deliberation.</figcaption>
+      </figure>
+
+      <p class="story-paragraph">
+        "Greetings!" said Dilly warmly, brushing dust from her blue-grey corduroy shell. "I am not quite a master at these ancient locks, but I am certainly no novice either. The second lock requires us to match <strong><sup>1</sup>&frasl;<sub>5</sub></strong> and <strong><sup>3</sup>&frasl;<sub>5</sub></strong> with their decimal counterparts. Let us work through it step by step."
+      </p>
+
+      <p class="story-paragraph">
+        Dilly took out her pencil. "Since our denominator is 5, we can easily change it into tenths by multiplying by 2. Thus, <strong><sup>1</sup>&frasl;<sub>5</sub></strong> becomes <strong><sup>2</sup>&frasl;<sub>10</sub></strong>, which is <strong>0.2</strong>. And <strong><sup>3</sup>&frasl;<sub>5</sub></strong> becomes <strong><sup>6</sup>&frasl;<sub>10</sub></strong>, which is <strong>0.6</strong>."
+      </p>
+
+      <div class="math-callout">
+        <p><strong>Converting Fifths to Decimals:</strong></p>
+        <p><sup>1</sup>&frasl;<sub>5</sub> = (1 &times; 2) / (5 &times; 2) = <sup>2</sup>&frasl;<sub>10</sub> = <strong>0.2</strong></p>
+        <p><sup>3</sup>&frasl;<sub>5</sub> = (3 &times; 2) / (5 &times; 2) = <sup>6</sup>&frasl;<sub>10</sub> = <strong>0.6</strong></p>
+      </div>
+
+      <p class="story-paragraph">
+        "Brilliant calculation, Dilly!" praised Slush Puppy. Dilly carefully pushed the stones, and two more stepping stones locked into place across the stream.
+      </p>
+    </section>
+
+    <div class="flourish-divider">&#10087; &bull; &#10087; &bull; &#10087;</div>
+
+    <!-- Chapter III -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter III: Little Gray's Eager Leap</h2>
+
+      <p class="story-paragraph first-para">
+        Just then, a joyful trotting sound echoed down the path. <span class="vocab">Little Gray</span>, the playful plush donkey, came bustling down the trail, eager to help! In his excitement, he trotted right underfoot, almost bumping into Dilly's notebook.
+      </p>
+
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/pebble_creek_little_gray_donkey.jpg" alt="Little Gray the Donkey leaping onto stepping stones">
+        <figcaption>Plate III: Little Gray, full of playful enthusiasm as he steps onto the 3/4 stone.</figcaption>
+      </figure>
+
+      <p class="story-paragraph">
+        "I can help! I can help!" brayed Little Gray happily, wiggling his long fuzzy ears. "Look at that big pillar over there—it says <strong>0.75</strong>! But my stepping stone says <strong>&frac34;</strong>. I tried dividing 3 by 4, but I got stuck!"
+      </p>
+
+      <p class="story-paragraph">
+        Hissy slithered over gently and gave Little Gray a reassuring nudge. "Do not worry, Little Gray! Think of a whole dollar divided into four quarters. One quarter is <strong>25 cents (0.25)</strong>. Three quarters would be three times 25 cents!"
+      </p>
+
+      <p class="story-paragraph">
+        Little Gray's eyes lit up. "Three times 25 is 75! So <strong>&frac34;</strong> is equal to <strong>75 hundredths</strong>, or <strong>0.75</strong>!"
+      </p>
+
+      <div class="math-callout">
+        <p><strong>Converting Decimals Back to Fractions:</strong></p>
+        <p><strong>0.75</strong> = <sup>75</sup>&frasl;<sub>100</sub> = (75 &divide; 25) / (100 &divide; 25) = <strong>&frac34;</strong></p>
+        <p><strong>0.40</strong> = <sup>40</sup>&frasl;<sub>100</sub> = (40 &divide; 20) / (100 &divide; 20) = <strong><sup>2</sup>&frasl;<sub>5</sub></strong></p>
+      </div>
+
+      <p class="story-paragraph">
+        With a proud hop, Little Gray placed his hoof on the <strong>&frac34;</strong> stone, matching it to <strong>0.75</strong>, and the final stepping stone clicked firmly into position!
+      </p>
+    </section>
+
+    <div class="flourish-divider">&#10087; &bull; &#10087; &bull; &#10087;</div>
+
+    <!-- Chapter IV -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter IV: The Cadet's Gauge & The Master Gate</h2>
+
+      <p class="story-paragraph first-para">
+        Before the team could step across, a soft hum filled the air. Descending gently from above came <span class="vocab">Peepstronaut</span>, the observant cadet astronaut, wearing his bright orange flight suit and cap. He held a small brass navigational gauge.
+      </p>
+
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/pebble_creek_peepstronaut_cadet.jpg" alt="Peepstronaut holding navigational gauge at stone gate">
+        <figcaption>Plate IV: Peepstronaut, comparing the stone gate's numbers with his flight gauges.</figcaption>
+      </figure>
+
+      <p class="story-paragraph">
+        "Greetings, crew!" chirped Peepstronaut, staring intently at the master archway at the end of the bridge. "My flight computer displays fuel levels in tenths and hundredths. The archway requires us to verify five equivalencies to unlock the final gate:"
+      </p>
+
+      <div class="math-callout">
+        <p><strong>The Five Key Conversion Pairs to Remember:</strong></p>
+        <p><sup>1</sup>&frasl;<sub>10</sub> = <strong>0.1</strong> &nbsp;&nbsp;|&nbsp;&nbsp; <sup>1</sup>&frasl;<sub>5</sub> = <strong>0.2</strong> &nbsp;&nbsp;|&nbsp;&nbsp; &frac14; = <strong>0.25</strong></p>
+        <p>&frac12; = <strong>0.5</strong> &nbsp;&nbsp;|&nbsp;&nbsp; &frac34; = <strong>0.75</strong></p>
+      </div>
+
+      <p class="story-paragraph">
+        Together, the five new friends worked as a unified team. Slush Puppy led the strategy, Hissy pointed out the path, Dilly measured the values with care, Little Gray eagerly pressed the stones, and Peepstronaut confirmed the readout on his gauge.
+      </p>
+
+      <p class="story-paragraph">
+        With a triumphant rumble, the ancient stone gate swung open, revealing a sunlit meadow of endless new trails to explore. The five companions smiled at one another, knowing that their journey had only just begun.
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="book-footer">
+      <p>The Primer Educational Series &bull; General Mathematics</p>
+      <p>Mastering Small Fractions &amp; Decimal Equivalencies</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

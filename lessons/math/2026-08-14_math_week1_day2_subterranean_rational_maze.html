@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Subterranean Labyrinth of Rational Depths — Space Bear & Rama Lama</title>
+  
+  <!-- Lesson Metadata for Automated Categorization -->
+  <meta name="primer-week" content="1">
+  <meta name="primer-day" content="2">
+  <meta name="primer-uuid" content="c3b94a8e-5f21-4d1a-8e93-7b28f9104c26">
+
+  <!-- Google Fonts: Cormorant Garamond & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Neo-Victorian Paper & Typography Palette */
+    :root {
+      --bg-paper: #f9f5eb;
+      --bg-paper-dark: #f2ebd9;
+      --text-ink: #2b1f17;
+      --text-muted: #5c4a3e;
+      --border-gold: #c5a059;
+      --border-gold-light: #e6c88b;
+      --accent-burgundy: #7a1c1c;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #1a1410;
+      background-image: 
+        radial-gradient(circle at center, rgba(30, 20, 15, 0.4) 0%, rgba(10, 7, 5, 0.9) 100%),
+        linear-gradient(to bottom, #140d09, #241810, #140d09);
+      color: var(--text-ink);
+      font-family: var(--font-body);
+      font-size: 21px;
+      line-height: 1.85;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+    }
+
+    /* Book Page Container */
+    .book-page {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--bg-paper);
+      background-image: radial-gradient(#e8dfc8 1px, transparent 1px);
+      background-size: 24px 24px;
+      border: 1px solid var(--border-gold);
+      box-shadow: 
+        0 0 0 12px #261b14,
+        0 0 0 14px var(--border-gold),
+        0 25px 60px rgba(0, 0, 0, 0.85);
+      padding: 4rem 4.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .book-page {
+        padding: 2.5rem 1.8rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      }
+      body {
+        padding: 1rem 0.5rem;
+        font-size: 19px;
+      }
+    }
+
+    /* Ornate Filigree Corner Accents */
+    .corner-flourish {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    /* Header & Title Block */
+    .book-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      position: relative;
+    }
+
+    .header-tag {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 600;
+    }
+
+    h1.book-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.8rem;
+    }
+
+    .book-subtitle {
+      font-style: italic;
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Victorian Decorative Rule */
+    .flourish-divider {
+      text-align: center;
+      margin: 2.5rem 0;
+      color: var(--border-gold);
+      font-size: 1.5rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* Chapter Formatting */
+    .chapter {
+      margin-bottom: 3.5rem;
+    }
+
+    .chapter-heading {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-burgundy);
+      text-align: center;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px dashed var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Paragraphs & Drop Caps */
+    p.story-paragraph {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+      text-indent: 2em;
+    }
+
+    p.story-paragraph.first-para {
+      text-indent: 0;
+    }
+
+    p.story-paragraph.first-para::first-letter {
+      font-family: var(--font-heading);
+      font-size: 3.8em;
+      float: left;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+    }
+
+    /* Vocabulary & Math Highlight Styling */
+    .vocab {
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    /* Math Callout Box */
+    .math-callout {
+      background: var(--bg-paper-dark);
+      border-left: 4px solid var(--accent-burgundy);
+      border-right: 1px solid var(--border-gold-light);
+      border-top: 1px solid var(--border-gold-light);
+      border-bottom: 1px solid var(--border-gold-light);
+      padding: 1.2rem 1.6rem;
+      margin: 2rem 0;
+      font-family: var(--font-heading);
+      font-size: 1.02rem;
+      color: var(--text-ink);
+      text-align: center;
+    }
+
+    /* Book Plate Illustrations */
+    .book-plate {
+      margin: 3rem 0;
+      text-align: center;
+      background: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      padding: 1rem;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .book-plate img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #d4c5a9;
+      margin: 0 auto;
+    }
+
+    .plate-caption {
+      margin-top: 0.9rem;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .plate-number {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+
+    /* Book Footer */
+    .book-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-gold-light);
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="book-page">
+    
+    <!-- Filigree Corners -->
+    <div class="corner-flourish corner-tl"></div>
+    <div class="corner-flourish corner-tr"></div>
+    <div class="corner-flourish corner-bl"></div>
+    <div class="corner-flourish corner-br"></div>
+
+    <!-- Title Block -->
+    <header class="book-header">
+      <span class="header-tag">Derived from: curriculum/math/Math.html (Week 1, Day 2 — Page 70)</span>
+      <h1 class="book-title">The Subterranean Labyrinth</h1>
+      <p class="book-subtitle">Being the Wholesome Account of Space Bear & Rama Lama Navigating Rational Depths to Reach Daylight</p>
+    </header>
+
+    <!-- Chapter I -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter I — The Inscribed Archways</h2>
+      
+      <p class="story-paragraph first-para">
+        Deep beneath the jagged crests of the Whispering Crags, an exploratory expedition met with an unexpected turn of fortune. Space Bear, a careful astronaut teddy bear in his white flight suit, and Rama Lama, his wise plush companion with soft brown fur, a yellow neck cord, and cream-colored ram horns, had been taking cave depth measurements when a sudden rockslide blocked the entrance.
+      </p>
+
+      <p class="story-paragraph">
+        Dust settled slowly in the dim subterranean air. Space Bear raised his flight suit lantern, illuminating an ancient stone tablet embedded in the cavern wall. Carved into the granite were three tunnel archways, alongside a clear rule of ascent:
+      </p>
+
+      <div class="math-callout">
+        <strong>The Law of the Subterranean Labyrinth:</strong><br>
+        To ascend toward daylight, every step through the maze must follow paths of strictly <strong>increasing depth values</strong> (from least to greatest).<br>
+        Depths range from <strong>−10.5</strong> fathoms in the deep abyss up to <strong>+10.0</strong> fathoms at the sunlit surface!
+      </div>
+
+      <p class="story-paragraph">
+        "Observe, Rama Lama," Space Bear said calmly, double-checking his wrist telemetry computer. "We begin at a depth marking of <span class="vocab">−10.2</span>. At each cavern junction, three passages open before us. Some passages display negative improper fractions, others display negative decimals or absolute values. To choose the correct path that leads upward toward the sun, we must convert each marking into a <span class="vocab">common representation</span> and pick the passage with the <em>greatest</em> value!"
+      </p>
+
+      <p class="story-paragraph">
+        Rama Lama nodded wisely, his cream-colored horns catching the lantern glow. "Let us proceed methodically, Space Bear. I shall convert the fractions!"
+      </p>
+
+      <!-- Plate I -->
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/space_bear_rama_lama_cave_maze.jpg" alt="Plate I: Space Bear and Rama Lama examining the three inscribed archways in the subterranean maze">
+        <figcaption class="plate-caption">
+          <span class="plate-number">Plate I</span>
+          Space Bear and Rama Lama evaluate the three cavern archways marked with rational numbers at the start of the subterranean maze.
+        </figcaption>
+      </figure>
+
+      <p class="story-paragraph">
+        At the first junction, standing at <strong>−10.2</strong>, they faced three archways: 
+        Passage A marked <strong>−10.8</strong>, Passage B marked <strong>−27/3</strong>, and Passage C marked <strong>−11.5</strong>.
+      </p>
+
+      <p class="story-paragraph">
+        Space Bear calculated: "<strong>−27/3</strong> simplifies to <strong>−9.0</strong>. On our number line, −9.0 lies to the right of −10.2! Thus, <strong>−27/3</strong> (−9.0) is greater than −10.2!"
+      </p>
+
+      <p class="story-paragraph">
+        They stepped bravely into Passage B (<strong>−27/3</strong>).
+      </p>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter II -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter II — Through the Subterranean Tunnels</h2>
+      
+      <p class="story-paragraph first-para">
+        The cavern sloped gently upward. At the second junction, three new choices faced them: 
+        <strong>−29/3</strong> (−9.666...), <strong>−8¾</strong> (−8.75), and <strong>−10.1</strong>.
+      </p>
+
+      <p class="story-paragraph">
+        Rama Lama examined the mixed fraction <strong>−8¾</strong>. "Converting ¾ to a decimal gives 0.75, so <strong>−8¾ = −8.75</strong>. Because −8.75 lies closer to zero than −9.0, it has a greater value! This passage brings us higher toward the surface!" Together, they stepped through <strong>−8¾</strong>.
+      </p>
+
+      <p class="story-paragraph">
+        The maze continued with rigorous precision. At each cavern intersection, Space Bear and Rama Lama systematically converted fractions and decimals to compare their rational values:
+      </p>
+
+      <p class="story-paragraph">
+        • <strong>Step 3:</strong> From −8.75 (<strong>−8¾</strong>), they chose the decimal tunnel <strong>−6.85</strong> (since −6.85 &gt; −8.75).<br>
+        • <strong>Step 4:</strong> From −6.85, they chose the improper fraction <strong>−19/4</strong> (converting to <strong>−4.75</strong>, since −4.75 &gt; −6.85).<br>
+        • <strong>Step 5:</strong> At the fifth junction, they encountered an <span class="vocab">absolute value</span>: <strong>|-0.25|</strong>.
+      </p>
+
+      <p class="story-paragraph">
+        "An absolute value bracket!" noted Space Bear. "Absolute value measures distance from zero without regard to sign, so <strong>|-0.25| = +0.25</strong>. Since positive +0.25 is greater than negative −4.75, this tunnel crosses into positive territory!"
+      </p>
+
+      <p class="story-paragraph">
+        They ventured forward through <strong>|-0.25|</strong> (+0.25) and continued ascending:
+      </p>
+
+      <p class="story-paragraph">
+        • <strong>Step 6:</strong> From +0.25, they chose improper fraction <strong>7/5</strong> (converting to <strong>+1.40</strong> &gt; +0.25).<br>
+        • <strong>Step 7:</strong> From +1.40, they selected <strong>|-5.2|</strong> (absolute value yields <strong>+5.20</strong> &gt; +1.40).<br>
+        • <strong>Step 8:</strong> From +5.20, they chose mixed fraction <strong>7½</strong> (converting to <strong>+7.50</strong> &gt; +5.20).<br>
+        • <strong>Step 9:</strong> From +7.50, they selected improper fraction <strong>19/2</strong> (simplifying to <strong>+9.50</strong> &gt; +7.50).
+      </p>
+
+      <div class="math-callout">
+        <strong>The Master Sequence of Ascension:</strong><br>
+        −10.2 &nbsp;&lt;&nbsp; −²⁷/₃ &nbsp;&lt;&nbsp; −8¾ &nbsp;&lt;&nbsp; −6.85 &nbsp;&lt;&nbsp; −¹⁹/₄ &nbsp;&lt;&nbsp; |-0.25| &nbsp;&lt;&nbsp; ⁷/₅ &nbsp;&lt;&nbsp; |-5.2| &nbsp;&lt;&nbsp; 7½ &nbsp;&lt;&nbsp; ¹⁹/₂ &nbsp;&lt;&nbsp; |-10|
+      </div>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter III -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter III — Emergence into Daylight</h2>
+      
+      <p class="story-paragraph first-para">
+        Ahead of them, a golden shaft of warm sunlight streamed through a high cavern arch. Etched upon the final archway was the grand master depth marker: <strong>|-10|</strong>.
+      </p>
+
+      <p class="story-paragraph">
+        "The absolute value of −10 is <strong>+10.0</strong>!" declared Rama Lama joyfully. "The highest depth level of the entire mountain!"
+      </p>
+
+      <p class="story-paragraph">
+        Space Bear and Rama Lama took their final step through the archway, emerging out of the dark cavern mouth into the crisp, pine-scented morning air of the Whispering Crags.
+      </p>
+
+      <!-- Plate II -->
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/space_bear_daylight_reunion.jpg" alt="Plate II: Space Bear and Rama Lama greeted excitedly by Cloud and Sharky as they emerge into daylight">
+        <figcaption class="plate-caption">
+          <span class="plate-number">Plate II</span>
+          Space Bear and Rama Lama emerge into bright sunlight, joyfully greeted by Cloud and Sharky after mastering the rational number maze.
+        </figcaption>
+      </figure>
+
+      <p class="story-paragraph">
+        "Hooray! They made it!" shouted cheerful voices.
+      </p>
+
+      <p class="story-paragraph">
+        Cloud, the fluffy tan plush companion with his turquoise pendant necklace, and Sharky, the grey knit plush shark, came bounding down the rocky knoll with ecstatic cheers! They threw their arms wide in joyful celebration, greeting Space Bear and Rama Lama with warm hugs and high-fivers.
+      </p>
+
+      <p class="story-paragraph">
+        "We saw the rockslide from the meadow and were so worried!" cheered Cloud. "How did you navigate through the pitch-black tunnels?"
+      </p>
+
+      <p class="story-paragraph">
+        Space Bear adjusted his helmet with a proud smile, while Rama Lama beamed beside him. "With conversion and comparison! By turning every fraction, decimal, and absolute value into a common decimal format, we picked the greatest path at every turn!"
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="book-footer">
+      The Primer Educational Series &nbsp; • &nbsp; IXL 6th Grade Math Curriculum (Week 1, Day 2 — Page 70)
+    </footer>
+
+  </article>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+{
+  "circuit": {
+    "word": "circuit",
+    "voice": "af_sky",
+    "word_file": "circuit.wav",
+    "word_duration_seconds": 0.875,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:44.411414+00:00"
+  },
+  "circular": {
+    "word": "circular",
+    "voice": "af_sky",
+    "word_file": "circular.wav",
+    "word_duration_seconds": 0.981,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:44.709990+00:00"
+  },
+  "circulate": {
+    "word": "circulate",
+    "voice": "af_sky",
+    "word_file": "circulate.wav",
+    "word_duration_seconds": 1.024,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:45.008318+00:00"
+  },
+  "semicircle": {
+    "word": "semicircle",
+    "voice": "af_sky",
+    "word_file": "semicircle.wav",
+    "word_duration_seconds": 1.067,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:46.342764+00:00"
+  },
+  "cycle": {
+    "word": "cycle",
+    "voice": "af_sky",
+    "word_file": "cycle.wav",
+    "word_duration_seconds": 0.853,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:45.301901+00:00"
+  },
+  "cyclone": {
+    "word": "cyclone",
+    "voice": "af_sky",
+    "word_file": "cyclone.wav",
+    "word_duration_seconds": 0.96,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:45.645650+00:00"
+  },
+  "recycle": {
+    "word": "recycle",
+    "voice": "af_sky",
+    "word_file": "recycle.wav",
+    "word_duration_seconds": 0.981,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:45.985570+00:00"
+  },
+  "unicycle": {
+    "word": "unicycle",
+    "voice": "af_sky",
+    "word_file": "unicycle.wav",
+    "word_duration_seconds": 1.045,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:46.676044+00:00"
+  },
+  "circumnavigate": {
+    "word": "circumnavigate",
+    "voice": "af_sky",
+    "word_file": "circumnavigate.wav",
+    "word_duration_seconds": 1.237,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:47.079365+00:00"
+  },
+  "circumference": {
+    "word": "circumference",
+    "voice": "af_sky",
+    "word_file": "circumference.wav",
+    "word_duration_seconds": 1.173,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:47.641594+00:00"
+  },
+  "circumspect": {
+    "word": "circumspect",
+    "voice": "af_sky",
+    "word_file": "circumspect.wav",
+    "word_duration_seconds": 1.131,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:48.093859+00:00"
+  },
+  "encyclopedia": {
+    "word": "encyclopedia",
+    "voice": "af_sky",
+    "word_file": "encyclopedia.wav",
+    "word_duration_seconds": 1.387,
+    "phrase_duration_seconds": 0.0,
+    "format": "mp3",
+    "updated_at": "2026-08-11T13:13:48.617698+00:00"
+  }
+}
