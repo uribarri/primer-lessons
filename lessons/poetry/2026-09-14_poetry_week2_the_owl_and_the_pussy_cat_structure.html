@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="primer-week" content="2">
+  <meta name="primer-day" content="1">
+  <meta name="primer-uuid" content="0e113fc4-188d-5f0d-8039-270540d6377d">
+  <title>The Architecture of Whimsical Verse — The Owl and the Pussy-Cat</title>
+  <!-- Google Fonts: Cormorant Garamond, EB Garamond & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Neo-Victorian Base Palette Variables */
+    :root {
+      --bg-body-outer: #1a1410;
+      --bg-body-image: radial-gradient(circle at center, rgba(30, 20, 15, 0.4) 0%, rgba(10, 7, 5, 0.9) 100%), linear-gradient(to bottom, #140d09, #241810, #140d09);
+      --bg-paper: #f9f5eb;
+      --bg-paper-dark: #f2ebd9;
+      --bg-paper-image: radial-gradient(#e8dfc8 1px, transparent 1px);
+      --text-ink: #2b1f17;
+      --text-muted: #5c4a3e;
+      --border-gold: #c5a059;
+      --border-gold-light: #e6c88b;
+      --accent-burgundy: #7a1c1c;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+      --font-body-size: 21px;
+      --font-body-weight: 400;
+      --page-box-shadow: 0 0 0 12px #261b14, 0 0 0 14px var(--border-gold), 0 25px 60px rgba(0, 0, 0, 0.85);
+      --plate-box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+      --border-width-base: 2px;
+      --scroll-behavior: smooth;
+    }
+
+    /* Color E-Ink Mode Overrides (Boox Note Air C & Kaleido 3 Hardware System) */
+    body.mode-eink {
+      --bg-body-outer: #ffffff;
+      --bg-body-image: none;
+      --bg-paper: #ffffff;
+      --bg-paper-dark: #f8f8f8;
+      --bg-paper-image: none;
+      --text-ink: #000000;
+      --text-muted: #000000;
+      --border-gold: #000000;
+      --border-gold-light: #000000;
+      --accent-burgundy: #800000;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'EB Garamond', serif;
+      --font-body-size: 24px;
+      --font-body-weight: 500;
+      --page-box-shadow: none;
+      --plate-box-shadow: none;
+      --border-width-base: 2px;
+      --scroll-behavior: auto;
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: var(--scroll-behavior);
+    }
+
+    body {
+      background-color: var(--bg-body-outer);
+      background-image: var(--bg-body-image);
+      color: var(--text-ink);
+      font-family: var(--font-body);
+      font-size: var(--font-body-size);
+      font-weight: var(--font-body-weight);
+      line-height: 1.8;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Stationary Fixed Outer Frame for E-Ink Viewport */
+    body.mode-eink::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 36px;
+      border: 3px solid #000000;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Paginated Multi-Column Container for E-Ink Mode */
+    body.mode-eink .book-page {
+      width: 100vw;
+      height: calc(100vh - 116px);
+      max-width: 100vw;
+      margin-top: 70px;
+      margin-bottom: 46px;
+      margin-left: 0;
+      margin-right: 0;
+      padding: 0;
+      column-width: 100vw;
+      column-gap: 0;
+      column-fill: auto;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      border: none;
+      box-shadow: none;
+      box-sizing: border-box;
+    }
+
+    /* Internal Side Padding for Block Elements in E-Ink Mode */
+    body.mode-eink .book-header,
+    body.mode-eink .chapter,
+    body.mode-eink .flourish-divider,
+    body.mode-eink .grammar-callout,
+    body.mode-eink .character-dialogue,
+    body.mode-eink figure.book-plate,
+    body.mode-eink .book-footer {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      box-sizing: border-box;
+    }
+
+    /* Fragmentation & BFC Rules for E-Ink */
+    body.mode-eink .chapter {
+      display: flow-root;
+      width: 100%;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+      -webkit-column-break-inside: auto !important;
+      break-before: auto !important;
+      page-break-before: auto !important;
+    }
+
+    /* Protected Containers: Never Break Across Columns/Pages */
+    body.mode-eink figure,
+    body.mode-eink .character-dialogue,
+    body.mode-eink .grammar-callout,
+    body.mode-eink .math-callout,
+    body.mode-eink .study-box,
+    body.mode-eink .reflection-point,
+    body.mode-eink .arc-cards,
+    body.mode-eink .arc-card,
+    body.mode-eink .summary-card,
+    body.mode-eink .poem-stanza,
+    body.mode-eink blockquote,
+    body.mode-eink table {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    /* Exceptions: Large Multi-Page Containers Allowed to Fragment Across Pages */
+    body.mode-eink .poem-box {
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+      -webkit-column-break-inside: auto !important;
+    }
+
+    body.mode-eink h1,
+    body.mode-eink h2,
+    body.mode-eink h3,
+    body.mode-eink h4,
+    body.mode-eink h5,
+    body.mode-eink .chapter-heading,
+    body.mode-eink .character-name {
+      break-after: avoid !important;
+      page-break-after: avoid !important;
+    }
+
+    body.mode-eink .chapter-heading {
+      margin-top: 1.2rem;
+      margin-bottom: 0.8rem;
+      break-before: auto !important;
+    }
+
+    body.mode-eink .flourish-divider {
+      display: block;
+      margin: 1rem 0 !important;
+      padding: 0 !important;
+      line-height: 1.2 !important;
+      font-size: 1.4rem !important;
+      text-align: center;
+      clear: both;
+      break-inside: avoid !important;
+      break-before: auto !important;
+      break-after: auto !important;
+      page-break-after: auto !important;
+    }
+
+    body.mode-eink p.story-paragraph {
+      margin-bottom: 1rem;
+      widows: 2;
+      orphans: 2;
+    }
+
+    body.mode-eink .character-dialogue {
+      margin: 1rem 0;
+      padding: 0.8rem 1.2rem;
+      background: #f8f8f8;
+      border-left: 5px solid #000000 !important;
+      border-top: 3px solid #000000 !important;
+      border-bottom: 3px solid #000000 !important;
+      border-right: 3px solid #000000 !important;
+    }
+
+    body.mode-eink .grammar-callout,
+    body.mode-eink .math-callout {
+      margin: 1.2rem 0;
+      padding: 1.2rem 1.5rem;
+      background: #f8f8f8;
+      border-left: 6px solid #800000 !important;
+      border-top: 3px solid #000000 !important;
+      border-bottom: 3px solid #000000 !important;
+      border-right: 3px solid #000000 !important;
+    }
+
+    body.mode-eink .mode-toggle-container,
+    body.mode-eink #mode-toggle-btn {
+      display: none !important;
+    }
+
+    /* Floated Image Strategy for E-Ink */
+    body.mode-eink figure.book-plate {
+      float: left;
+      width: 100%;
+      margin: 0 0 1em 0;
+      border: none !important;
+      padding: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+
+    body.mode-eink figure.book-plate img {
+      width: 100%;
+      max-height: 40vh;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    body.mode-eink figure.book-plate figcaption {
+      font-size: 0.95rem;
+      font-style: italic;
+      text-align: center;
+      margin-top: 0.4em;
+      color: #000000;
+    }
+
+    /* Fixed Position Corner Flourishes for Every E-Ink Viewport */
+    body.mode-eink .corner-flourish {
+      position: fixed;
+      width: 44px;
+      height: 44px;
+      border: 3px solid #000000;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    body.mode-eink .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    body.mode-eink .corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    body.mode-eink .corner-bl { bottom: 52px; left: 16px; border-right: none; border-top: none; }
+    body.mode-eink .corner-br { bottom: 52px; right: 16px; border-left: none; border-top: none; }
+
+    /* Hardware E-Ink Media Query Auto-Detection */
+    @media (update: slow), (prefers-contrast: more) {
+      :root:not(.mode-lcd-user) {
+        --bg-body-outer: #ffffff;
+        --bg-body-image: none;
+        --bg-paper: #ffffff;
+        --bg-paper-dark: #f8f8f8;
+        --bg-paper-image: none;
+        --text-ink: #000000;
+        --text-muted: #000000;
+        --border-gold: #000000;
+        --border-gold-light: #000000;
+        --accent-burgundy: #800000;
+        --font-heading: 'Cinzel', serif;
+        --font-body: 'EB Garamond', serif;
+        --font-body-size: 24px;
+        --font-body-weight: 500;
+        --page-box-shadow: none;
+        --plate-box-shadow: none;
+        --border-width-base: 2px;
+        --scroll-behavior: auto;
+      }
+    }
+
+    /* Book Page Container (Classic LCD Mode Base) */
+    .book-page {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--bg-paper);
+      background-image: var(--bg-paper-image);
+      background-size: 24px 24px;
+      border: 1px solid var(--border-gold);
+      box-shadow: var(--page-box-shadow);
+      padding: 4rem 4.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .book-page {
+        padding: 2.5rem 1.8rem;
+      }
+    }
+
+    /* Mode Switcher Button (Top Right Margin) */
+    .mode-toggle-container {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      z-index: 100;
+    }
+
+    .mode-toggle-btn {
+      background: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      color: var(--text-ink);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 5px 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .mode-toggle-btn:hover {
+      background: var(--accent-burgundy);
+      color: #ffffff;
+    }
+
+    /* Ornate Filigree Corner Accents (LCD Base) */
+    .corner-flourish {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: var(--border-width-base) solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 16px; right: 180px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    /* Header & Title Block */
+    .book-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1.5px solid var(--border-gold-light);
+      position: relative;
+    }
+
+    .header-tag {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 700;
+    }
+
+    h1.book-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.3rem, 4.5vw, 3.3rem);
+      font-weight: 800;
+      color: var(--accent-burgundy);
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.8rem;
+    }
+
+    .book-subtitle {
+      font-style: italic;
+      font-size: 1.45rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Victorian Decorative Rule */
+    .flourish-divider {
+      text-align: center;
+      margin: 2.5rem 0;
+      color: var(--border-gold);
+      font-size: 1.65rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* Chapter Formatting */
+    .chapter {
+      margin-bottom: 3.5rem;
+    }
+
+    .chapter-heading {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1.5px solid var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Paragraphs & Drop Caps */
+    p.story-paragraph {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+      text-indent: 2em;
+      color: var(--text-ink);
+    }
+
+    p.story-paragraph.first-para {
+      text-indent: 0;
+    }
+
+    p.story-paragraph.first-para::first-letter {
+      font-family: var(--font-heading);
+      font-size: 4.0em;
+      float: left;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-burgundy);
+      font-weight: 800;
+    }
+
+    /* Vocabulary Words Styling */
+    .vocab {
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    /* Dialogue Styling */
+    .character-dialogue {
+      margin: 1.5rem 0;
+      padding: 1rem 1.4rem;
+      background: var(--bg-paper-dark);
+      border-left: 3.5px solid var(--border-gold);
+      color: var(--text-ink);
+    }
+
+    .character-name {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Key Definition Box */
+    .grammar-callout {
+      background: var(--bg-paper-dark);
+      border-left: 5px solid var(--accent-burgundy);
+      border-right: 3px solid var(--border-gold-light);
+      border-top: 3px solid var(--border-gold-light);
+      border-bottom: 3px solid var(--border-gold-light);
+      padding: 1.4rem 1.8rem;
+      margin: 2rem 0;
+      font-size: 1.15rem;
+      color: var(--text-ink);
+    }
+
+    .grammar-callout h3 {
+      font-family: var(--font-heading);
+      color: var(--accent-burgundy);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .grammar-callout ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .grammar-callout li {
+      margin-bottom: 0.5rem;
+      color: var(--text-ink);
+    }
+
+    /* Math Key Equations & Number Line Callouts */
+    .math-callout {
+      background: var(--bg-paper-dark);
+      border-left: 5px solid var(--accent-burgundy);
+      border-right: 3px solid var(--border-gold-light);
+      border-top: 3px solid var(--border-gold-light);
+      border-bottom: 3px solid var(--border-gold-light);
+      padding: 1.2rem 1.6rem;
+      margin: 2rem 0;
+      font-size: 1.15rem;
+      color: var(--text-ink);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* Stone Key Display Grid for Math Lessons */
+    .stone-display {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 1.5rem 0;
+    }
+
+    .rune-stone {
+      background: #e6dfcc;
+      border: 2px solid var(--border-gold);
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.15);
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .stone-padded {
+      background: #d8ceb5;
+      border-color: var(--accent-burgundy);
+    }
+
+    body.mode-eink .rune-stone {
+      background: #ffffff;
+      border: 2px solid #000000;
+      color: #000000;
+      box-shadow: none;
+    }
+
+    body.mode-eink .stone-padded {
+      background: #f0f0f0;
+      border: 2px solid #000000;
+    }
+
+    /* Study Cards & Concept Callout Boxes */
+    .study-box {
+      margin: 2rem 0;
+      padding: 1.5rem 1.8rem;
+      background-color: var(--bg-paper-dark);
+      border-left: 4px solid var(--accent-burgundy);
+      border-top: 1px solid var(--border-gold-light);
+      border-right: 1px solid var(--border-gold-light);
+      border-bottom: 1px solid var(--border-gold-light);
+      box-shadow: inset 0 0 15px rgba(197, 160, 89, 0.08);
+    }
+
+    .study-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .study-box p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-ink);
+      text-indent: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    .study-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    body.mode-eink .study-box {
+      background: #f8f8f8;
+      border: 2px solid #000000 !important;
+      border-left: 6px solid #800000 !important;
+      box-shadow: none;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .study-box h3 {
+      color: #800000;
+    }
+
+    /* Multi-Column Feature / Story Arc Cards */
+    .arc-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin: 1.8rem 0;
+    }
+
+    @media (max-width: 700px) {
+      .arc-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .arc-card {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-gold);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      position: relative;
+    }
+
+    .arc-card-num {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.3rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 0.3rem;
+    }
+
+    .arc-card-title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .arc-card-desc {
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+      text-align: left;
+    }
+
+    .arc-card-badge {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      font-family: var(--font-heading);
+      color: var(--accent-burgundy);
+      background: var(--bg-paper-dark);
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--border-gold-light);
+      border-radius: 2px;
+      font-weight: 600;
+    }
+
+    body.mode-eink .arc-cards {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .arc-card {
+      background: #ffffff;
+      border: 2px solid #000000;
+      box-shadow: none;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .arc-card-num {
+      color: #800000;
+      border-bottom: 1px solid #000000;
+    }
+
+    body.mode-eink .arc-card-title,
+    body.mode-eink .arc-card-desc {
+      color: #000000;
+    }
+
+    body.mode-eink .arc-card-badge {
+      background: #f0f0f0;
+      border: 1px solid #000000;
+      color: #000000;
+    }
+
+    /* Neo-Victorian Tables */
+    .structure-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.8rem 0;
+      font-size: 1rem;
+    }
+
+    .structure-table th {
+      font-family: var(--font-heading);
+      background-color: var(--bg-paper-dark);
+      color: var(--accent-burgundy);
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-gold);
+      text-align: left;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .structure-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-gold-light);
+      background-color: var(--bg-paper);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .structure-table tr:nth-child(even) td {
+      background-color: var(--bg-paper-dark);
+    }
+
+    body.mode-eink .structure-table th {
+      background: #f0f0f0;
+      color: #000000;
+      border: 2px solid #000000;
+    }
+
+    body.mode-eink .structure-table td {
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #000000;
+    }
+
+    body.mode-eink .structure-table tr:nth-child(even) td {
+      background: #f8f8f8;
+    }
+
+    /* Poetry Containers & Verse Formatting */
+    .poem-box {
+      margin: 2.5rem 0;
+      padding: 2.5rem 2rem;
+      background: var(--bg-paper-dark);
+      border: 2px solid var(--border-gold);
+      box-shadow: inset 0 0 25px rgba(122, 28, 28, 0.04);
+      position: relative;
+    }
+
+    .poem-box-header {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.08em;
+    }
+
+    .poem-author {
+      text-align: center;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 1rem;
+    }
+
+    .poem-stanza {
+      margin-bottom: 2.2rem;
+      padding-left: 8%;
+    }
+
+    .poem-stanza:last-child {
+      margin-bottom: 0;
+    }
+
+    .poem-stanza-num {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.1em;
+      text-align: left;
+    }
+
+    .poem-line {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--text-ink);
+      text-align: left;
+    }
+
+    .poem-line.indent {
+      padding-left: 1.8rem;
+    }
+
+    .poem-line.indent-extra {
+      padding-left: 3.6rem;
+      font-weight: 600;
+    }
+
+    .rhyme-token {
+      background-color: rgba(197, 160, 89, 0.22);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-weight: 600;
+      color: var(--accent-burgundy);
+      border: 1px solid rgba(197, 160, 89, 0.4);
+    }
+
+    .echo-token {
+      background-color: rgba(122, 28, 28, 0.1);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-weight: 600;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    body.mode-eink .poem-box {
+      background: #ffffff;
+      border: 2px solid #000000;
+      box-shadow: none;
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+      -webkit-column-break-inside: auto !important;
+    }
+
+    body.mode-eink .poem-stanza {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .poem-box-header {
+      color: #800000;
+    }
+
+    body.mode-eink .poem-author {
+      color: #000000;
+      border-bottom: 1px solid #000000;
+    }
+
+    body.mode-eink .poem-stanza-num {
+      color: #800000;
+    }
+
+    body.mode-eink .poem-line {
+      color: #000000;
+    }
+
+    body.mode-eink .rhyme-token {
+      background: none;
+      color: #000000;
+      border: none;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    body.mode-eink .echo-token {
+      background: none;
+      color: #000000;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    /* Scholar Summary Cards */
+    .summary-card {
+      background: var(--bg-paper);
+      border: 2px solid var(--border-gold);
+      padding: 1.8rem 2rem;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+
+    .summary-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--accent-burgundy);
+      text-align: center;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    .summary-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 0.9rem;
+      padding-left: 1.8rem;
+      position: relative;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .summary-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--accent-burgundy);
+      font-size: 0.9rem;
+      top: 2px;
+    }
+
+    .summary-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    body.mode-eink .summary-card {
+      background: #ffffff;
+      border: 2px solid #000000;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .summary-title {
+      color: #800000;
+      border-bottom: 1px solid #000000;
+    }
+
+    body.mode-eink .summary-list li {
+      color: #000000;
+    }
+
+    body.mode-eink .summary-list li::before {
+      color: #000000;
+    }
+
+    /* Book Plate Illustrations */
+    .book-plate {
+      margin: 3rem 0;
+      text-align: center;
+      background: var(--bg-paper-dark);
+      border: 1.5px solid var(--border-gold);
+      padding: 12px;
+      box-shadow: var(--plate-box-shadow);
+    }
+
+    .book-plate img {
+      max-width: 100%;
+      height: auto;
+      max-height: 480px;
+      border: 1.5px solid var(--border-gold-light);
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .book-plate figcaption {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Book Footer */
+    .book-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1.5px solid var(--border-gold-light);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* E-Ink Page Bar Indicator */
+    .eink-page-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 36px;
+      background: #ffffff;
+      color: #000000;
+      border-top: 2px solid #000000;
+      padding: 0 16px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      z-index: 1001;
+      box-sizing: border-box;
+    }
+
+    body.mode-eink .eink-page-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .eink-bar-btn {
+      background: none;
+      border: none;
+      color: #000000;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      min-width: 36px;
+      min-height: 36px;
+      line-height: 1;
+      user-select: none;
+      -webkit-user-select: none;
+      z-index: 1002;
+    }
+
+    .eink-bar-btn svg.eink-icon {
+      width: 22px;
+      height: 22px;
+      stroke: #000000 !important;
+      fill: none !important;
+      display: block;
+    }
+
+    .eink-bar-btn:active {
+      opacity: 0.5;
+    }
+
+    #eink-page-text {
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    /* Tap Zone Indicators for E-Ink Mode (Top Corners: 12% width, 20% height) */
+    .eink-tap-zone {
+      display: none;
+      position: fixed;
+      top: 0;
+      height: 20%;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    body.mode-eink .eink-tap-zone {
+      display: block;
+    }
+
+    .eink-tap-left {
+      left: 0;
+      width: 12%;
+    }
+
+    .eink-tap-right {
+      right: 0;
+      width: 12%;
+    }
+  </style>
+</head>
+<body class="mode-eink">
+
+  <article class="book-page">
+    <div class="mode-toggle-container">
+      <button id="mode-toggle-btn" class="mode-toggle-btn" type="button">📜 Switch to Classic LCD</button>
+    </div>
+
+    <!-- Filigree Corners -->
+    <div class="corner-flourish corner-tl"></div>
+    <div class="corner-flourish corner-tr"></div>
+    <div class="corner-flourish corner-bl"></div>
+    <div class="corner-flourish corner-br"></div>
+
+    <!-- Title Block -->
+    <header class="book-header">
+      <span class="header-tag">The Primer Compendium of Poetic Craft • Week II, Day I</span>
+      <h1 class="book-title">The Architecture of Whimsical Verse</h1>
+      <p class="book-subtitle">Being a Cheerful Hearthside Study with Rama Lama on Stanza Structure, Echoing Line Breaks, and Internal Rhyme in Mr. Edward Lear’s “The Owl and the Pussy-Cat”</p>
+    </header>
+
+    <!-- Chapter I -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter I — The Master Builder’s Secret</h2>
+      
+      <p class="story-paragraph first-para">
+        A cheerful fire crackled upon the hearth of the grand library, sending warm ribbons of amber light dancing across the towering mahogany bookshelves. Outside the tall leaded windows, a crisp autumn breeze rustled the golden leaves of the mountain pines, but within the chamber, all was stillness, warmth, and the fragrant aroma of steeped herbal tea and aged leather bindings.
+      </p>
+
+      <p class="story-paragraph">
+        Rama Lama sat comfortably in his deep velvet armchair, his soft curly brown wool glowing in the hearthlight and his curved cream horns sweeping back in quiet dignity. The turquoise bead of his necklace rested peacefully against his chest. Hearing the gentle chime of the door, his dark eyes brightened with genuine delight as he rose to welcome his returning guest.
+      </p>
+
+      <p class="story-paragraph">
+        "Ah, come in, come in, my dear friend!" Rama Lama said in his soothing, melodious voice, offering a courteous bow. "Please, take your seat by the fire and warm your hands with a cup of fresh tea. In our previous gathering, we read aloud Mr. Edward Lear’s delightful verse, <em>The Owl and the Pussy-Cat</em>, simply to enjoy its music and sail along with those two brave companions in their pea-green boat."
+      </p>
+
+      <p class="story-paragraph">
+        He picked up the emerald-cloth volume from the low table and ran his fingers gently along its gilded spine. "Today, however, I have invited you back to examine something even more wondrous: the <em>craftsmanship</em> of the poet. You see, when a master mason builds a cathedral, he does not merely toss stones in a heap; he measures every arch and balances every pillar so the cathedral can soar. A poet does the very same with words! To truly appreciate poetry, a 5th-grade scholar learns to examine two foundational secrets: <span class="vocab">stanza structure</span> and <span class="vocab">line division</span>."
+      </p>
+
+      <!-- Plate I -->
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/rama_lama_library.jpg" alt="Plate I: Rama Lama seated comfortably in his Neo-Victorian library holding an open leather-bound book">
+        <figcaption class="plate-caption">
+          <span class="plate-number">Plate I</span>
+          Rama Lama welcomes his young scholar back to the hearthside library to investigate the architectural design and musical mechanics of classic English verse.
+        </figcaption>
+      </figure>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter II -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter II — Stanza Structure: The Three Rooms of the Voyage</h2>
+      
+      <p class="story-paragraph first-para">
+        Rama Lama opened the volume to the first page of the poem and laid it flat upon the carved oak lectern. He tapped a gentle hoof beside the opening lines.
+      </p>
+
+      <p class="story-paragraph">
+        "Let us begin with the largest building blocks," Rama Lama explained, his eyes twinkling with pedagogical joy. "In prose—such as the stories and histories you read every day—writers group their sentences into <em>paragraphs</em>. Whenever the scene shifts, time moves forward, or a new idea begins, the author starts a fresh paragraph. In poetry, these groupings are called <span class="vocab">stanzas</span>. A stanza is simply a little room where a group of related lines live together."
+      </p>
+
+      <p class="story-paragraph">
+        He pointed to the Roman numerals at the head of each section. "Mr. Lear has organized this entire voyage into exactly <strong>three main stanzas</strong>, labeled <strong>I, II, and III</strong>. Just like the three acts of a grand play or three chapters of an adventure novel, each stanza marks a major milestone in the <span class="vocab">story arc</span>:"
+      </p>
+
+      <!-- Stanza Story Arc Breakdown Cards -->
+      <div class="arc-cards">
+        <div class="arc-card">
+          <div class="arc-card-num">Stanza I</div>
+          <div class="arc-card-title">The Voyage & The Serenade</div>
+          <p class="arc-card-desc">The voyage begins in the pea-green boat with honey and money; the Owl looks up to the stars and serenades his beloved with a small guitar.</p>
+          <span class="arc-card-badge">11 Lines • Act I</span>
+        </div>
+
+        <div class="arc-card">
+          <div class="arc-card-num">Stanza II</div>
+          <div class="arc-card-title">The Proposal & The Quest</div>
+          <p class="arc-card-desc">Pussy proposes marriage, they realize they have no ring, voyage for a year and a day to the land of the Bong-tree, and discover the Piggy-wig.</p>
+          <span class="arc-card-badge">11 Lines • Act II</span>
+        </div>
+
+        <div class="arc-card">
+          <div class="arc-card-num">Stanza III</div>
+          <div class="arc-card-title">The Wedding & The Feast</div>
+          <p class="arc-card-desc">Buying the ring for a shilling, getting wed by the Turkey on the hill, dining on mince and quince, and dancing hand-in-hand by the moon.</p>
+          <span class="arc-card-badge">11 Lines • Act III</span>
+        </div>
+      </div>
+
+      <div class="study-box">
+        <h3>🏛️ The Rule of Uniform Architecture</h3>
+        <p>
+          "Notice something extraordinary about these three stanzas," Rama Lama observed. "Count the lines in Stanza I. There are eleven. Now count Stanza II. Exactly eleven! And Stanza III? Once more, eleven lines. Not ten, not twelve, but a precise, unyielding <strong>11-line length</strong> in every single stanza."
+        </p>
+        <p>
+          "Why did Mr. Lear maintain this uniform length? Because it establishes a predictable, balanced <span class="vocab">cadence</span>. When a listener hears the first stanza conclude, their ear naturally expects the second stanza to follow the same musical shape. It gives the poem a steady, comforting heartbeat."
+        </p>
+      </div>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter III -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter III — Line Division: The Echo at the Edge of the Wave</h2>
+      
+      <p class="story-paragraph first-para">
+        Rama Lama poured another splash of warm tea into his guest's cup and leaned forward conspiratorially. "Now, let us zoom in from the whole room to examine the individual planks of wood—that is to say, the <span class="vocab">line division</span>. A poet does not write all the way to the right-hand edge of the paper as a novelist does. Every line break is a deliberate choice."
+      </p>
+
+      <p class="story-paragraph">
+        "Observe how each 11-line stanza is divided into two distinct musical movements:"
+      </p>
+
+      <table class="structure-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Line Numbers</th>
+            <th style="width: 35%;">Poetic Function</th>
+            <th style="width: 40%;">How It Affects the Reader</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lines 1–8</strong><br><span style="font-size:0.85rem; color:var(--text-muted);">The Long Story Lines</span></td>
+            <td>Carries the narrative plot forward with alternating descriptions and rhyming dialogue.</td>
+            <td>Creates a steady, rolling wave that carries the story forward smoothly like a boat on calm waters.</td>
+          </tr>
+          <tr>
+            <td><strong>Lines 9–10</strong><br><span style="font-size:0.85rem; color:var(--text-muted);">The Two-Word Echo</span></td>
+            <td>Abruptly snaps the rhythm into two short, 2-word bursts repeating a key phrase.</td>
+            <td>Forces the reader to physically pause, slow down, and hold their breath in suspense.</td>
+          </tr>
+          <tr>
+            <td><strong>Line 11</strong><br><span style="font-size:0.85rem; color:var(--text-muted);">The Climax Line</span></td>
+            <td>Delivers the full, triumphant repeating refrain that completes the stanza's thought.</td>
+            <td>Releases the tension with a delightful, musical flourish and a full emotional punchline.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="story-paragraph">
+        "Listen closely to how the endings of all three stanzas mirror each other," Rama Lama said, chanting the final lines with dramatic flair:
+      </p>
+
+      <div class="study-box">
+        <h3>🔔 The Three "Echo" Endings</h3>
+        <p><strong>Stanza I:</strong> <span class="echo-token">"You are,"</span> / <span class="echo-token">"You are!"</span> / <em>"What a beautiful Pussy you are!"</em></p>
+        <p><strong>Stanza II:</strong> <span class="echo-token">"His nose,"</span> / <span class="echo-token">"His nose,"</span> / <em>"With a ring at the end of his nose."</em></p>
+        <p><strong>Stanza III:</strong> <span class="echo-token">"The moon,"</span> / <span class="echo-token">"The moon,"</span> / <em>"They danced by the light of the moon."</em></p>
+      </div>
+
+      <p class="story-paragraph">
+        "Why did the poet break the lines in this peculiar manner?" Rama Lama asked with a warm smile. "If he had printed those words all on a single continuous line, you would read straight past them without noticing. But by placing just <em>two small words</em> on line 9 and <em>two small words</em> on line 10, your eye must leap from line to line. Your voice is compelled to pause. It sounds like an echo calling across a misty valley, or an actor on stage pausing right before delivering the funniest line of the play! That brief hesitation makes the final line ring out with joyful triumph."
+      </p>
+
+      <!-- Plate II -->
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/owl_and_pussycat_sea.jpg" alt="Plate II: The Owl playing guitar and the Pussy-Cat sailing together in a pea-green boat under the starry sky">
+        <figcaption class="plate-caption">
+          <span class="plate-number">Plate II</span>
+          The Owl serenades the Pussy-Cat under the stars, matching the gentle rocking rhythm of the sea with the rolling cadences of Mr. Lear's carefully divided verse.
+        </figcaption>
+      </figure>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter IV -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter IV — Hidden Bells: Internal Rhymes Inside the Lines</h2>
+      
+      <p class="story-paragraph first-para">
+        Rama Lama tapped his quill gently against the mahogany table. "Most young scholars are already familiar with <span class="vocab">end rhyme</span>—words that rhyme at the very ends of separate lines, such as <em>boat</em> and <em>note</em>, or <em>guitar</em> and <em>are</em>. But Mr. Lear had a secret chime hidden within his toolbox: <span class="vocab">internal rhyme</span>."
+      </p>
+
+      <p class="story-paragraph">
+        "An <strong>internal rhyme</strong> occurs when two rhyming words are tucked inside the <em>exact same line</em> of poetry rather than separated across different lines. It is like discovering a secret silver bell ringing right in the middle of a sentence!"
+      </p>
+
+      <p class="story-paragraph">
+        "Let us examine the four sparkling examples Mr. Lear wove into this poem:"
+      </p>
+
+      <div class="study-box">
+        <h3>✨ Four Masterpieces of Internal Rhyme</h3>
+        <p>
+          <strong>1. Stanza I, Line 3:</strong><br>
+          <em>"They took some <span class="rhyme-token">honey</span>, and plenty of <span class="rhyme-token">money</span>"</em><br>
+          <span style="font-size:0.95rem; color:var(--text-muted);">✦ The rhyme between <em>honey</em> and <em>money</em> skips merrily inside the single third line.</span>
+        </p>
+        <p style="margin-top:0.8rem;">
+          <strong>2. Stanza II, Line 1:</strong><br>
+          <em>"Pussy said to the <span class="rhyme-token">Owl</span>, 'You elegant <span class="rhyme-token">fowl</span>!'"</em><br>
+          <span style="font-size:0.95rem; color:var(--text-muted);">✦ Pussy addresses the <em>Owl</em> and immediately compliments the <em>fowl</em> in the opening breath.</span>
+        </p>
+        <p style="margin-top:0.8rem;">
+          <strong>3. Stanza III, Line 1:</strong><br>
+          <em>"'Dear pig, are you <span class="rhyme-token">willing</span> to sell for one <span class="rhyme-token">shilling</span>'"</em><br>
+          <span style="font-size:0.95rem; color:var(--text-muted);">✦ The playful match between <em>willing</em> and <em>shilling</em> establishes the bargain instantly.</span>
+        </p>
+        <p style="margin-top:0.8rem;">
+          <strong>4. Stanza III, Line 5:</strong><br>
+          <em>"They dinèd on <span class="rhyme-token">mince</span>, and slices of <span class="rhyme-token">quince</span>"</em><br>
+          <span style="font-size:0.95rem; color:var(--text-muted);">✦ The wedding feast menu pairs <em>mince</em> with the tart fruit of the <em>quince</em> in quick succession.</span>
+        </p>
+      </div>
+
+      <p class="story-paragraph">
+        "Do you hear how those internal rhymes make the line skip forward?" Rama Lama asked. "If the rhyme were placed at the end of the line, you would wait several beats to hear the match. But by keeping both rhyming words inside a single long line, the speed feels lively, brisk, and playful—exactly like a jaunty nursery rhyme or a merry reel played upon a small guitar!"
+      </p>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter V -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter V — The Master Text of the Poem</h2>
+      
+      <p class="story-paragraph first-para">
+        "Now that we have uncovered all three secret mechanisms—the three 11-line stanzas, the dramatic two-word echo line breaks, and the internal rhymes—it is time for the true test," Rama Lama said, his eyes alight with encouragement as he turned the volume toward his guest.
+      </p>
+
+      <p class="story-paragraph">
+        "Poetry was never meant to stay silent upon the parchment; it was born to be spoken, heard, and felt in the breath! I would like you to sit tall, take a steady breath, and read the entire poem aloud from beginning to end. As your voice carries each line, feel the pauses at lines nine and ten, chime the internal rhymes, and let the cadence roll like the gentle waves beneath the pea-green boat."
+      </p>
+
+      <!-- Full Poem Box -->
+      <div class="poem-box">
+        <h3 class="poem-box-header">The Owl and the Pussy-Cat</h3>
+        <p class="poem-author">By Edward Lear</p>
+
+        <div class="poem-stanza">
+          <div class="poem-stanza-num">I.</div>
+          <p class="poem-line">THE Owl and the Pussy-Cat went to sea</p>
+          <p class="poem-line indent">In a beautiful pea-green boat,</p>
+          <p class="poem-line">They took some <span class="rhyme-token">honey</span>, and plenty of <span class="rhyme-token">money</span></p>
+          <p class="poem-line indent">Wrapped up in a five-pound note.</p>
+          <p class="poem-line">The Owl looked up to the stars above,</p>
+          <p class="poem-line indent">And sang to a small guitar,</p>
+          <p class="poem-line">"O lovely Pussy! O Pussy, my love,</p>
+          <p class="poem-line indent">What a beautiful Pussy you are,</p>
+          <p class="poem-line indent-extra"><span class="echo-token">You are,</span></p>
+          <p class="poem-line indent-extra"><span class="echo-token">You are!</span></p>
+          <p class="poem-line indent">What a beautiful Pussy you are!"</p>
+        </div>
+
+        <div class="poem-stanza">
+          <div class="poem-stanza-num">II.</div>
+          <p class="poem-line">Pussy said to the <span class="rhyme-token">Owl</span>, "You elegant <span class="rhyme-token">fowl</span>!</p>
+          <p class="poem-line indent">How charmingly sweet you sing!</p>
+          <p class="poem-line">O let us be married! too long we have <span class="vocab">tarried</span>:</p>
+          <p class="poem-line indent">But what shall we do for a ring?"</p>
+          <p class="poem-line">They sailed away, for a year and a day,</p>
+          <p class="poem-line indent">To the land where the Bong-tree grows</p>
+          <p class="poem-line">And there in a wood a Piggy-wig stood</p>
+          <p class="poem-line indent">With a ring at the end of his nose,</p>
+          <p class="poem-line indent-extra"><span class="echo-token">His nose,</span></p>
+          <p class="poem-line indent-extra"><span class="echo-token">His nose,</span></p>
+          <p class="poem-line indent">With a ring at the end of his nose.</p>
+        </div>
+
+        <div class="poem-stanza">
+          <div class="poem-stanza-num">III.</div>
+          <p class="poem-line">"Dear pig, are you <span class="rhyme-token">willing</span> to sell for one <span class="rhyme-token">shilling</span></p>
+          <p class="poem-line indent">Your ring?" Said the Piggy, "I will."</p>
+          <p class="poem-line">So they took it away, and were married next day</p>
+          <p class="poem-line indent">By the Turkey who lives on the hill.</p>
+          <p class="poem-line">They dinèd on <span class="rhyme-token">mince</span>, and slices of <span class="rhyme-token">quince</span>,</p>
+          <p class="poem-line indent">Which they ate with a <span class="vocab">runcible</span> spoon;</p>
+          <p class="poem-line">And hand in hand, on the edge of the sand,</p>
+          <p class="poem-line indent">They danced by the light of the moon,</p>
+          <p class="poem-line indent-extra"><span class="echo-token">The moon,</span></p>
+          <p class="poem-line indent-extra"><span class="echo-token">The moon,</span></p>
+          <p class="poem-line indent">They danced by the light of the moon.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter VI -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter VI — Rama Lama’s Scholar’s Notebook</h2>
+      
+      <p class="story-paragraph first-para">
+        Rama Lama gently set down the volume, his face aglow with warmth and satisfaction. He folded his hands upon his lap and looked warmly into the eyes of his guest.
+      </p>
+
+      <p class="story-paragraph">
+        "You see, my young friend," Rama Lama said gently, "poetic structure is never an accident. A great poet organizes the page so that when you read the words, your voice cannot help but dance. Whenever you encounter a new poem in your studies, look for its architecture: how many stanzas form the building, how the line breaks govern your breath, and what hidden chimes ring within each line."
+      </p>
+
+      <!-- Scholar's Summary Box -->
+      <div class="summary-card">
+        <h3 class="summary-title">📜 5th-Grade Scholar's Poetic Analysis Reference</h3>
+        <ul class="summary-list">
+          <li><strong>Three Unified Stanzas (Roman Numerals I, II, III):</strong> Each stanza acts as a narrative paragraph representing a major phase of the story arc (The Voyage & Serenade → The Proposal & Quest → The Wedding & Feast).</li>
+          <li><strong>Uniform 11-Line Symmetry:</strong> Every stanza is built of exactly eleven lines, creating a reliable, harmonious rhythm and balance.</li>
+          <li><strong>Story Lines vs. Echo Refrain:</strong> Lines 1–8 propel the plot forward, while Lines 9 and 10 break into two-word fragments that force the reader to pause before the final punchline of Line 11.</li>
+          <li><strong>Internal Rhyme Momentum:</strong> Rhyme pairs nestled inside single lines (<em>honey/money</em>, <em>Owl/fowl</em>, <em>willing/shilling</em>, <em>mince/quince</em>) create a lively, brisk nursery-rhyme cadence.</li>
+        </ul>
+      </div>
+
+      <p class="story-paragraph">
+        "Thank you for sharing this quiet hour of study with me," Rama Lama concluded with a gentle nod. "Take these lessons with you into your own writing, and you shall soon find that words, when carefully structured, can carry you to any distant shore."
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="book-footer">
+      <p>The Primer Educational Series &bull; The Architecture of Whimsical Verse — The Owl and the Pussy-Cat</p>
+    </footer>
+
+  </article>
+
+  <!-- Tap Zones & Page Counter for E-Ink Mode -->
+  <div id="eink-tap-left" class="eink-tap-zone eink-tap-left" title="Turn to Previous Page"></div>
+  <div id="eink-tap-right" class="eink-tap-zone eink-tap-right" title="Turn to Next Page"></div>
+  <div id="eink-page-bar" class="eink-page-bar">
+    <a href="../index.html" class="eink-bar-btn eink-bar-home" title="Return to Index" aria-label="Return to Index">
+      <svg class="eink-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <span id="eink-page-text">Page 1 of 1 &bull; ⚡ E-Ink Paginated Layout</span>
+    <button type="button" id="eink-refresh-btn" class="eink-bar-btn eink-bar-refresh" title="Refresh Page" aria-label="Refresh Page">
+      <svg class="eink-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Dynamic Display Engine & Full-Page Turn Controller -->
+  <script>
+    (function() {
+      const STORAGE_KEY = 'primer_reader_mode';
+
+      function getSystemMode() {
+        const savedMode = localStorage.getItem(STORAGE_KEY);
+        if (savedMode) return savedMode;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'lcd' || urlParams.get('lcd') === '1' || window.location.hash.includes('lcd')) {
+          return 'lcd';
+        }
+        if (urlParams.get('mode') === 'eink' || urlParams.get('eink') === '1' || window.location.hash.includes('eink')) {
+          return 'eink';
+        }
+
+        const ua = (navigator.userAgent || '').toLowerCase();
+        const platform = (navigator.platform || '').toLowerCase();
+        const vendor = (navigator.vendor || '').toLowerCase();
+
+        const einkKeywords = [
+          'boox', 'onyx', 'noteair', 'note air', 'noteair3', 'noteair3c', 'tabultra', 'tab ultra', 
+          'tabmini', 'palma', 'leaf', 'poke', 'max3', 'max2', 'nova', 'likebook', 'meebook', 
+          'kindle', 'kobo', 'tolino', 'nook', 'e-ink', 'eink', 'paperwhite', 'hisense'
+        ];
+        const isEinkHardwareUA = einkKeywords.some(keyword => ua.includes(keyword) || platform.includes(keyword) || vendor.includes(keyword));
+        if (isEinkHardwareUA) return 'eink';
+
+        const isSlowUpdate = window.matchMedia('(update: slow)').matches;
+        const prefersHighContrast = window.matchMedia('(prefers-contrast: more)').matches || window.matchMedia('(prefers-contrast: high)').matches;
+        const isForcedColors = window.matchMedia('(forced-colors: active)').matches;
+        const isMonochrome = window.matchMedia('(monochrome)').matches;
+        if (isSlowUpdate || prefersHighContrast || isForcedColors || isMonochrome) return 'eink';
+
+        const width = window.screen.width;
+        const height = window.screen.height;
+        const isAndroid = /android/i.test(ua);
+        const isEinkScreenRes = isAndroid && (
+          (width === 1404 && height === 1872) || (width === 1872 && height === 1404) ||
+          (width === 1860 && height === 2480) || (width === 2480 && height === 1860) ||
+          (width === 1200 && height === 1600) || (width === 1600 && height === 1200) ||
+          (width === 936  && height === 1248) || (width === 1248 && height === 936)
+        );
+        if (isEinkScreenRes) return 'eink';
+
+        return 'eink';
+      }
+
+      function applyMode(mode) {
+        document.body.classList.remove('mode-lcd', 'mode-eink', 'mode-lcd-user');
+        if (mode === 'eink') {
+          document.body.classList.add('mode-eink');
+        } else {
+          document.body.classList.add('mode-lcd', 'mode-lcd-user');
+        }
+        updateButtonLabel(mode);
+        updatePageCounter();
+      }
+
+      function updateButtonLabel(mode) {
+        const btn = document.getElementById('mode-toggle-btn');
+        if (btn) {
+          btn.innerHTML = mode === 'eink' ? '📜 Switch to Classic LCD' : '⚡ Switch to E-Ink Page Mode';
+        }
+      }
+
+      function toggleMode() {
+        const currentMode = document.body.classList.contains('mode-eink') ? 'eink' : 'lcd';
+        const newMode = currentMode === 'eink' ? 'lcd' : 'eink';
+        localStorage.setItem(STORAGE_KEY, newMode);
+        applyMode(newMode);
+      }
+
+      function getPaginatedContainer() {
+        return document.querySelector('.book-page');
+      }
+
+      function getCurrentPageInfo() {
+        const container = getPaginatedContainer();
+        if (!container || !document.body.classList.contains('mode-eink')) {
+          const pageHeight = window.innerHeight;
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const totalHeight = document.documentElement.scrollHeight;
+          const totalPages = Math.max(1, Math.ceil(totalHeight / pageHeight));
+          const currentPage = Math.min(totalPages, Math.floor(scrollTop / pageHeight) + 1);
+          return { currentPage, totalPages, pageHeight };
+        }
+
+        const pageWidth = container.clientWidth || window.innerWidth;
+        const scrollLeft = container.scrollLeft;
+        const totalWidth = container.scrollWidth;
+        const totalPages = Math.max(1, Math.round(totalWidth / pageWidth));
+        const currentPage = Math.min(totalPages, Math.round(scrollLeft / pageWidth) + 1);
+        return { currentPage, totalPages, pageWidth };
+      }
+
+      function updatePageCounter() {
+        const textSpan = document.getElementById('eink-page-text');
+        if (!textSpan || !document.body.classList.contains('mode-eink')) return;
+        const { currentPage, totalPages } = getCurrentPageInfo();
+        textSpan.innerHTML = `Page ${currentPage} of ${totalPages} &bull; ⚡ E-Ink Paginated Layout`;
+      }
+
+      function notifyPageChanged(fromPageIndex, toPageIndex) {
+        if (fromPageIndex === toPageIndex) return;
+        try {
+          if (window.AndroidBridge && typeof window.AndroidBridge.onPageChanged === 'function') {
+            window.AndroidBridge.onPageChanged(fromPageIndex, toPageIndex);
+          }
+        } catch (e) {
+          console.warn('AndroidBridge.onPageChanged failed', e);
+        }
+      }
+
+      function turnPage(direction) {
+        if (!document.body.classList.contains('mode-eink')) return;
+        const container = getPaginatedContainer();
+
+        if (!container) {
+          const pageHeight = window.innerHeight;
+          const currentScroll = window.scrollY || document.documentElement.scrollTop;
+          const totalHeight = document.documentElement.scrollHeight;
+          const totalPages = Math.max(1, Math.ceil(totalHeight / pageHeight));
+          const fromPage = Math.min(totalPages - 1, Math.max(0, Math.floor(currentScroll / pageHeight)));
+          let toPage = Math.min(totalPages - 1, Math.max(0, fromPage + direction));
+
+          if (fromPage !== toPage) {
+            notifyPageChanged(fromPage, toPage);
+            window.scrollTo({ top: toPage * pageHeight, behavior: 'instant' });
+            updatePageCounter();
+          }
+          return;
+        }
+
+        const pageWidth = container.clientWidth || window.innerWidth;
+        const currentScroll = container.scrollLeft;
+        const totalPages = Math.max(1, Math.round(container.scrollWidth / pageWidth));
+        const fromPage = Math.min(totalPages - 1, Math.max(0, Math.round(currentScroll / pageWidth)));
+        let toPage = Math.min(totalPages - 1, Math.max(0, fromPage + direction));
+
+        if (fromPage !== toPage) {
+          notifyPageChanged(fromPage, toPage);
+          container.scrollTo({
+            left: toPage * pageWidth,
+            behavior: 'instant'
+          });
+          updatePageCounter();
+        }
+      }
+
+      function goToPage(targetIndex) {
+        const info = getCurrentPageInfo();
+        const fromPage = info.currentPage - 1;
+        const toPage = Math.min(info.totalPages - 1, Math.max(0, targetIndex));
+        if (fromPage === toPage) return;
+
+        notifyPageChanged(fromPage, toPage);
+        const container = getPaginatedContainer();
+        if (container && document.body.classList.contains('mode-eink')) {
+          const pageWidth = container.clientWidth || window.innerWidth;
+          container.scrollTo({ left: toPage * pageWidth, behavior: 'instant' });
+        } else {
+          const pageHeight = window.innerHeight;
+          window.scrollTo({ top: toPage * pageHeight, behavior: 'instant' });
+        }
+        updatePageCounter();
+      }
+      window.primerGoToPage = goToPage;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const savedMode = localStorage.getItem(STORAGE_KEY);
+        const activeMode = savedMode ? savedMode : getSystemMode();
+        applyMode(activeMode);
+
+        const btn = document.getElementById('mode-toggle-btn');
+        if (btn) {
+          btn.addEventListener('click', toggleMode);
+        }
+
+        const tapLeft = document.getElementById('eink-tap-left');
+        const tapRight = document.getElementById('eink-tap-right');
+
+        if (tapLeft) {
+          tapLeft.addEventListener('click', function(e) {
+            e.stopPropagation();
+            turnPage(-1);
+          });
+        }
+        if (tapRight) {
+          tapRight.addEventListener('click', function(e) {
+            e.stopPropagation();
+            turnPage(1);
+          });
+        }
+
+        const refreshBtn = document.getElementById('eink-refresh-btn');
+        if (refreshBtn) {
+          refreshBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.location.reload();
+          });
+        }
+
+        window.addEventListener('keydown', function(e) {
+          if (!document.body.classList.contains('mode-eink')) return;
+          if (e.key === 'PageDown' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            turnPage(1);
+          } else if (e.key === 'PageUp' || e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            turnPage(-1);
+          }
+        });
+
+        const container = getPaginatedContainer();
+        if (container) {
+          container.addEventListener('scroll', updatePageCounter, { passive: true });
+        }
+        window.addEventListener('scroll', updatePageCounter, { passive: true });
+        window.addEventListener('resize', updatePageCounter, { passive: true });
+      });
+    })();
+  </script>
+</body>
+</html>

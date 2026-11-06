@@ -1,0 +1,110 @@
+{
+  "interactive": {
+    "word": "interactive",
+    "voice": "af_sky",
+    "word_file": "interactive.wav",
+    "word_duration_seconds": 1.109,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:36.589342+00:00"
+  },
+  "interfere": {
+    "word": "interfere",
+    "voice": "af_sky",
+    "word_file": "interfere.wav",
+    "word_duration_seconds": 1.045,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:36.956732+00:00"
+  },
+  "intermittent": {
+    "word": "intermittent",
+    "voice": "af_sky",
+    "word_file": "intermittent.wav",
+    "word_duration_seconds": 1.088,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:37.366830+00:00"
+  },
+  "intersect": {
+    "word": "intersect",
+    "voice": "af_sky",
+    "word_file": "intersect.wav",
+    "word_duration_seconds": 1.045,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:37.654565+00:00"
+  },
+  "interval": {
+    "word": "interval",
+    "voice": "af_sky",
+    "word_file": "interval.wav",
+    "word_duration_seconds": 0.875,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:37.903326+00:00"
+  },
+  "transact": {
+    "word": "transact",
+    "voice": "af_sky",
+    "word_file": "transact.wav",
+    "word_duration_seconds": 0.96,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:38.130135+00:00"
+  },
+  "transfer": {
+    "word": "transfer",
+    "voice": "af_sky",
+    "word_file": "transfer.wav",
+    "word_duration_seconds": 0.96,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:38.372283+00:00"
+  },
+  "transfusion": {
+    "word": "transfusion",
+    "voice": "af_sky",
+    "word_file": "transfusion.wav",
+    "word_duration_seconds": 1.173,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:38.696502+00:00"
+  },
+  "transmit": {
+    "word": "transmit",
+    "voice": "af_sky",
+    "word_file": "transmit.wav",
+    "word_duration_seconds": 0.917,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:38.923695+00:00"
+  },
+  "intercede": {
+    "word": "intercede",
+    "voice": "af_sky",
+    "word_file": "intercede.wav",
+    "word_duration_seconds": 1.067,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:39.180704+00:00"
+  },
+  "interject": {
+    "word": "interject",
+    "voice": "af_sky",
+    "word_file": "interject.wav",
+    "word_duration_seconds": 1.067,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:39.409078+00:00"
+  },
+  "intermediate": {
+    "word": "intermediate",
+    "voice": "af_sky",
+    "word_file": "intermediate.wav",
+    "word_duration_seconds": 1.173,
+    "phrase_duration_seconds": 0.0,
+    "format": "wav",
+    "updated_at": "2026-11-05T13:28:39.652995+00:00"
+  }
+}

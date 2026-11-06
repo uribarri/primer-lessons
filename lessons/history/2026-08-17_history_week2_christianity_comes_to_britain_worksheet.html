@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="primer-week" content="2">
+  <meta name="primer-day" content="1">
+  <meta name="primer-uuid" content="7c5e212b-eeff-54d1-9b56-9bd676972f04">
+  {{EXTRA_META_TAGS}}
+  <title>Week 2 History — Chapter 3 (Christianity Comes to Britain) (Worksheet)</title>
+  <!-- Google Fonts: Cormorant Garamond, EB Garamond & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Neo-Victorian Base Palette Variables */
+    :root {
+      --bg-body-outer: #1a1410;
+      --bg-body-image: radial-gradient(circle at center, rgba(30, 20, 15, 0.4) 0%, rgba(10, 7, 5, 0.9) 100%), linear-gradient(to bottom, #140d09, #241810, #140d09);
+      --bg-paper: #f9f5eb;
+      --bg-paper-dark: #f2ebd9;
+      --bg-paper-image: radial-gradient(#e8dfc8 1px, transparent 1px);
+      --text-ink: #2b1f17;
+      --text-muted: #5c4a3e;
+      --border-gold: #c5a059;
+      --border-gold-light: #e6c88b;
+      --accent-burgundy: #7a1c1c;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+      --font-body-size: 25.2px;
+      --font-body-weight: 400;
+      --page-box-shadow: 0 0 0 12px #261b14, 0 0 0 14px var(--border-gold), 0 25px 60px rgba(0, 0, 0, 0.85);
+      --plate-box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+      --border-width-base: 2px;
+      --scroll-behavior: smooth;
+    }
+
+    /* Color E-Ink Mode Overrides (Boox Note Air C & Kaleido 3 Hardware System) */
+    body.mode-eink {
+      --bg-body-outer: #ffffff;
+      --bg-body-image: none;
+      --bg-paper: #ffffff;
+      --bg-paper-dark: #f8f8f8;
+      --bg-paper-image: none;
+      --text-ink: #000000;
+      --text-muted: #000000;
+      --border-gold: #000000;
+      --border-gold-light: #000000;
+      --accent-burgundy: #800000;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'EB Garamond', serif;
+      --font-body-size: 28.8px;
+      --font-body-weight: 500;
+      --page-box-shadow: none;
+      --plate-box-shadow: none;
+      --border-width-base: 2px;
+      --scroll-behavior: auto;
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 120%;
+      scroll-behavior: var(--scroll-behavior);
+    }
+
+    body {
+      background-color: var(--bg-body-outer);
+      background-image: var(--bg-body-image);
+      color: var(--text-ink);
+      font-family: var(--font-body);
+      font-size: var(--font-body-size);
+      font-weight: var(--font-body-weight);
+      line-height: 1.8;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Stationary Fixed Outer Frame for E-Ink Viewport */
+    body.mode-eink::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 36px;
+      border: 3px solid #000000;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Paginated Multi-Column Container for E-Ink Mode */
+    body.mode-eink .book-page {
+      width: 100vw;
+      height: calc(100vh - 116px);
+      max-width: 100vw;
+      margin-top: 70px;
+      margin-bottom: 46px;
+      margin-left: 0;
+      margin-right: 0;
+      padding: 0;
+      column-width: 100vw;
+      column-gap: 0;
+      column-fill: auto;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      border: none;
+      box-shadow: none;
+      box-sizing: border-box;
+    }
+
+    /* Internal Side Padding for Block Elements in E-Ink Mode */
+    body.mode-eink .book-header,
+    body.mode-eink .chapter,
+    body.mode-eink .exercise-section,
+    body.mode-eink .flourish-divider,
+    body.mode-eink .grammar-callout,
+    body.mode-eink .character-dialogue,
+    body.mode-eink figure.book-plate,
+    body.mode-eink .book-footer {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      box-sizing: border-box;
+    }
+
+    /* Fragmentation & BFC Rules for E-Ink */
+    body.mode-eink section,
+    body.mode-eink .chapter,
+    body.mode-eink .exercise-section,
+    body.mode-eink .page {
+      display: block;
+      width: 100%;
+      min-height: 0 !important;
+      min-height: auto !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+      -webkit-column-break-inside: auto !important;
+      break-before: auto !important;
+      page-break-before: auto !important;
+      scroll-snap-align: none !important;
+    }
+
+    /* Protected Containers: Never Break Across Columns/Pages */
+    body.mode-eink figure,
+    body.mode-eink .character-dialogue,
+    body.mode-eink .grammar-callout,
+    body.mode-eink .math-callout,
+    body.mode-eink .study-box,
+    body.mode-eink .reflection-point,
+    body.mode-eink .arc-cards,
+    body.mode-eink .arc-card,
+    body.mode-eink .summary-card,
+    body.mode-eink .poem-stanza,
+    body.mode-eink .word-bank-box,
+    body.mode-eink .dictation-item,
+    body.mode-eink .matching-item,
+    body.mode-eink .morphology-item,
+    body.mode-eink blockquote,
+    body.mode-eink table {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    /* Exceptions: Large Multi-Page Containers Allowed to Fragment Across Pages */
+    body.mode-eink .poem-box {
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+      -webkit-column-break-inside: auto !important;
+    }
+
+    body.mode-eink h1,
+    body.mode-eink h2,
+    body.mode-eink h3,
+    body.mode-eink h4,
+    body.mode-eink h5,
+    body.mode-eink .chapter-heading,
+    body.mode-eink .character-name {
+      break-after: avoid !important;
+      page-break-after: avoid !important;
+    }
+
+    body.mode-eink .chapter-heading {
+      margin-top: 1.2rem;
+      margin-bottom: 0.8rem;
+      break-before: auto !important;
+    }
+
+    body.mode-eink .chapter-subtitle {
+      color: #000000;
+      margin-top: -0.4rem;
+      margin-bottom: 1rem;
+      text-indent: 0;
+    }
+
+    body.mode-eink .flourish-divider {
+      display: block;
+      margin: 3.5rem 0 !important;
+      padding: 0 !important;
+      line-height: 1.2 !important;
+      font-size: 1.4rem !important;
+      text-align: center;
+      clear: both;
+      break-inside: avoid !important;
+      break-before: auto !important;
+      break-after: auto !important;
+      page-break-after: auto !important;
+    }
+
+    body.mode-eink p.story-paragraph {
+      margin-bottom: 1rem;
+      widows: 2;
+      orphans: 2;
+    }
+
+    body.mode-eink .character-dialogue {
+      margin: 1rem 0;
+      padding: 0.8rem 1.2rem;
+      background: #f8f8f8;
+      border-left: 5px solid #000000 !important;
+      border-top: 3px solid #000000 !important;
+      border-bottom: 3px solid #000000 !important;
+      border-right: 3px solid #000000 !important;
+    }
+
+    body.mode-eink .grammar-callout,
+    body.mode-eink .math-callout {
+      margin: 1.2rem 0;
+      padding: 1.2rem 1.5rem;
+      background: #f8f8f8;
+      border-left: 6px solid #800000 !important;
+      border-top: 3px solid #000000 !important;
+      border-bottom: 3px solid #000000 !important;
+      border-right: 3px solid #000000 !important;
+    }
+
+    body.mode-eink .mode-toggle-container,
+    body.mode-eink #mode-toggle-btn {
+      display: none !important;
+    }
+
+    /* Floated Image Strategy for E-Ink */
+    body.mode-eink figure.book-plate {
+      float: left;
+      width: 100%;
+      margin: 0 0 1em 0;
+      border: none !important;
+      padding: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+
+    body.mode-eink figure.book-plate img {
+      width: 100%;
+      max-height: 40vh;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    body.mode-eink figure.book-plate figcaption {
+      font-size: 0.95rem;
+      font-style: italic;
+      text-align: center;
+      margin-top: 0.4em;
+      color: #000000;
+    }
+
+    /* Fixed Position Corner Flourishes for Every E-Ink Viewport */
+    body.mode-eink .corner-flourish {
+      position: fixed;
+      width: 44px;
+      height: 44px;
+      border: 3px solid #000000;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    body.mode-eink .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    body.mode-eink .corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    body.mode-eink .corner-bl { bottom: 52px; left: 16px; border-right: none; border-top: none; }
+    body.mode-eink .corner-br { bottom: 52px; right: 16px; border-left: none; border-top: none; }
+
+    /* Hardware E-Ink Media Query Auto-Detection */
+    @media (update: slow), (prefers-contrast: more) {
+      :root:not(.mode-lcd-user) {
+        --bg-body-outer: #ffffff;
+        --bg-body-image: none;
+        --bg-paper: #ffffff;
+        --bg-paper-dark: #f8f8f8;
+        --bg-paper-image: none;
+        --text-ink: #000000;
+        --text-muted: #000000;
+        --border-gold: #000000;
+        --border-gold-light: #000000;
+        --accent-burgundy: #800000;
+        --font-heading: 'Cinzel', serif;
+        --font-body: 'EB Garamond', serif;
+        --font-body-size: 28.8px;
+        --font-body-weight: 500;
+        --page-box-shadow: none;
+        --plate-box-shadow: none;
+        --border-width-base: 2px;
+        --scroll-behavior: auto;
+      }
+    }
+
+    /* Book Page Container (Classic LCD Mode Base) */
+    .book-page {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--bg-paper);
+      background-image: var(--bg-paper-image);
+      background-size: 24px 24px;
+      border: 1px solid var(--border-gold);
+      box-shadow: var(--page-box-shadow);
+      padding: 4rem 4.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .book-page {
+        padding: 2.5rem 1.8rem;
+      }
+    }
+
+    /* Mode Switcher Button (Top Right Margin) */
+    .mode-toggle-container {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      z-index: 100;
+    }
+
+    .mode-toggle-btn {
+      background: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      color: var(--text-ink);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 5px 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .mode-toggle-btn:hover {
+      background: var(--accent-burgundy);
+      color: #ffffff;
+    }
+
+    /* Ornate Filigree Corner Accents (LCD Base) */
+    .corner-flourish {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: var(--border-width-base) solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 16px; right: 180px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    /* Header & Title Block */
+    .book-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1.5px solid var(--border-gold-light);
+      position: relative;
+    }
+
+    .header-tag {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 700;
+    }
+
+    h1.book-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.3rem, 4.5vw, 3.3rem);
+      font-weight: 800;
+      color: var(--accent-burgundy);
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.8rem;
+    }
+
+    .book-subtitle {
+      font-style: italic;
+      font-size: 1.45rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Victorian Decorative Rule */
+    .flourish-divider {
+      text-align: center;
+      margin: 5rem 0;
+      color: var(--border-gold);
+      font-size: 1.65rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* Chapter Formatting */
+    .chapter {
+      margin-bottom: 3.5rem;
+    }
+
+    .chapter-heading {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1.5px solid var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    .chapter-subtitle {
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: -1.2rem;
+      margin-bottom: 1.8rem;
+      line-height: 1.5;
+      text-indent: 0;
+    }
+
+    /* Paragraphs & Drop Caps */
+    p.story-paragraph {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+      text-indent: 2em;
+      color: var(--text-ink);
+    }
+
+    p.story-paragraph.first-para {
+      text-indent: 0;
+    }
+
+    p.story-paragraph.first-para::first-letter {
+      font-family: var(--font-heading);
+      font-size: 4.0em;
+      float: left;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-burgundy);
+      font-weight: 800;
+    }
+
+    /* Vocabulary Words Styling */
+    .vocab {
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    /* Dialogue Styling */
+    .character-dialogue {
+      margin: 1.5rem 0;
+      padding: 1rem 1.4rem;
+      background: var(--bg-paper-dark);
+      border-left: 3.5px solid var(--border-gold);
+      color: var(--text-ink);
+    }
+
+    .character-name {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Key Definition Box */
+    .grammar-callout {
+      background: var(--bg-paper-dark);
+      border-left: 5px solid var(--accent-burgundy);
+      border-right: 3px solid var(--border-gold-light);
+      border-top: 3px solid var(--border-gold-light);
+      border-bottom: 3px solid var(--border-gold-light);
+      padding: 1.4rem 1.8rem;
+      margin: 2rem 0;
+      font-size: 1.15rem;
+      color: var(--text-ink);
+    }
+
+    .grammar-callout h3 {
+      font-family: var(--font-heading);
+      color: var(--accent-burgundy);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .grammar-callout ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .grammar-callout li {
+      margin-bottom: 0.5rem;
+      color: var(--text-ink);
+    }
+
+    /* Math Key Equations & Number Line Callouts */
+    .math-callout {
+      background: var(--bg-paper-dark);
+      border-left: 5px solid var(--accent-burgundy);
+      border-right: 3px solid var(--border-gold-light);
+      border-top: 3px solid var(--border-gold-light);
+      border-bottom: 3px solid var(--border-gold-light);
+      padding: 1.2rem 1.6rem;
+      margin: 2rem 0;
+      font-size: 1.15rem;
+      color: var(--text-ink);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* Stone Key Display Grid for Math Lessons */
+    .stone-display {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 1.5rem 0;
+    }
+
+    .rune-stone {
+      background: #e6dfcc;
+      border: 2px solid var(--border-gold);
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.15);
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .stone-padded {
+      background: #d8ceb5;
+      border-color: var(--accent-burgundy);
+    }
+
+    body.mode-eink .rune-stone {
+      background: #ffffff;
+      border: 2px solid #000000;
+      color: #000000;
+      box-shadow: none;
+    }
+
+    body.mode-eink .stone-padded {
+      background: #f0f0f0;
+      border: 2px solid #000000;
+    }
+
+    /* Study Cards & Concept Callout Boxes */
+    .study-box {
+      margin: 2rem 0;
+      padding: 1.5rem 1.8rem;
+      background-color: var(--bg-paper-dark);
+      border-left: 4px solid var(--accent-burgundy);
+      border-top: 1px solid var(--border-gold-light);
+      border-right: 1px solid var(--border-gold-light);
+      border-bottom: 1px solid var(--border-gold-light);
+      box-shadow: inset 0 0 15px rgba(197, 160, 89, 0.08);
+    }
+
+    .study-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .study-box p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-ink);
+      text-indent: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    .study-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    body.mode-eink .study-box {
+      background: #f8f8f8;
+      border: 2px solid #000000 !important;
+      border-left: 6px solid #800000 !important;
+      box-shadow: none;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .study-box h3 {
+      color: #800000;
+    }
+
+    /* Multi-Column Feature / Story Arc Cards */
+    .arc-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin: 1.8rem 0;
+    }
+
+    @media (max-width: 700px) {
+      .arc-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .arc-card {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-gold);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      position: relative;
+    }
+
+    .arc-card-num {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.3rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 0.3rem;
+    }
+
+    .arc-card-title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .arc-card-desc {
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+      text-align: left;
+    }
+
+    .arc-card-badge {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      font-family: var(--font-heading);
+      color: var(--accent-burgundy);
+      background: var(--bg-paper-dark);
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--border-gold-light);
+      border-radius: 2px;
+      font-weight: 600;
+    }
+
+    body.mode-eink .arc-cards {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .arc-card {
+      background: #ffffff;
+      border: 2px solid #000000;
+      box-shadow: none;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .arc-card-num {
+      color: #800000;
+      border-bottom: 1px solid #000000;
+    }
+
+    body.mode-eink .arc-card-title,
+    body.mode-eink .arc-card-desc {
+      color: #000000;
+    }
+
+    body.mode-eink .arc-card-badge {
+      background: #f0f0f0;
+      border: 1px solid #000000;
+      color: #000000;
+    }
+
+    /* Neo-Victorian Tables */
+    .structure-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.8rem 0;
+      font-size: 1rem;
+    }
+
+    .structure-table th {
+      font-family: var(--font-heading);
+      background-color: var(--bg-paper-dark);
+      color: var(--accent-burgundy);
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-gold);
+      text-align: left;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .structure-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-gold-light);
+      background-color: var(--bg-paper);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .structure-table tr:nth-child(even) td {
+      background-color: var(--bg-paper-dark);
+    }
+
+    body.mode-eink .structure-table th {
+      background: #f0f0f0;
+      color: #000000;
+      border: 2px solid #000000;
+    }
+
+    body.mode-eink .structure-table td {
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #000000;
+    }
+
+    body.mode-eink .structure-table tr:nth-child(even) td {
+      background: #f8f8f8;
+    }
+
+    /* Poetry Containers & Verse Formatting */
+    .poem-box {
+      margin: 2.5rem 0;
+      padding: 2.5rem 2rem;
+      background: var(--bg-paper-dark);
+      border: 2px solid var(--border-gold);
+      box-shadow: inset 0 0 25px rgba(122, 28, 28, 0.04);
+      position: relative;
+    }
+
+    .poem-box-header {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.08em;
+    }
+
+    .poem-author {
+      text-align: center;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 1rem;
+    }
+
+    .poem-stanza {
+      margin-bottom: 2.2rem;
+      padding-left: 8%;
+    }
+
+    .poem-stanza:last-child {
+      margin-bottom: 0;
+    }
+
+    .poem-stanza-num {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.1em;
+      text-align: left;
+    }
+
+    .poem-line {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--text-ink);
+      text-align: left;
+    }
+
+    .poem-line.indent {
+      padding-left: 1.8rem;
+    }
+
+    .poem-line.indent-extra {
+      padding-left: 3.6rem;
+      font-weight: 600;
+    }
+
+    .rhyme-token {
+      background-color: rgba(197, 160, 89, 0.22);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-weight: 600;
+      color: var(--accent-burgundy);
+      border: 1px solid rgba(197, 160, 89, 0.4);
+    }
+
+    .echo-token {
+      background-color: rgba(122, 28, 28, 0.1);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-weight: 600;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    body.mode-eink .poem-box {
+      background: #ffffff;
+      border: 2px solid #000000;
+      box-shadow: none;
+      break-inside: auto !important;
+      page-break-inside: auto !important;
+      -webkit-column-break-inside: auto !important;
+    }
+
+    body.mode-eink .poem-stanza {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .poem-box-header {
+      color: #800000;
+    }
+
+    body.mode-eink .poem-author {
+      color: #000000;
+      border-bottom: 1px solid #000000;
+    }
+
+    body.mode-eink .poem-stanza-num {
+      color: #800000;
+    }
+
+    body.mode-eink .poem-line {
+      color: #000000;
+    }
+
+    body.mode-eink .rhyme-token {
+      background: none;
+      color: #000000;
+      border: none;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    body.mode-eink .echo-token {
+      background: none;
+      color: #000000;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    /* Scholar Summary Cards */
+    .summary-card {
+      background: var(--bg-paper);
+      border: 2px solid var(--border-gold);
+      padding: 1.8rem 2rem;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+
+    .summary-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--accent-burgundy);
+      text-align: center;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    .summary-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 0.9rem;
+      padding-left: 1.8rem;
+      position: relative;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .summary-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--accent-burgundy);
+      font-size: 0.9rem;
+      top: 2px;
+    }
+
+    .summary-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    body.mode-eink .summary-card {
+      background: #ffffff;
+      border: 2px solid #000000;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+
+    body.mode-eink .summary-title {
+      color: #800000;
+      border-bottom: 1px solid #000000;
+    }
+
+    body.mode-eink .summary-list li {
+      color: #000000;
+    }
+
+    body.mode-eink .summary-list li::before {
+      color: #000000;
+    }
+
+    /* Book Plate Illustrations */
+    .book-plate {
+      margin: 3rem 0;
+      text-align: center;
+      background: var(--bg-paper-dark);
+      border: 1.5px solid var(--border-gold);
+      padding: 12px;
+      box-shadow: var(--plate-box-shadow);
+    }
+
+    .book-plate img {
+      max-width: 100%;
+      height: auto;
+      max-height: 480px;
+      border: 1.5px solid var(--border-gold-light);
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .book-plate figcaption {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    /* =========================================================
+       Stylus Exercise Worksheet & Dictation Styling
+       ========================================================= */
+    .exercise-section {
+      margin: 3.5rem 0;
+    }
+
+    .exercise-heading {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid var(--border-gold-light);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .exercise-instructions {
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* Word Bank Box */
+    .word-bank-box {
+      background: var(--bg-paper-dark);
+      border: 2px solid var(--border-gold);
+      border-radius: 6px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0 2.5rem 0;
+      box-shadow: inset 0 0 12px rgba(197, 160, 89, 0.12);
+    }
+
+    .word-bank-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      text-align: center;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 0.4rem;
+    }
+
+    .word-bank-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.9rem 1.2rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--text-ink);
+    }
+
+    .word-bank-item {
+      padding: 0.4rem 0.8rem;
+      border: 1px dashed var(--border-gold);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.02em;
+    }
+
+    /* Dictation Exercise Items (Inline Single Line with Audio Icon) */
+    .dictation-list {
+      display: block;
+      margin: 1.6rem 0;
+    }
+
+    .dictation-item {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.2rem;
+      width: 100%;
+      margin-bottom: 1.4rem;
+      break-inside: avoid;
+    }
+
+    .dictation-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .dictation-num {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      min-width: 1.8rem;
+      line-height: 1;
+      padding-bottom: 12px;
+    }
+
+    /* Audio Play Button (Icon Only, Inline Playback) */
+    .audio-play-btn,
+    .audio-prompt-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-burgundy);
+      background: var(--bg-paper-dark);
+      border: 1.5px solid var(--border-gold);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      min-height: 42px;
+      padding: 0;
+      text-decoration: none;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      margin-bottom: 4px;
+      flex-shrink: 0;
+    }
+
+    .audio-play-btn:hover,
+    .audio-prompt-btn:hover {
+      background: var(--border-gold-light);
+      color: #1a1410;
+      transform: scale(1.08);
+    }
+
+    .audio-play-btn:active,
+    .audio-play-btn.is-playing,
+    .audio-prompt-btn:active,
+    .audio-prompt-btn.is-playing {
+      background: var(--accent-burgundy);
+      color: #ffffff;
+      border-color: var(--accent-burgundy);
+    }
+
+    .audio-play-btn svg,
+    .audio-prompt-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    /* Spacious Stylus Writing Lines (+15% vertical penmanship baselines) */
+    .stylus-writing-area {
+      width: 100%;
+      margin-top: 0.4rem;
+    }
+
+    .stylus-line {
+      height: 60px;
+      border-bottom: 2px solid var(--border-gold);
+      width: 100%;
+      position: relative;
+    }
+
+    .stylus-line.inline-line {
+      flex-grow: 1;
+      height: 58px;
+    }
+
+    .stylus-line-double {
+      height: 60px;
+      border-bottom: 2px solid var(--border-gold);
+      width: 100%;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .stylus-line-label {
+      position: absolute;
+      right: 0;
+      bottom: 4px;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text-muted);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    /* Definition Matching Items */
+    .matching-list {
+      display: block;
+      margin: 1.6rem 0;
+    }
+
+    .matching-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+      break-inside: avoid;
+    }
+
+    .matching-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .stylus-bracket-blank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 260px;
+      height: 56px;
+      border-bottom: 2px solid var(--border-gold);
+      margin-right: 0.8rem;
+      flex-shrink: 0;
+      background: transparent;
+    }
+
+    .stylus-bracket-blank.short {
+      min-width: 80px;
+    }
+
+    .matching-text {
+      flex-grow: 1;
+      padding-top: 6px;
+      color: var(--text-ink);
+    }
+
+    .matching-text strong {
+      color: var(--accent-burgundy);
+    }
+
+    /* Morphology & Root Analysis */
+    .morphology-item {
+      margin-bottom: 2.2rem;
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+
+    .morphology-question {
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* E-Ink High Contrast & Spacing Adjustments */
+    body.mode-eink .exercise-heading {
+      color: #800000;
+      border-bottom: 2px solid #000000;
+      margin-top: 1rem;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+    }
+
+    body.mode-eink .exercise-instructions {
+      color: #000000;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+
+    body.mode-eink .word-bank-box {
+      background: #ffffff;
+      border: 2px solid #000000;
+      box-shadow: none;
+      margin: 1.2rem 0 1.4rem 0;
+      padding: 1.2rem 1.6rem;
+    }
+
+    body.mode-eink .word-bank-title {
+      color: #800000;
+      border-bottom: 1px solid #000000;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.3rem;
+    }
+
+    body.mode-eink .word-bank-item {
+      border: 1px solid #000000;
+      background: transparent;
+      color: #000000;
+    }
+
+    body.mode-eink .dictation-list,
+    body.mode-eink .matching-list {
+      margin: 1.2rem 0;
+    }
+
+    body.mode-eink .dictation-item,
+    body.mode-eink .matching-item {
+      margin-bottom: 1.2rem;
+    }
+
+    body.mode-eink .morphology-item {
+      margin-bottom: 1.4rem;
+    }
+
+    body.mode-eink .dictation-num {
+      color: #800000;
+    }
+
+    body.mode-eink .audio-play-btn,
+    body.mode-eink .audio-prompt-btn {
+      background: #ffffff;
+      border: 2px solid #000000;
+      color: #000000;
+      box-shadow: none;
+    }
+
+    body.mode-eink .audio-play-btn:hover,
+    body.mode-eink .audio-play-btn:active,
+    body.mode-eink .audio-play-btn.is-playing,
+    body.mode-eink .audio-prompt-btn:hover,
+    body.mode-eink .audio-prompt-btn:active,
+    body.mode-eink .audio-prompt-btn.is-playing {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    body.mode-eink .stylus-line,
+    body.mode-eink .stylus-line.inline-line,
+    body.mode-eink .stylus-line-double {
+      border-bottom: 2px solid #000000;
+    }
+
+    body.mode-eink .stylus-bracket-blank {
+      border-bottom: 2px solid #000000;
+      background: transparent;
+    }
+
+    body.mode-eink .stylus-line-label {
+      color: #000000;
+      opacity: 0.8;
+    }
+
+    /* Bottom Page Bar & Navigation Controls */
+    .eink-page-bar {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: var(--bg-paper);
+      color: var(--text-ink);
+      border-top: 1.5px solid var(--border-gold);
+      padding: 0 16px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      z-index: 1001;
+      box-sizing: border-box;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    body.mode-eink .eink-page-bar {
+      display: flex;
+      background: #ffffff;
+      color: #000000;
+      border-top: 2px solid #000000;
+      box-shadow: none;
+    }
+
+    .eink-bar-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .eink-bar-btn {
+      background: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: var(--accent-burgundy);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 6px;
+      min-width: 34px;
+      min-height: 34px;
+      line-height: 1;
+      user-select: none;
+      -webkit-user-select: none;
+      z-index: 1002;
+      transition: all 0.2s ease;
+    }
+
+    .eink-bar-btn:hover {
+      background: rgba(197, 160, 89, 0.18);
+      border-color: var(--border-gold-light);
+    }
+
+    .eink-bar-btn:active {
+      opacity: 0.6;
+    }
+
+    .eink-bar-btn svg.eink-icon {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent-burgundy);
+      fill: none;
+      display: block;
+      transition: stroke 0.2s ease;
+    }
+
+    body.mode-eink .eink-bar-btn {
+      color: #000000;
+      border: 1.5px solid transparent;
+    }
+
+    body.mode-eink .eink-bar-btn svg.eink-icon {
+      stroke: #000000 !important;
+    }
+
+    body.mode-eink .eink-bar-btn:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    body.mode-eink .eink-bar-btn:hover svg.eink-icon {
+      stroke: #ffffff !important;
+    }
+
+    /* Upward Arrow Submit Button & States */
+    .eink-bar-submit {
+      display: none;
+    }
+
+    .eink-bar-submit.is-visible {
+      display: inline-flex;
+    }
+
+    .eink-bar-submit.is-submitting {
+      opacity: 0.6;
+      cursor: wait;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: 0.4; }
+      to { opacity: 0.9; }
+    }
+
+    .eink-bar-submit.is-submitted {
+      color: #2e7d32;
+      border-color: #2e7d32;
+      background: rgba(46, 125, 50, 0.12);
+      cursor: default;
+    }
+
+    .eink-bar-submit.is-submitted svg.eink-icon {
+      stroke: #2e7d32 !important;
+    }
+
+    body.mode-eink .eink-bar-submit.is-submitted {
+      color: #000000;
+      border: 2px solid #000000;
+      background: #e0e0e0;
+    }
+
+    body.mode-eink .eink-bar-submit.is-submitted svg.eink-icon {
+      stroke: #000000 !important;
+    }
+
+    /* Book Footer */
+    .book-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1.5px solid var(--border-gold-light);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    #eink-page-text {
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    /* Tap Zone Indicators for E-Ink Mode (Top Corners: 12% width, 20% height) */
+    .eink-tap-zone {
+      display: none;
+      position: fixed;
+      top: 0;
+      height: 20%;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    body.mode-eink .eink-tap-zone {
+      display: block;
+    }
+
+    .eink-tap-left {
+      left: 0;
+      width: 12%;
+    }
+
+    .eink-tap-right {
+      right: 0;
+      width: 12%;
+    }
+  </style>
+</head>
+<body class="mode-eink">
+
+  <article class="book-page">
+
+    <!-- Filigree Corners -->
+    <div class="corner-flourish corner-tl"></div>
+    <div class="corner-flourish corner-tr"></div>
+    <div class="corner-flourish corner-bl"></div>
+    <div class="corner-flourish corner-br"></div>
+
+    <!-- Title Block -->
+    <header class="book-header">
+      <span class="header-tag">Week 2 • Day 1 — World History &amp; Medieval Civilization (history_week2)</span>
+      <h1 class="book-title">Week 2: Chapter 3 (Christianity Comes to Britain)</h1>
+      <p class="book-subtitle">Study Worksheet &amp; Historical Investigation on Chapter 3 (Christianity Comes to Britain) (history_week2)</p>
+    </header>
+
+    
+    <!-- Section 1: Key Detail Check -->
+    <section class="exercise-section" data-problem-id="section_1_multiple_choice" data-node-id="7c5e212b-eeff-54d1-9b56-9bd676972f04" data-prompt="Section 1: Key Detail Check">
+      <h2 class="exercise-heading">SECTION 1: KEY DETAIL CHECK</h2>
+      <p class="exercise-instructions">
+        Select the best answer for each question based on the reading. Transcribe the chosen letter (<strong>A</strong>, <strong>B</strong>, <strong>C</strong>, or <strong>D</strong>) into each bracket blank with your stylus.
+      </p>
+      
+      <!-- MC Item 1 -->
+      <div style="margin-bottom: 1.6rem; break-inside: avoid; -webkit-column-break-inside: avoid;">
+        <div style="display: flex; align-items: baseline; font-size: 1.15rem; margin-bottom: 0.5rem;">
+          <div class="stylus-bracket-blank short" style="margin-right: 0.8rem; flex-shrink: 0;"></div>
+          <div><strong style="color: var(--accent-burgundy);">1.</strong> What did the pope say when he saw fair-haired English slave boys for sale in the Roman marketplace?</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; padding-left: 4.2rem; font-size: 1.05rem;">
+          <div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">A. &quot;They must be returned to Rome!&quot;</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">B. &quot;They are not Angles, but angels!&quot;</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">C. &quot;They are kings of Britain!&quot;</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">D. &quot;They are fierce Celtic warriors!&quot;</div>
+        </div>
+      </div>
+      <!-- MC Item 2 -->
+      <div style="margin-bottom: 1.6rem; break-inside: avoid; -webkit-column-break-inside: avoid;">
+        <div style="display: flex; align-items: baseline; font-size: 1.15rem; margin-bottom: 0.5rem;">
+          <div class="stylus-bracket-blank short" style="margin-right: 0.8rem; flex-shrink: 0;"></div>
+          <div><strong style="color: var(--accent-burgundy);">2.</strong> Who was the powerful Anglo-Saxon king of Kent who met Augustine and his forty companions on the shore?</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; padding-left: 4.2rem; font-size: 1.05rem;">
+          <div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">A. King Vortigern</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">B. King Arthur</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">C. King Ethelbert</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">D. King Alfred</div>
+        </div>
+      </div>
+      <!-- MC Item 3 -->
+      <div style="margin-bottom: 1.6rem; break-inside: avoid; -webkit-column-break-inside: avoid;">
+        <div style="display: flex; align-items: baseline; font-size: 1.15rem; margin-bottom: 0.5rem;">
+          <div class="stylus-bracket-blank short" style="margin-right: 0.8rem; flex-shrink: 0;"></div>
+          <div><strong style="color: var(--accent-burgundy);">3.</strong> Why did King Ethelbert refuse to allow Augustine into his royal palace when they first met?</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; padding-left: 4.2rem; font-size: 1.05rem;">
+          <div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">A. He feared Augustine would lay a magic spell on him indoors</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">B. He did not speak English</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">C. The palace had been burned down</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">D. He was away on a crusade</div>
+        </div>
+      </div>
+      <!-- MC Item 4 -->
+      <div style="margin-bottom: 1.6rem; break-inside: avoid; -webkit-column-break-inside: avoid;">
+        <div style="display: flex; align-items: baseline; font-size: 1.15rem; margin-bottom: 0.5rem;">
+          <div class="stylus-bracket-blank short" style="margin-right: 0.8rem; flex-shrink: 0;"></div>
+          <div><strong style="color: var(--accent-burgundy);">4.</strong> What English town became the home of Augustine and the seat of the first Archbishop of England?</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; padding-left: 4.2rem; font-size: 1.05rem;">
+          <div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">A. London</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">B. Canterbury</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">C. Hastings</div><div class="mc-option" style="padding: 0.2rem 0.4rem; font-size: 1.05rem; line-height: 1.4;">D. York</div>
+        </div>
+      </div>
+    </section>
+    <div class="flourish-divider">&#10087; &bull; &#10087; &bull; &#10087;</div>
+
+    <!-- Section 2: Historical Narrative Summary -->
+    <section class="exercise-section" data-problem-id="section_2_narrative_summary" data-node-id="7c5e212b-eeff-54d1-9b56-9bd676972f04" data-prompt="Section 2: Historical Narrative Summary">
+      <h2 class="exercise-heading">SECTION 2: HISTORICAL NARRATIVE SUMMARY</h2>
+      <p class="exercise-instructions">
+        Fill in the blanks in the following historical summary using the words from the Word Bank. Transcribe each term into the handwriting blanks with your stylus.
+      </p>
+
+      <!-- Word Bank Box -->
+      <div class="word-bank-box">
+        <h3 class="word-bank-title">Word Bank</h3>
+        <div class="word-bank-grid">
+          <div class="word-bank-item">Ethelbert</div><div class="word-bank-item">Canterbury</div><div class="word-bank-item">Monastery</div><div class="word-bank-item">Angels</div><div class="word-bank-item">Monks</div><div class="word-bank-item">Abbot</div>
+        </div>
+      </div>
+
+      <div style="padding: 1.4rem 1.8rem; border: 1.5px solid var(--border-gold); background: var(--bg-paper-dark); border-radius: 4px; margin: 1.5rem 0;">
+        
+      <!-- Summary Item 1 -->
+      <div style="margin-bottom: 1.8rem; font-size: 1.2rem; line-height: 2.8; break-inside: avoid; -webkit-column-break-inside: avoid; text-align: justify;">
+        <span style="font-weight: 700; color: var(--accent-burgundy); margin-right: 0.4rem;">1.</span>
+        When the pope saw fair-haired slaves in the marketplace, he declared they looked like <div class="stylus-bracket-blank" style="display: inline-flex; vertical-align: middle; min-width: 280px; height: 52px; margin: 0 0.5rem;"></div>.
+      </div>
+      <!-- Summary Item 2 -->
+      <div style="margin-bottom: 1.8rem; font-size: 1.2rem; line-height: 2.8; break-inside: avoid; -webkit-column-break-inside: avoid; text-align: justify;">
+        <span style="font-weight: 700; color: var(--accent-burgundy); margin-right: 0.4rem;">2.</span>
+        Augustine led a group of forty <div class="stylus-bracket-blank" style="display: inline-flex; vertical-align: middle; min-width: 280px; height: 52px; margin: 0 0.5rem;"></div> on a mission to bring Christianity to Britain.
+      </div>
+      <!-- Summary Item 3 -->
+      <div style="margin-bottom: 1.8rem; font-size: 1.2rem; line-height: 2.8; break-inside: avoid; -webkit-column-break-inside: avoid; text-align: justify;">
+        <span style="font-weight: 700; color: var(--accent-burgundy); margin-right: 0.4rem;">3.</span>
+        King <div class="stylus-bracket-blank" style="display: inline-flex; vertical-align: middle; min-width: 280px; height: 52px; margin: 0 0.5rem;"></div> granted Augustine permission to preach peacefully in his kingdom.
+      </div>
+      <!-- Summary Item 4 -->
+      <div style="margin-bottom: 1.8rem; font-size: 1.2rem; line-height: 2.8; break-inside: avoid; -webkit-column-break-inside: avoid; text-align: justify;">
+        <span style="font-weight: 700; color: var(--accent-burgundy); margin-right: 0.4rem;">4.</span>
+        Monks lived together in a community building called a <div class="stylus-bracket-blank" style="display: inline-flex; vertical-align: middle; min-width: 280px; height: 52px; margin: 0 0.5rem;"></div>.
+      </div>
+      <!-- Summary Item 5 -->
+      <div style="margin-bottom: 1.8rem; font-size: 1.2rem; line-height: 2.8; break-inside: avoid; -webkit-column-break-inside: avoid; text-align: justify;">
+        <span style="font-weight: 700; color: var(--accent-burgundy); margin-right: 0.4rem;">5.</span>
+        The chief monk who directed daily work and prayers in a monastery was the <div class="stylus-bracket-blank" style="display: inline-flex; vertical-align: middle; min-width: 280px; height: 52px; margin: 0 0.5rem;"></div>.
+      </div>
+      <!-- Summary Item 6 -->
+      <div style="margin-bottom: 1.8rem; font-size: 1.2rem; line-height: 2.8; break-inside: avoid; -webkit-column-break-inside: avoid; text-align: justify;">
+        <span style="font-weight: 700; color: var(--accent-burgundy); margin-right: 0.4rem;">6.</span>
+        Augustine settled in the town of <div class="stylus-bracket-blank" style="display: inline-flex; vertical-align: middle; min-width: 280px; height: 52px; margin: 0 0.5rem;"></div> and became the first Archbishop of England.
+      </div>
+      </div>
+    </section>
+    <div class="flourish-divider">&#10087; &bull; &#10087; &bull; &#10087;</div>
+
+    <!-- Section 3: Chronological Timeline Challenge -->
+    <section class="exercise-section" data-problem-id="section_3_timeline_challenge" data-node-id="7c5e212b-eeff-54d1-9b56-9bd676972f04" data-prompt="Section 3: Chronological Timeline Challenge">
+      <h2 class="exercise-heading">SECTION 3: CHRONOLOGICAL TIMELINE CHALLENGE</h2>
+      <p class="exercise-instructions">
+        Research each historical event below in <em>Story of the World</em> Appendix One (Chronology of the Middle Ages). Record its exact date and chronological order on the timeline axis with your stylus.
+      </p>
+
+      <!-- Vector SVG Timeline Diagram -->
+      <svg class="history-timeline-svg" viewBox="0 0 720 155" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="font-family: 'EB Garamond', 'Cinzel', serif; background: var(--bg-paper-dark, #faf7f0); border: 1.5px solid var(--border-gold, #c5a059); border-radius: 4px; padding: 10px 0; margin: 1.2rem 0;">
+<defs>  <marker id="timeline-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">    <polygon points="0 0, 8 4, 0 8" fill="#4A2E1B" />  </marker></defs>
+<text x="360.0" y="25" text-anchor="middle" font-family="'Cinzel', serif" font-weight="700" font-size="13" fill="#6B2D19" letter-spacing="1">CHRONOLOGICAL TIMELINE AXIS (WEEK 2) (AD 400 → AD 620)</text>
+<line x1="50" y1="75" x2="670" y2="75" stroke="#4A2E1B" stroke-width="2.5" marker-end="url(#timeline-arrow)" />
+<line x1="65" y1="67" x2="65" y2="83" stroke="#4A2E1B" stroke-width="2" />
+<text x="65" y="99" text-anchor="middle" font-weight="700" font-size="12" fill="#4A2E1B">AD 400</text>
+<line x1="655" y1="67" x2="655" y2="83" stroke="#4A2E1B" stroke-width="2" />
+<text x="655" y="99" text-anchor="middle" font-weight="700" font-size="12" fill="#4A2E1B">AD 620</text>
+<line x1="75" y1="69" x2="75" y2="81" stroke="#6B2D19" stroke-width="2" />
+<line x1="75" y1="69" x2="75" y2="55" stroke="#6B2D19" stroke-width="1.5" stroke-dasharray="2,2" />
+<rect x="36.0" y="21" width="78" height="32" rx="3" fill="#FFFFFF" stroke="#6B2D19" stroke-width="1.5" />
+<text x="75" y="34" text-anchor="middle" font-size="9" font-weight="700" fill="#6B2D19">EVENT # [ &nbsp; ]</text>
+<text x="75" y="47" text-anchor="middle" font-size="8.5" fill="#5C4D41">Date: [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</text>
+<circle cx="75" cy="75" r="4" fill="#6B2D19" stroke="#FFFFFF" stroke-width="1" />
+<line x1="168.77272727272728" y1="69" x2="168.77272727272728" y2="81" stroke="#6B2D19" stroke-width="2" />
+<line x1="168.77272727272728" y1="69" x2="168.77272727272728" y2="55" stroke="#6B2D19" stroke-width="1.5" stroke-dasharray="2,2" />
+<rect x="129.77272727272728" y="21" width="78" height="32" rx="3" fill="#FFFFFF" stroke="#6B2D19" stroke-width="1.5" />
+<text x="168.77272727272728" y="34" text-anchor="middle" font-size="9" font-weight="700" fill="#6B2D19">EVENT # [ &nbsp; ]</text>
+<text x="168.77272727272728" y="47" text-anchor="middle" font-size="8.5" fill="#5C4D41">Date: [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</text>
+<circle cx="168.77272727272728" cy="75" r="4" fill="#6B2D19" stroke="#FFFFFF" stroke-width="1" />
+<line x1="563.0" y1="69" x2="563.0" y2="81" stroke="#6B2D19" stroke-width="2" />
+<line x1="563.0" y1="69" x2="563.0" y2="55" stroke="#6B2D19" stroke-width="1.5" stroke-dasharray="2,2" />
+<rect x="524.0" y="21" width="78" height="32" rx="3" fill="#FFFFFF" stroke="#6B2D19" stroke-width="1.5" />
+<text x="563.0" y="34" text-anchor="middle" font-size="9" font-weight="700" fill="#6B2D19">EVENT # [ &nbsp; ]</text>
+<text x="563.0" y="47" text-anchor="middle" font-size="8.5" fill="#5C4D41">Date: [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</text>
+<circle cx="563.0" cy="75" r="4" fill="#6B2D19" stroke="#FFFFFF" stroke-width="1" />
+<line x1="645.0" y1="69" x2="645.0" y2="81" stroke="#6B2D19" stroke-width="2" />
+<line x1="645.0" y1="69" x2="645.0" y2="55" stroke="#6B2D19" stroke-width="1.5" stroke-dasharray="2,2" />
+<rect x="606.0" y="21" width="78" height="32" rx="3" fill="#FFFFFF" stroke="#6B2D19" stroke-width="1.5" />
+<text x="645.0" y="34" text-anchor="middle" font-size="9" font-weight="700" fill="#6B2D19">EVENT # [ &nbsp; ]</text>
+<text x="645.0" y="47" text-anchor="middle" font-size="8.5" fill="#5C4D41">Date: [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</text>
+<circle cx="645.0" cy="75" r="4" fill="#6B2D19" stroke="#FFFFFF" stroke-width="1" />
+</svg>
+
+      <!-- Timeline Event Inquiries -->
+      <div style="margin-top: 1.6rem;">
+        
+        <!-- Event 1 Inquiry -->
+        <div style="margin-bottom: 1.6rem; break-inside: avoid; -webkit-column-break-inside: avoid; padding: 1rem 1.2rem; background: var(--bg-paper-dark); border: 1px solid var(--border-gold-light); border-radius: 4px;">
+          <div style="font-size: 1.15rem; margin-bottom: 0.6rem; line-height: 1.6;">
+            <strong style="color: var(--accent-burgundy);">Event 1:</strong> Rome is sacked and burned by the Visigoths, leaving Britain undefended.
+          </div>
+          <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.8rem; font-size: 1.05rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--text-muted); font-weight: 600;">Historical Date:</span>
+              <div class="stylus-bracket-blank" style="min-width: 140px;"></div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--text-muted); font-weight: 600;">Timeline Node Order:</span>
+              <div class="stylus-bracket-blank short"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Event 2 Inquiry -->
+        <div style="margin-bottom: 1.6rem; break-inside: avoid; -webkit-column-break-inside: avoid; padding: 1rem 1.2rem; background: var(--bg-paper-dark); border: 1px solid var(--border-gold-light); border-radius: 4px;">
+          <div style="font-size: 1.15rem; margin-bottom: 0.6rem; line-height: 1.6;">
+            <strong style="color: var(--accent-burgundy);">Event 2:</strong> The Anglo-Saxons begin their invasion of Britain.
+          </div>
+          <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.8rem; font-size: 1.05rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--text-muted); font-weight: 600;">Historical Date:</span>
+              <div class="stylus-bracket-blank" style="min-width: 140px;"></div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--text-muted); font-weight: 600;">Timeline Node Order:</span>
+              <div class="stylus-bracket-blank short"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Event 3 Inquiry -->
+        <div style="margin-bottom: 1.6rem; break-inside: avoid; -webkit-column-break-inside: avoid; padding: 1rem 1.2rem; background: var(--bg-paper-dark); border: 1px solid var(--border-gold-light); border-radius: 4px;">
+          <div style="font-size: 1.15rem; margin-bottom: 0.6rem; line-height: 1.6;">
+            <strong style="color: var(--accent-burgundy);">Event 3:</strong> Augustine begins his Christian mission from Rome to England.
+          </div>
+          <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.8rem; font-size: 1.05rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--text-muted); font-weight: 600;">Historical Date:</span>
+              <div class="stylus-bracket-blank" style="min-width: 140px;"></div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--text-muted); font-weight: 600;">Timeline Node Order:</span>
+              <div class="stylus-bracket-blank short"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Event 4 Inquiry -->
+        <div style="margin-bottom: 1.6rem; break-inside: avoid; -webkit-column-break-inside: avoid; padding: 1rem 1.2rem; background: var(--bg-paper-dark); border: 1px solid var(--border-gold-light); border-radius: 4px;">
+          <div style="font-size: 1.15rem; margin-bottom: 0.6rem; line-height: 1.6;">
+            <strong style="color: var(--accent-burgundy);">Event 4:</strong> Augustine reaches England and preaches to King Ethelbert of Kent.
+          </div>
+          <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.8rem; font-size: 1.05rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--text-muted); font-weight: 600;">Historical Date:</span>
+              <div class="stylus-bracket-blank" style="min-width: 140px;"></div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--text-muted); font-weight: 600;">Timeline Node Order:</span>
+              <div class="stylus-bracket-blank short"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="flourish-divider">&#10087; &bull; &#10087; &bull; &#10087;</div>
+
+    <!-- Section 4: Historical Crossword Puzzle -->
+    <section class="exercise-section" data-problem-id="section_4_crossword" data-node-id="7c5e212b-eeff-54d1-9b56-9bd676972f04" data-prompt="Section 4: Historical Crossword Puzzle">
+      <h2 class="exercise-heading">SECTION 4: HISTORICAL CROSSWORD PUZZLE</h2>
+      <p class="exercise-instructions">
+        Complete the crossword puzzle below using clues derived from this week's chapter reading. Transcribe each letter into the numbered grid cells with your stylus.
+      </p>
+
+      <!-- Full-Width Crossword Grid -->
+      <div style="display: flex; justify-content: center; margin: 1.8rem 0; overflow-x: auto;">
+        <table class="crossword-grid" style="border-collapse: collapse; width: 100%; max-width: 680px; table-layout: fixed; border: 2.5px solid var(--text-ink); box-shadow: var(--plate-box-shadow);">
+          <tbody>
+            <tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"><span class="cell-num" style="position: absolute; top: 2px; left: 3px; font-size: 0.75rem; font-weight: 700; color: var(--accent-burgundy); line-height: 1;">1</span></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"><span class="cell-num" style="position: absolute; top: 2px; left: 3px; font-size: 0.75rem; font-weight: 700; color: var(--accent-burgundy); line-height: 1;">2</span></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"><span class="cell-num" style="position: absolute; top: 2px; left: 3px; font-size: 0.75rem; font-weight: 700; color: var(--accent-burgundy); line-height: 1;">3</span></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"><span class="cell-num" style="position: absolute; top: 2px; left: 3px; font-size: 0.75rem; font-weight: 700; color: var(--accent-burgundy); line-height: 1;">4</span></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"><span class="cell-num" style="position: absolute; top: 2px; left: 3px; font-size: 0.75rem; font-weight: 700; color: var(--accent-burgundy); line-height: 1;">5</span></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr><tr><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell white" style="height: 48px; background: #FFFFFF; border: 1.5px solid #2C221E; position: relative; vertical-align: top; text-align: center;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td><td class="crossword-cell black" style="height: 48px; background: var(--border-gold-light, #c5a059); border: 1px solid var(--border-gold); opacity: 0.5;"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Two-Column Across & Down Clues (Below Grid) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.8rem 0; padding: 1.2rem 1.6rem; background: var(--bg-paper-dark); border: 1.5px solid var(--border-gold); border-radius: 4px;">
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--accent-burgundy); margin-bottom: 0.8rem; border-bottom: 1.5px solid var(--border-gold-light); padding-bottom: 0.3rem; letter-spacing: 0.05em;">ACROSS</h4>
+          <div style="margin-bottom: 0.6rem; font-size: 1.05rem; line-height: 1.5;"><strong style="color: var(--accent-burgundy);">4.</strong> Capital town of Kent where Augustine established his church (SOTW p. 23).</div><div style="margin-bottom: 0.6rem; font-size: 1.05rem; line-height: 1.5;"><strong style="color: var(--accent-burgundy);">5.</strong> The chief monk who governed a medieval monastery (SOTW p. 24).</div>
+        </div>
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--accent-burgundy); margin-bottom: 0.8rem; border-bottom: 1.5px solid var(--border-gold-light); padding-bottom: 0.3rem; letter-spacing: 0.05em;">DOWN</h4>
+          <div style="margin-bottom: 0.6rem; font-size: 1.05rem; line-height: 1.5;"><strong style="color: var(--accent-burgundy);">1.</strong> Community home where monks lived, worked, and prayed (SOTW p. 24).</div><div style="margin-bottom: 0.6rem; font-size: 1.05rem; line-height: 1.5;"><strong style="color: var(--accent-burgundy);">2.</strong> Anglo-Saxon king of Kent who welcomed Augustine&#x27;s mission (SOTW p. 22).</div><div style="margin-bottom: 0.6rem; font-size: 1.05rem; line-height: 1.5;"><strong style="color: var(--accent-burgundy);">3.</strong> Missionary monk sent by the pope to teach Christianity in Britain (SOTW p. 22).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="book-footer">
+      <p>The Primer Educational Series &bull; Week 2 History — Chapter 3 (Christianity Comes to Britain) (Worksheet)</p>
+    </footer>
+
+  </article>
+
+  <!-- Tap Zones & Page Counter -->
+  <div id="eink-tap-left" class="eink-tap-zone eink-tap-left" title="Turn to Previous Page"></div>
+  <div id="eink-tap-right" class="eink-tap-zone eink-tap-right" title="Turn to Next Page"></div>
+  <div id="eink-page-bar" class="eink-page-bar">
+    <div class="eink-bar-left">
+      <a href="../index.html" class="eink-bar-btn eink-bar-home" title="Return to Index" aria-label="Return to Index">
+        <svg class="eink-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </a>
+      <button type="button" id="eink-submit-btn" class="eink-bar-btn eink-bar-submit" title="Complete &amp; Submit Exercises" aria-label="Complete &amp; Submit Exercises" data-primer-action="submit">
+        <svg class="eink-icon eink-submit-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="19" x2="12" y2="5"></line>
+          <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+      </button>
+    </div>
+    <span id="eink-page-text">Page 1 of 1 &bull; ⚡ E-Ink Paginated Layout</span>
+    <button type="button" id="eink-refresh-btn" class="eink-bar-btn eink-bar-refresh" title="Refresh Page" aria-label="Refresh Page">
+      <svg class="eink-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Dynamic Display Engine & Full-Page Turn Controller -->
+  <script>
+    (function() {
+      // Neutralize any injected scroll-snap stylesheets that force min-height: 100vh on section elements
+      function purgeScrollSnap() {
+        const snap = document.getElementById('primer-scroll-snap');
+        if (snap) {
+          snap.remove();
+        }
+      }
+      purgeScrollSnap();
+      if (window.MutationObserver) {
+        const snapObserver = new MutationObserver(purgeScrollSnap);
+        snapObserver.observe(document.head || document.documentElement, { childList: true, subtree: true });
+      }
+
+      const STORAGE_KEY = 'primer_reader_mode';
+
+      function getSystemMode() {
+        const savedMode = localStorage.getItem(STORAGE_KEY);
+        if (savedMode) return savedMode;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'lcd' || urlParams.get('lcd') === '1' || window.location.hash.includes('lcd')) {
+          return 'lcd';
+        }
+        if (urlParams.get('mode') === 'eink' || urlParams.get('eink') === '1' || window.location.hash.includes('eink')) {
+          return 'eink';
+        }
+
+        const ua = (navigator.userAgent || '').toLowerCase();
+        const platform = (navigator.platform || '').toLowerCase();
+        const vendor = (navigator.vendor || '').toLowerCase();
+
+        const einkKeywords = [
+          'boox', 'onyx', 'noteair', 'note air', 'noteair3', 'noteair3c', 'tabultra', 'tab ultra', 
+          'tabmini', 'palma', 'leaf', 'poke', 'max3', 'max2', 'nova', 'likebook', 'meebook', 
+          'kindle', 'kobo', 'tolino', 'nook', 'e-ink', 'eink', 'paperwhite', 'hisense'
+        ];
+        const isEinkHardwareUA = einkKeywords.some(keyword => ua.includes(keyword) || platform.includes(keyword) || vendor.includes(keyword));
+        if (isEinkHardwareUA) return 'eink';
+
+        const isSlowUpdate = window.matchMedia('(update: slow)').matches;
+        const prefersHighContrast = window.matchMedia('(prefers-contrast: more)').matches || window.matchMedia('(prefers-contrast: high)').matches;
+        const isForcedColors = window.matchMedia('(forced-colors: active)').matches;
+        const isMonochrome = window.matchMedia('(monochrome)').matches;
+        if (isSlowUpdate || prefersHighContrast || isForcedColors || isMonochrome) return 'eink';
+
+        const width = window.screen.width;
+        const height = window.screen.height;
+        const isAndroid = /android/i.test(ua);
+        const isEinkScreenRes = isAndroid && (
+          (width === 1404 && height === 1872) || (width === 1872 && height === 1404) ||
+          (width === 1860 && height === 2480) || (width === 2480 && height === 1860) ||
+          (width === 1200 && height === 1600) || (width === 1600 && height === 1200) ||
+          (width === 936  && height === 1248) || (width === 1248 && height === 936)
+        );
+        if (isEinkScreenRes) return 'eink';
+
+        return 'eink';
+      }
+
+      function applyMode(mode) {
+        document.body.classList.remove('mode-lcd', 'mode-eink', 'mode-lcd-user');
+        if (mode === 'eink') {
+          document.body.classList.add('mode-eink');
+        } else {
+          document.body.classList.add('mode-lcd', 'mode-lcd-user');
+        }
+        updateButtonLabel(mode);
+        updatePageCounter();
+      }
+
+      function updateButtonLabel(mode) {
+        const btn = document.getElementById('mode-toggle-btn');
+        if (btn) {
+          btn.innerHTML = mode === 'eink' ? '📜 Switch to Classic LCD' : '⚡ Switch to E-Ink Page Mode';
+        }
+      }
+
+      function toggleMode() {
+        const currentMode = document.body.classList.contains('mode-eink') ? 'eink' : 'lcd';
+        const newMode = currentMode === 'eink' ? 'lcd' : 'eink';
+        localStorage.setItem(STORAGE_KEY, newMode);
+        applyMode(newMode);
+      }
+
+      function getPaginatedContainer() {
+        return document.querySelector('.book-page');
+      }
+
+      function getCurrentPageInfo() {
+        const container = getPaginatedContainer();
+        if (!container || !document.body.classList.contains('mode-eink')) {
+          const pageHeight = window.innerHeight;
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const totalHeight = document.documentElement.scrollHeight;
+          const totalPages = Math.max(1, Math.ceil(totalHeight / pageHeight));
+          const currentPage = Math.min(totalPages, Math.floor(scrollTop / pageHeight) + 1);
+          return { currentPage, totalPages, pageHeight };
+        }
+
+        const pageWidth = container.clientWidth || window.innerWidth;
+        const scrollLeft = container.scrollLeft;
+        const totalWidth = container.scrollWidth;
+        const totalPages = Math.max(1, Math.round(totalWidth / pageWidth));
+        const currentPage = Math.min(totalPages, Math.round(scrollLeft / pageWidth) + 1);
+        return { currentPage, totalPages, pageWidth };
+      }
+
+      function updatePageCounter() {
+        const textSpan = document.getElementById('eink-page-text');
+        if (!textSpan || !document.body.classList.contains('mode-eink')) return;
+        const { currentPage, totalPages } = getCurrentPageInfo();
+        textSpan.innerHTML = `Page ${currentPage} of ${totalPages} &bull; ⚡ E-Ink Paginated Layout`;
+      }
+
+      function notifyPageChanged(fromPageIndex, toPageIndex) {
+        if (fromPageIndex === toPageIndex) return;
+        try {
+          if (window.AndroidBridge && typeof window.AndroidBridge.onPageChanged === 'function') {
+            window.AndroidBridge.onPageChanged(fromPageIndex, toPageIndex);
+          }
+        } catch (e) {
+          console.warn('AndroidBridge.onPageChanged failed', e);
+        }
+      }
+
+      function turnPage(direction) {
+        if (!document.body.classList.contains('mode-eink')) return;
+        const container = getPaginatedContainer();
+
+        if (!container) {
+          const pageHeight = window.innerHeight;
+          const currentScroll = window.scrollY || document.documentElement.scrollTop;
+          const totalHeight = document.documentElement.scrollHeight;
+          const totalPages = Math.max(1, Math.ceil(totalHeight / pageHeight));
+          const fromPage = Math.min(totalPages - 1, Math.max(0, Math.floor(currentScroll / pageHeight)));
+          let toPage = Math.min(totalPages - 1, Math.max(0, fromPage + direction));
+
+          if (fromPage !== toPage) {
+            notifyPageChanged(fromPage, toPage);
+            window.scrollTo({ top: toPage * pageHeight, behavior: 'instant' });
+            updatePageCounter();
+          }
+          return;
+        }
+
+        const pageWidth = container.clientWidth || window.innerWidth;
+        const currentScroll = container.scrollLeft;
+        const totalPages = Math.max(1, Math.round(container.scrollWidth / pageWidth));
+        const fromPage = Math.min(totalPages - 1, Math.max(0, Math.round(currentScroll / pageWidth)));
+        let toPage = Math.min(totalPages - 1, Math.max(0, fromPage + direction));
+
+        if (fromPage !== toPage) {
+          notifyPageChanged(fromPage, toPage);
+          container.scrollTo({
+            left: toPage * pageWidth,
+            behavior: 'instant'
+          });
+          updatePageCounter();
+        }
+      }
+
+      function goToPage(targetIndex) {
+        const info = getCurrentPageInfo();
+        const fromPage = info.currentPage - 1;
+        const toPage = Math.min(info.totalPages - 1, Math.max(0, targetIndex));
+        if (fromPage === toPage) return;
+
+        notifyPageChanged(fromPage, toPage);
+        const container = getPaginatedContainer();
+        if (container && document.body.classList.contains('mode-eink')) {
+          const pageWidth = container.clientWidth || window.innerWidth;
+          container.scrollTo({ left: toPage * pageWidth, behavior: 'instant' });
+        } else {
+          const pageHeight = window.innerHeight;
+          window.scrollTo({ top: toPage * pageHeight, behavior: 'instant' });
+        }
+        updatePageCounter();
+      }
+      window.primerGoToPage = goToPage;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const savedMode = localStorage.getItem(STORAGE_KEY);
+        const activeMode = savedMode ? savedMode : getSystemMode();
+        applyMode(activeMode);
+
+        const btn = document.getElementById('mode-toggle-btn');
+        if (btn) {
+          btn.addEventListener('click', toggleMode);
+        }
+
+        const tapLeft = document.getElementById('eink-tap-left');
+        const tapRight = document.getElementById('eink-tap-right');
+
+        if (tapLeft) {
+          tapLeft.addEventListener('click', function(e) {
+            e.stopPropagation();
+            turnPage(-1);
+          });
+        }
+        if (tapRight) {
+          tapRight.addEventListener('click', function(e) {
+            e.stopPropagation();
+            turnPage(1);
+          });
+        }
+
+        const refreshBtn = document.getElementById('eink-refresh-btn');
+        if (refreshBtn) {
+          refreshBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.location.reload();
+          });
+        }
+
+        window.addEventListener('keydown', function(e) {
+          if (!document.body.classList.contains('mode-eink')) return;
+          if (e.key === 'PageDown' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            turnPage(1);
+          } else if (e.key === 'PageUp' || e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            turnPage(-1);
+          }
+        });
+
+        const container = getPaginatedContainer();
+        if (container) {
+          container.addEventListener('scroll', updatePageCounter, { passive: true });
+        }
+        window.addEventListener('scroll', updatePageCounter, { passive: true });
+        window.addEventListener('resize', updatePageCounter, { passive: true });
+
+        // Inline Audio Playback for Dictation & Audio Badges (Plays without leaving page)
+        let currentAudio = null;
+        let activeAudioBtn = null;
+
+        document.addEventListener('click', function(e) {
+          const btn = e.target.closest('.audio-play-btn, .audio-prompt-btn');
+          if (!btn) return;
+
+          const audioSrc = btn.getAttribute('data-audio') || btn.getAttribute('href');
+          if (!audioSrc) return;
+
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            if (activeAudioBtn) {
+              activeAudioBtn.classList.remove('is-playing');
+            }
+          }
+
+          try {
+            const audio = new Audio();
+            audio.src = audioSrc;
+            audio.preload = 'auto';
+            currentAudio = audio;
+            activeAudioBtn = btn;
+            btn.classList.add('is-playing');
+
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(function(err) {
+                console.warn('Audio playback failed for ' + audioSrc + ':', err);
+                btn.classList.remove('is-playing');
+              });
+            }
+
+            audio.addEventListener('ended', function() {
+              btn.classList.remove('is-playing');
+              if (currentAudio === audio) {
+                currentAudio = null;
+                activeAudioBtn = null;
+              }
+            });
+
+            audio.addEventListener('error', function(err) {
+              console.error('Audio load error for ' + audioSrc + ':', audio.error || err);
+              btn.classList.remove('is-playing');
+            });
+          } catch (ex) {
+            console.error('Exception initiating Audio:', ex);
+            btn.classList.remove('is-playing');
+          }
+        });
+
+        // ── Exercise Target Resolution & Dedicated Submit Handler ───────
+        function findExerciseTargets() {
+          const container = getPaginatedContainer() || document.documentElement;
+          const isEink = document.body && document.body.classList.contains('mode-eink');
+          const pageWidth = container.clientWidth || window.innerWidth || 1;
+          const pageHeight = window.innerHeight || 1;
+
+          const exerciseSections = document.querySelectorAll('.exercise-section, .primer-exercise, .primer-capture');
+          const targets = [];
+          const metaNodeId = document.querySelector('meta[name="primer-uuid"]')?.content || '';
+
+          exerciseSections.forEach(function(el, idx) {
+            const sectionProblemId = el.dataset.problemId || ('exercise_part_' + (idx + 1));
+            const sectionNodeId = el.dataset.nodeId || metaNodeId;
+            const sectionPrompt = el.dataset.prompt || (el.querySelector('.exercise-heading')?.textContent?.trim() || '');
+            const sectionPages = new Set();
+
+            function addPoint(x, y) {
+              let p = 0;
+              if (isEink && container.scrollWidth > container.clientWidth) {
+                p = Math.max(0, Math.floor((x + container.scrollLeft) / pageWidth));
+              } else {
+                p = Math.max(0, Math.floor((y + (window.scrollY || document.documentElement.scrollTop)) / pageHeight));
+              }
+              sectionPages.add(p);
+            }
+
+            // Check bounding rects of the section (handles multi-column fragmentation)
+            const rects = el.getClientRects();
+            if (rects && rects.length > 0) {
+              for (let r = 0; r < rects.length; r++) {
+                addPoint(rects[r].left, rects[r].top);
+                addPoint(rects[r].right - 2, rects[r].bottom - 2);
+              }
+            } else {
+              addPoint(el.offsetLeft, el.offsetTop);
+              addPoint(el.offsetLeft + el.offsetWidth - 2, el.offsetTop + el.offsetHeight - 2);
+            }
+
+            // Check every interactive/content item within the section
+            const childItems = el.querySelectorAll('.dictation-item, .matching-item, .morphology-item, .stylus-writing-area, .word-bank-box, .exercise-heading, .exercise-instructions, p, h2, h3');
+            childItems.forEach(function(item) {
+              const ir = item.getBoundingClientRect();
+              if (ir.width > 0 || ir.height > 0) {
+                addPoint(ir.left, ir.top);
+                addPoint(ir.right - 2, ir.bottom - 2);
+              }
+            });
+
+            // If section spans multiple pages, register each page index
+            const sortedPages = Array.from(sectionPages).sort(function(a, b) { return a - b; });
+            sortedPages.forEach(function(pageIndex, subIdx) {
+              const subProblemId = sortedPages.length > 1 ? (sectionProblemId + '_p' + (subIdx + 1)) : sectionProblemId;
+              targets.push({
+                pageIndex: pageIndex,
+                problemId: subProblemId,
+                nodeId: sectionNodeId,
+                prompt: sectionPrompt + (sortedPages.length > 1 ? ' (Page ' + (subIdx + 1) + ')' : '')
+              });
+            });
+          });
+
+          // Sort all discovered exercise targets by page index
+          targets.sort(function(a, b) { return a.pageIndex - b.pageIndex; });
+          return targets;
+        }
+
+        // Auto-show submit button in bottom bar if exercise sections are present
+        const exerciseTargets = findExerciseTargets();
+        const submitBtn = document.getElementById('eink-submit-btn') || document.querySelector('.eink-bar-submit');
+        if (submitBtn && (exerciseTargets.length > 0 || document.querySelector('.exercise-section, .primer-exercise, .primer-capture'))) {
+          submitBtn.classList.add('is-visible');
+        }
+
+        document.addEventListener('click', function(e) {
+          const btn = e.target.closest('[data-primer-action="submit"], .eink-bar-submit, .primer-submit-btn');
+          if (!btn) return;
+
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (btn.disabled || btn.classList.contains('is-submitting') || btn.classList.contains('is-submitted')) return;
+
+          btn.disabled = true;
+          btn.classList.add('is-submitting');
+          btn.setAttribute('title', 'Saving & Submitting Exercises...');
+
+          const targets = findExerciseTargets();
+          const nextUrl = btn.dataset.nextUrl || btn.getAttribute('href') || '../index.html';
+          const metadata = {
+            uuid: document.querySelector('meta[name="primer-uuid"]')?.content || '',
+            intervention_id: document.querySelector('meta[name="primer-intervention-id"]')?.content || '',
+            is_intervention: document.querySelector('meta[name="primer-is-intervention"]')?.content === 'true' || !!document.querySelector('meta[name="primer-intervention-id"]')?.content,
+            key_path: document.querySelector('meta[name="primer-key-path"]')?.content || '',
+            week: document.querySelector('meta[name="primer-week"]')?.content || '',
+            day: document.querySelector('meta[name="primer-day"]')?.content || '',
+            title: document.title || '',
+            submittedAt: new Date().toISOString()
+          };
+
+          console.log('[PrimerReader] Bottom-bar submit button clicked. Target exercises:', targets, 'Metadata:', metadata);
+
+          function showSubmissionConfirmation(bundleId, totalPages, attemptedPages, msg) {
+            btn.classList.remove('is-submitting');
+            btn.classList.add('is-submitted');
+            btn.disabled = true;
+            btn.setAttribute('title', 'Exercises Submitted Successfully');
+            // Swap Upward Arrow to Check Mark SVG
+            btn.innerHTML = `
+              <svg class="eink-icon eink-submit-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            `;
+          }
+
+          // Global bridge callback hooks
+          window.onPrimerStagingComplete = function(bundleId, totalPages, attemptedPages, msg) {
+            showSubmissionConfirmation(bundleId, totalPages, attemptedPages, msg);
+          };
+          window.PrimerCallbacks = window.PrimerCallbacks || {};
+          window.PrimerCallbacks.onStagedCaptureComplete = window.onPrimerStagingComplete;
+
+          window.onUploadFailure = function(errorMsg) {
+            console.error('[PrimerReader] Submission Staging Error:', errorMsg);
+            btn.disabled = false;
+            btn.classList.remove('is-submitting');
+            btn.setAttribute('title', 'Submission Error. Click to retry.');
+            btn.innerHTML = `
+              <svg class="eink-icon eink-submit-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+              </svg>
+            `;
+          };
+
+          if (window.AndroidBridge && typeof window.AndroidBridge.requestStagedCapture === 'function') {
+            try {
+              window.AndroidBridge.requestStagedCapture(
+                nextUrl,
+                JSON.stringify(targets),
+                JSON.stringify(metadata)
+              );
+            } catch (err) {
+              console.error('AndroidBridge.requestStagedCapture call failed:', err);
+              btn.disabled = false;
+              btn.classList.remove('is-submitting');
+              btn.setAttribute('title', 'Complete & Submit Exercises');
+            }
+          } else if (window.AndroidBridge && typeof window.AndroidBridge.captureAndUpload === 'function') {
+            window.AndroidBridge.captureAndUpload(JSON.stringify(metadata));
+          } else {
+            // Browser / local preview fallback
+            setTimeout(function() {
+              showSubmissionConfirmation('browser_preview', targets.length, targets.length);
+            }, 600);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

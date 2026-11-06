@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5eedc"/>
+      <stop offset="50%" stop-color="#e8dfc8"/>
+      <stop offset="100%" stop-color="#dccfba"/>
+    </linearGradient>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#c5a059" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bgGrad)"/>
+  <rect width="600" height="400" fill="url(#grid)"/>
+  
+  <!-- Outer Gold Border -->
+  <rect x="15" y="15" width="570" height="370" fill="none" stroke="#c5a059" stroke-width="2"/>
+  <rect x="22" y="22" width="556" height="356" fill="none" stroke="#7a1c1c" stroke-width="1" stroke-dasharray="4,4"/>
+  
+  <!-- Corner Filigrees -->
+  <path d="M 15 35 L 35 15 M 15 25 L 25 15" stroke="#c5a059" stroke-width="2"/>
+  <path d="M 585 35 L 565 15 M 585 25 L 575 15" stroke="#c5a059" stroke-width="2"/>
+  <path d="M 15 365 L 35 385 M 15 375 L 25 385" stroke="#c5a059" stroke-width="2"/>
+  <path d="M 585 365 L 565 385 M 585 375 L 575 385" stroke="#c5a059" stroke-width="2"/>
+
+  <!-- Central Ornament Emblem -->
+  <g transform="translate(300, 170)">
+    <circle r="65" fill="#7a1c1c" opacity="0.08"/>
+    <circle r="60" fill="none" stroke="#c5a059" stroke-width="2"/>
+    <circle r="52" fill="none" stroke="#7a1c1c" stroke-width="1"/>
+    <!-- Victorian Book & Star Icon -->
+    <path d="M -25 -10 Q 0 -20 25 -10 L 25 20 Q 0 10 -25 20 Z" fill="none" stroke="#7a1c1c" stroke-width="2"/>
+    <path d="M 0 -15 L 0 15" stroke="#7a1c1c" stroke-width="1.5"/>
+    <polygon points="0,-35 4,-25 14,-25 6,-19 9,-9 0,-15 -9,-9 -6,-19 -14,-25 -4,-25" fill="#c5a059"/>
+  </g>
+
+  <!-- Typography Text -->
+  <text x="300" y="70" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#7a1c1c" letter-spacing="3">PLATE I</text>
+  <line x1="200" y1="82" x2="400" y2="82" stroke="#c5a059" stroke-width="1"/>
+  
+  <text x="300" y="280" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-style="italic" fill="#2b1f17">Dilly thoughtfully examines a gleaming brass key and textured velvet cushion, wh...</text>
+  <text x="300" y="330" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#5c4a3e">❖ The Primer Neo-Victorian Compendium ❖</text>
+</svg>
