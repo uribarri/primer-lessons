@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Sunken Sapphire Grotto — Sharky & Cloud Master Rational Numbers</title>
+  <!-- Google Fonts: Cormorant Garamond & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Neo-Victorian Paper & Typography Palette */
+    :root {
+      --bg-paper: #f9f5eb;
+      --bg-paper-dark: #f2ebd9;
+      --text-ink: #2b1f17;
+      --text-muted: #5c4a3e;
+      --border-gold: #c5a059;
+      --border-gold-light: #e6c88b;
+      --accent-burgundy: #7a1c1c;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #1a1410;
+      background-image: 
+        radial-gradient(circle at center, rgba(30, 20, 15, 0.4) 0%, rgba(10, 7, 5, 0.9) 100%),
+        linear-gradient(to bottom, #140d09, #241810, #140d09);
+      color: var(--text-ink);
+      font-family: var(--font-body);
+      font-size: 21px;
+      line-height: 1.85;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+    }
+
+    /* Book Page Container */
+    .book-page {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--bg-paper);
+      background-image: radial-gradient(#e8dfc8 1px, transparent 1px);
+      background-size: 24px 24px;
+      border: 1px solid var(--border-gold);
+      box-shadow: 
+        0 0 0 12px #261b14,
+        0 0 0 14px var(--border-gold),
+        0 25px 60px rgba(0, 0, 0, 0.85);
+      padding: 4rem 4.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .book-page {
+        padding: 2.5rem 1.8rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      }
+      body {
+        padding: 1rem 0.5rem;
+        font-size: 19px;
+      }
+    }
+
+    /* Ornate Filigree Corner Accents */
+    .corner-flourish {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    /* Header & Title Block */
+    .book-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      position: relative;
+    }
+
+    .header-tag {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 600;
+    }
+
+    h1.book-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.8rem;
+    }
+
+    .book-subtitle {
+      font-style: italic;
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Victorian Decorative Rule */
+    .flourish-divider {
+      text-align: center;
+      margin: 2.5rem 0;
+      color: var(--border-gold);
+      font-size: 1.5rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* Chapter Formatting */
+    .chapter {
+      margin-bottom: 3.5rem;
+    }
+
+    .chapter-heading {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-burgundy);
+      text-align: center;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px dashed var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Paragraphs & Drop Caps */
+    p.story-paragraph {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+      text-indent: 2em;
+    }
+
+    p.story-paragraph.first-para {
+      text-indent: 0;
+    }
+
+    p.story-paragraph.first-para::first-letter {
+      font-family: var(--font-heading);
+      font-size: 3.8em;
+      float: left;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+    }
+
+    /* Math Vocabulary & Concept Highlight Styling */
+    .vocab {
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    /* Key Equation / Math Box */
+    .math-callout {
+      background: var(--bg-paper-dark);
+      border-left: 4px solid var(--accent-burgundy);
+      border-right: 1px solid var(--border-gold-light);
+      border-top: 1px solid var(--border-gold-light);
+      border-bottom: 1px solid var(--border-gold-light);
+      padding: 1.2rem 1.6rem;
+      margin: 2rem 0;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      color: var(--text-ink);
+      text-align: center;
+    }
+
+    /* Book Plate Illustrations */
+    .book-plate {
+      margin: 3rem 0;
+      text-align: center;
+      background: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      padding: 1rem;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .book-plate img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #d4c5a9;
+      margin: 0 auto;
+    }
+
+    .plate-caption {
+      margin-top: 0.9rem;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .plate-number {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+
+    /* Book Footer */
+    .book-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-gold-light);
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="book-page">
+    
+    <!-- Filigree Corners -->
+    <div class="corner-flourish corner-tl"></div>
+    <div class="corner-flourish corner-tr"></div>
+    <div class="corner-flourish corner-bl"></div>
+    <div class="corner-flourish corner-br"></div>
+
+    <!-- Title Block -->
+    <header class="book-header">
+      <span class="header-tag">Derived from: curriculum/math/Math.html (Week 1, Day 1 — pp. 68–71)</span>
+      <h1 class="book-title">The Sunken Sapphire Grotto</h1>
+      <p class="book-subtitle">Being a Whole & Wholesome Tale of Sharky & Cloud Mastering the Order of Rational Numbers</p>
+    </header>
+
+    <!-- Chapter I -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter I — The Vault of Depth & The Magnitude Misconception</h2>
+      
+      <p class="story-paragraph first-para">
+        Deep beneath the gentle turquoise surface of the sapphire cove, where sunbeams dappled through towering forests of golden kelp, Sharky swam with steady, purposeful strokes. Beside him drifted his devoted young companion, Cloud. Sharky, a brave explorer fashioned from grey knit fabric with stitched felt teeth, kept a watchful eye upon Cloud, whose soft tan fur swayed gently in the current. Around Cloud's neck rested his cherished necklace cord with a small turquoise pendant, catching the dim emerald light of the sea floor.
+      </p>
+
+      <p class="story-paragraph">
+        They had arrived at the ancient threshold of the Sunken Sapphire Grotto. Their noble quest was to activate the Great Trench Fountain, a giant submarine crystal engine that circulated oxygen and vital warmth to all the sea creatures in the abyss. However, guarding the entrance was a massive iron vault door set with intricate brass gears and a glowing vertical depth gauge.
+      </p>
+
+      <p class="story-paragraph">
+        "Look, Sharky!" exclaimed Cloud, gesturing eagerly toward four heavy stone tablets sitting in brass pedestals beside the door. "The inscription says we must arrange these four <span class="vocab">rational numbers</span> in order from <span class="vocab">least to greatest</span> to unlock the first gate valve!"
+      </p>
+
+      <p class="story-paragraph">
+        The four brass tablets were carved with the values: <strong>−8.5</strong>, <strong>−3.2</strong>, <strong>−1.0</strong>, and <strong>+2.4</strong>.
+      </p>
+
+      <p class="story-paragraph">
+        Eager to prove his skill, Cloud stepped forward. "I know how to count!" Cloud declared proudly. "The number 8.5 is the largest digit here, so −8.5 must be the greatest value of all! And 1.0 is small, so −1.0 must be the smallest negative number." With enthusiastic haste, Cloud arranged the stones from left to right as: 
+        <em>−1.0, &nbsp; −3.2, &nbsp; −8.5, &nbsp; +2.4</em>.
+      </p>
+
+      <p class="story-paragraph">
+        Cloud pulled the heavy brass lever. Instantly, a loud, metallic clatter echoed through the grotto! Red steam whistled from the relief valves, and the heavy vault door shuddered violently, locking even tighter than before. Cloud gasped, pulling back in dismay, wide with confusion.
+      </p>
+
+      <div class="math-callout">
+        <strong>Misconception Alert:</strong> Cloud confused <em>absolute magnitude</em> with <em>actual value</em>!<br>
+        On a <span class="vocab">number line</span>, numbers further to the left (or deeper below zero) are always <strong>lesser</strong> in value.
+      </div>
+
+      <p class="story-paragraph">
+        Sharky placed a reassuring knit flipper on Cloud's shoulder. "Do not be discouraged, my friend," Sharky said warmly. "You fell into a very common trap! You looked at the magnitude of 8.5 and forgot what the negative sign means in the deep sea."
+      </p>
+
+      <p class="story-paragraph">
+        Sharky pointed to the vertical depth gauge etched onto the door frame. "Think of sea level as zero (<strong>0</strong>). As you climb upward into the air, positive numbers get larger: +1, +2, +3 fathoms. But as you dive deeper into the dark trench, negative numbers measure distance <em>below</em> sea level. A depth of <strong>−8.5 fathoms</strong> is much deeper, colder, and further below zero than a depth of <strong>−3.2 fathoms</strong>!"
+      </p>
+
+      <!-- Plate I -->
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/sharky_cloud_grotto_lock.jpg" alt="Plate I: Photorealistic macro photograph of Sharky and Cloud examining the depth scale lock at the Sunken Sapphire Grotto">
+        <figcaption class="plate-caption">
+          <span class="plate-number">Plate I</span>
+          Sharky demonstrates the vertical number line upon the grotto vault, guiding Cloud to see that deeper negative depths represent smaller values.
+        </figcaption>
+      </figure>
+
+      <p class="story-paragraph">
+        Cloud peered closely at the depth gauge. "Aha!" Cloud gasped, illuminating with sudden comprehension. "Because −8.5 is furthest down the scale to the left of zero, it has the <em>least</em> value! The further left a number sits upon the <span class="vocab">number line</span>, the smaller it is!"
+      </p>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter II -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter II — The Fraction Trap & The Triad of Triumphs</h2>
+      
+      <p class="story-paragraph first-para">
+        Encouraged by Sharky's guidance, Cloud rearranged the first set of stones. He placed <strong>−8.5</strong> first (the smallest), followed by <strong>−3.2</strong>, then <strong>−1.0</strong>, and finally the positive value <strong>+2.4</strong> (the greatest):
+      </p>
+
+      <div class="math-callout">
+        <strong>First Gate Alignment:</strong> &nbsp; −8.5 &nbsp; &lt; &nbsp; −3.2 &nbsp; &lt; &nbsp; −1.0 &nbsp; &lt; &nbsp; +2.4
+      </div>
+
+      <p class="story-paragraph">
+        Cloud pulled the lever once more. With a heavy, satisfying <em>CLANG</em>, the first pressure seal released, and the vault door slid open to reveal the inner chamber of the grotto!
+      </p>
+
+      <p class="story-paragraph">
+        However, to activate the main current turbine, two more chamber locks remained. The second gate presented five mixed stone dials containing both negative decimals and negative fractions: 
+        <strong>−4.75</strong>, &nbsp; <strong>−4½</strong>, &nbsp; <strong>−1.25</strong>, &nbsp; <strong>+0.5</strong>, &nbsp; and &nbsp; <strong>+3¼</strong>.
+      </p>
+
+      <p class="story-paragraph">
+        Cloud paused thoughtfully. "Here are negative fractions and decimals mixed together! First, I must convert them into a common form. I know that <strong>½</strong> equals <strong>0.50</strong>, so <strong>−4½</strong> is equal to <strong>−4.50</strong>."
+      </p>
+
+      <p class="story-paragraph">
+        Now Cloud compared <strong>−4.75</strong> and <strong>−4.50</strong>. For a fleeting moment, Cloud hesitated, almost falling into a second misconception by thinking −4.50 was smaller because 4.50 is less than 4.75. But he quickly visualized his number line!
+      </p>
+
+      <p class="story-paragraph">
+        "Wait!" Cloud whispered to himself. "On the negative side of zero, −4.75 lies further to the left than −4.50! That means <strong>−4.75</strong> is less than <strong>−4.50</strong>!"
+      </p>
+
+      <p class="story-paragraph">
+        Confidently, Cloud aligned the second set of stones from least to greatest:
+        <em>−4.75 &nbsp; &lt; &nbsp; −4½ (−4.5) &nbsp; &lt; &nbsp; −1.25 &nbsp; &lt; &nbsp; +0.5 &nbsp; &lt; &nbsp; +3¼ (+3.25)</em>.
+      </p>
+
+      <p class="story-paragraph">
+        <em>CHIME!</em> Golden sparks danced through the crystal water as the second lock clicked open with smooth perfection!
+      </p>
+
+      <p class="story-paragraph">
+        Now only the final Master Vault remained. To restore the Great Trench Fountain, Sharky and Cloud faced the ultimate challenge—a ring of six complex rational numbers:
+        <strong>−6.8</strong>, &nbsp; <strong>−6¾</strong>, &nbsp; <strong>−2.5</strong>, &nbsp; <strong>−½</strong>, &nbsp; <strong>0</strong>, &nbsp; and &nbsp; <strong>+1.75</strong>.
+      </p>
+
+      <p class="story-paragraph">
+        Sharky watched with pride as Cloud systematically tackled each number. Cloud converted <strong>−6¾</strong> to <strong>−6.75</strong> and <strong>−½</strong> to <strong>−0.50</strong>. He reasoned through their exact positions on the number line:
+      </p>
+
+      <p class="story-paragraph">
+        1. <strong>−6.80</strong> is furthest to the left (deepest), so it is the absolute least.<br>
+        2. <strong>−6.75</strong> (which is −6¾) comes next, just to the right of −6.80.<br>
+        3. <strong>−2.50</strong> follows in ascending order toward zero.<br>
+        4. <strong>−0.50</strong> (which is −½) is closest to zero on the negative side.<br>
+        5. <strong>0</strong> marks the neutral sea level balance.<br>
+        6. <strong>+1.75</strong> is positive, making it the greatest value of all!
+      </p>
+
+      <!-- Plate II -->
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/sharky_cloud_success.jpg" alt="Plate II: Photorealistic macro photograph of Sharky and Cloud celebrating as the Sapphire Grotto crystal vault unlocks">
+        <figcaption class="plate-caption">
+          <span class="plate-number">Plate II</span>
+          With the rational number dials aligned in perfect ascending order, the glowing Sapphire Grotto vault opens, restoring the ocean currents.
+        </figcaption>
+      </figure>
+
+      <p class="story-paragraph">
+        With steady hands, Cloud set the six stone keys into the master wheel and turned the central golden valve. A triumphant hum vibrated through the grotto! The Great Trench Fountain burst into brilliant blue light, sending warm, oxygen-rich currents cascading through the ocean depths.
+      </p>
+
+      <p class="story-paragraph">
+        Sharky cheered, giving Cloud a joyful high-flipper. Cloud smiled brightly, glowing with accomplishment. He had not only unlocked the ancient grotto, but had forever mastered the art of ordering negative integers, fractions, and decimals upon the rational number line!
+      </p>
+
+      <div class="math-callout">
+        <strong>Summary of Mastered Rules:</strong><br>
+        1. A <span class="vocab">rational number</span> can be written as a fraction, integer, or decimal.<br>
+        2. On any number line, values increase from <strong>left to right</strong>.<br>
+        3. For negative numbers, the greater the distance from zero (magnitude), the <strong>smaller</strong> the actual value.<br>
+        4. To compare fractions and decimals, convert them to a common format first!
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="book-footer">
+      The Primer Educational Series &nbsp; • &nbsp; IXL 6th Grade Math Curriculum (Week 1, Day 1)
+    </footer>
+
+  </article>
+
+</body>
+</html>

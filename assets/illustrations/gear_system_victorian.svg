@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 330" width="420" height="330">
+  <defs>
+    <linearGradient id="parchment-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdfbf7"/>
+      <stop offset="100%" stop-color="#f2e8d5"/>
+    </linearGradient>
+    <pattern id="woodcut-crosshatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#1c1917" stroke-width="1.2"/>
+      <line x1="0" y1="0" x2="8" y2="0" stroke="#1c1917" stroke-width="0.8"/>
+    </pattern>
+    <pattern id="woodcut-hatch-light" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#292524" stroke-width="1.0"/>
+    </pattern>
+    <pattern id="water-etching" width="6" height="6" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="3" x2="6" y2="3" stroke="#1c1917" stroke-width="1.2"/>
+    </pattern>
+  </defs>
+  <!-- Background Parchment -->
+  <rect width="420" height="330" fill="url(#parchment-grad)"/>
+  <!-- Double Engraved Border Frame -->
+  <rect x="8" y="8" width="404" height="314" fill="none" stroke="#1c1917" stroke-width="2.5"/>
+  <rect x="13" y="13" width="394" height="304" fill="none" stroke="#1c1917" stroke-width="0.8"/>
+  <!-- Header Title -->
+  <text x="24" y="38" fill="#1c1917" font-family="'Georgia', 'Times New Roman', serif" font-size="17" font-weight="bold" letter-spacing="1">
+    GEAR SYSTEM
+  </text>
+  <text x="24" y="54" fill="#57534e" font-family="'Georgia', 'Times New Roman', serif" font-size="11" font-style="italic">
+    Fig. 1 — Deterministic Mechanical Engraving
+  </text>
+  <line x1="110.0" y1="140.0" x2="250.0" y2="140.0" stroke="#44403c" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <circle cx="130.00" cy="140.00" r="4" fill="#1c1917" stroke="#ffffff" stroke-width="1"/>
+  <!-- Gear: gear_driver -->
+  <g id="element-gear_driver">
+    <circle cx="110.0" cy="140.0" r="20.0" fill="none" stroke="#78716c" stroke-width="1" stroke-dasharray="2,2"/>
+    <path d="M 125.00 140.00 L 124.93 141.41 L 132.94 147.06 L 131.21 151.23 L 121.56 149.56 L 119.56 151.56 L 121.23 161.21 L 117.06 162.94 L 111.41 154.93 L 108.59 154.93 L 102.94 162.94 L 98.77 161.21 L 100.44 151.56 L 98.44 149.56 L 88.79 151.23 L 87.06 147.06 L 95.07 141.41 L 95.07 138.59 L 87.06 132.94 L 88.79 128.77 L 98.44 130.44 L 100.44 128.44 L 98.77 118.79 L 102.94 117.06 L 108.59 125.07 L 111.41 125.07 L 117.06 117.06 L 121.23 118.79 L 119.56 128.44 L 121.56 130.44 L 131.21 128.77 L 132.94 132.94 L 124.93 138.59 Z" fill="url(#woodcut-crosshatch)" stroke="#1c1917" stroke-width="2.2" stroke-linejoin="round"/>
+    <circle cx="110.0" cy="140.0" r="6.0" fill="#fdfbf7" stroke="#1c1917" stroke-width="2"/>
+    <circle cx="110.0" cy="140.0" r="3" fill="#1c1917"/>
+    <text x="110.0" y="182.0" fill="#1c1917" font-family="'Georgia', 'Times New Roman', serif" font-size="13" font-weight="bold" text-anchor="middle">gear_driver</text>
+    <text x="110.0" y="196.0" fill="#57534e" font-family="'Georgia', 'Times New Roman', serif" font-size="11" font-style="italic" text-anchor="middle">8 teeth (r=20px)</text>
+  </g>
+  <!-- Gear: gear_driven -->
+  <g id="element-gear_driven">
+    <circle cx="250.0" cy="140.0" r="120.0" fill="none" stroke="#78716c" stroke-width="1" stroke-dasharray="2,2"/>
+    <path d="M 365.00 140.00 L 364.99 141.81 L 373.85 146.17 L 373.59 150.05 L 364.24 153.22 L 363.77 156.80 L 371.98 162.28 L 371.22 166.10 L 361.54 168.02 L 360.60 171.51 L 368.03 178.01 L 366.78 181.70 L 356.92 182.33 L 355.54 185.67 L 362.06 193.09 L 360.34 196.58 L 350.48 195.93 L 348.68 199.06 L 354.17 207.26 L 352.01 210.50 L 342.32 208.57 L 340.12 211.43 L 344.50 220.28 L 341.93 223.21 L 332.58 220.03 L 330.03 222.58 L 333.21 231.93 L 330.28 234.50 L 321.43 230.12 L 318.57 232.32 L 320.50 242.01 L 317.26 244.17 L 309.06 238.68 L 305.93 240.48 L 306.58 250.34 L 303.09 252.06 L 295.67 245.54 L 292.33 246.92 L 291.70 256.78 L 288.01 258.03 L 281.51 250.60 L 278.02 251.54 L 276.10 261.22 L 272.28 261.98 L 266.80 253.77 L 263.22 254.24 L 260.05 263.59 L 256.17 263.85 L 251.81 254.99 L 248.19 254.99 L 243.83 263.85 L 239.95 263.59 L 236.78 254.24 L 233.20 253.77 L 227.72 261.98 L 223.90 261.22 L 221.98 251.54 L 218.49 250.60 L 211.99 258.03 L 208.30 256.78 L 207.67 246.92 L 204.33 245.54 L 196.91 252.06 L 193.42 250.34 L 194.07 240.48 L 190.94 238.68 L 182.74 244.17 L 179.50 242.01 L 181.43 232.32 L 178.57 230.12 L 169.72 234.50 L 166.79 231.93 L 169.97 222.58 L 167.42 220.03 L 158.07 223.21 L 155.50 220.28 L 159.88 211.43 L 157.68 208.57 L 147.99 210.50 L 145.83 207.26 L 151.32 199.06 L 149.52 195.93 L 139.66 196.58 L 137.94 193.09 L 144.46 185.67 L 143.08 182.33 L 133.22 181.70 L 131.97 178.01 L 139.40 171.51 L 138.46 168.02 L 128.78 166.10 L 128.02 162.28 L 136.23 156.80 L 135.76 153.22 L 126.41 150.05 L 126.15 146.17 L 135.01 141.81 L 135.01 138.19 L 126.15 133.83 L 126.41 129.95 L 135.76 126.78 L 136.23 123.20 L 128.02 117.72 L 128.78 113.90 L 138.46 111.98 L 139.40 108.49 L 131.97 101.99 L 133.22 98.30 L 143.08 97.67 L 144.46 94.33 L 137.94 86.91 L 139.66 83.42 L 149.52 84.07 L 151.32 80.94 L 145.83 72.74 L 147.99 69.50 L 157.68 71.43 L 159.88 68.57 L 155.50 59.72 L 158.07 56.79 L 167.42 59.97 L 169.97 57.42 L 166.79 48.07 L 169.72 45.50 L 178.57 49.88 L 181.43 47.68 L 179.50 37.99 L 182.74 35.83 L 190.94 41.32 L 194.07 39.52 L 193.42 29.66 L 196.91 27.94 L 204.33 34.46 L 207.67 33.08 L 208.30 23.22 L 211.99 21.97 L 218.49 29.40 L 221.98 28.46 L 223.90 18.78 L 227.72 18.02 L 233.20 26.23 L 236.78 25.76 L 239.95 16.41 L 243.83 16.15 L 248.19 25.01 L 251.81 25.01 L 256.17 16.15 L 260.05 16.41 L 263.22 25.76 L 266.80 26.23 L 272.28 18.02 L 276.10 18.78 L 278.02 28.46 L 281.51 29.40 L 288.01 21.97 L 291.70 23.22 L 292.33 33.08 L 295.67 34.46 L 303.09 27.94 L 306.58 29.66 L 305.93 39.52 L 309.06 41.32 L 317.26 35.83 L 320.50 37.99 L 318.57 47.68 L 321.43 49.88 L 330.28 45.50 L 333.21 48.07 L 330.03 57.42 L 332.58 59.97 L 341.93 56.79 L 344.50 59.72 L 340.12 68.57 L 342.32 71.43 L 352.01 69.50 L 354.17 72.74 L 348.68 80.94 L 350.48 84.07 L 360.34 83.42 L 362.06 86.91 L 355.54 94.33 L 356.92 97.67 L 366.78 98.30 L 368.03 101.99 L 360.60 108.49 L 361.54 111.98 L 371.22 113.90 L 371.98 117.72 L 363.77 123.20 L 364.24 126.78 L 373.59 129.95 L 373.85 133.83 L 364.99 138.19 Z" fill="url(#woodcut-crosshatch)" stroke="#1c1917" stroke-width="2.2" stroke-linejoin="round"/>
+    <circle cx="250.0" cy="140.0" r="36.0" fill="#fdfbf7" stroke="#1c1917" stroke-width="2"/>
+    <circle cx="250.0" cy="140.0" r="3" fill="#1c1917"/>
+    <circle cx="334.0" cy="140.0" r="14.4" fill="#fdfbf7" stroke="#1c1917" stroke-width="1.2"/>
+    <circle cx="292.0" cy="212.7" r="14.4" fill="#fdfbf7" stroke="#1c1917" stroke-width="1.2"/>
+    <circle cx="208.0" cy="212.7" r="14.4" fill="#fdfbf7" stroke="#1c1917" stroke-width="1.2"/>
+    <circle cx="166.0" cy="140.0" r="14.4" fill="#fdfbf7" stroke="#1c1917" stroke-width="1.2"/>
+    <circle cx="208.0" cy="67.3" r="14.4" fill="#fdfbf7" stroke="#1c1917" stroke-width="1.2"/>
+    <circle cx="292.0" cy="67.3" r="14.4" fill="#fdfbf7" stroke="#1c1917" stroke-width="1.2"/>
+    <text x="250.0" y="282.0" fill="#1c1917" font-family="'Georgia', 'Times New Roman', serif" font-size="13" font-weight="bold" text-anchor="middle">gear_driven</text>
+    <text x="250.0" y="296.0" fill="#57534e" font-family="'Georgia', 'Times New Roman', serif" font-size="11" font-style="italic" text-anchor="middle">48 teeth (r=120px)</text>
+  </g>
+</svg>

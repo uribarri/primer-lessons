@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Library of Rama Lama — The Owl & The Pussy-Cat</title>
+  <!-- Google Fonts: Cormorant Garamond & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Victorian Paper & Typography Palette */
+    :root {
+      --bg-paper: #f9f5eb;
+      --bg-paper-dark: #f2ebd9;
+      --text-ink: #2b1f17;
+      --text-muted: #5c4a3e;
+      --border-gold: #c5a059;
+      --border-gold-light: #e6c88b;
+      --accent-burgundy: #7a1c1c;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #1a1410;
+      background-image: 
+        radial-gradient(circle at center, rgba(30, 20, 15, 0.4) 0%, rgba(10, 7, 5, 0.9) 100%),
+        linear-gradient(to bottom, #140d09, #241810, #140d09);
+      color: var(--text-ink);
+      font-family: var(--font-body);
+      font-size: 21px;
+      line-height: 1.85;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+    }
+
+    /* Book Page Container */
+    .book-page {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--bg-paper);
+      background-image: radial-gradient(#e8dfc8 1px, transparent 1px);
+      background-size: 24px 24px;
+      border: 1px solid var(--border-gold);
+      box-shadow: 
+        0 0 0 12px #261b14,
+        0 0 0 14px var(--border-gold),
+        0 25px 60px rgba(0, 0, 0, 0.85);
+      padding: 4rem 4.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .book-page {
+        padding: 2.5rem 1.8rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      }
+      body {
+        padding: 1rem 0.5rem;
+        font-size: 19px;
+      }
+    }
+
+    /* Ornate Filigree Corner Accents */
+    .corner-flourish {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    /* Header & Title Block */
+    .book-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      position: relative;
+    }
+
+    .header-tag {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 600;
+    }
+
+    h1.book-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.8rem;
+    }
+
+    .book-subtitle {
+      font-style: italic;
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Victorian Decorative Rule */
+    .flourish-divider {
+      text-align: center;
+      margin: 2.5rem 0;
+      color: var(--border-gold);
+      font-size: 1.5rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* Chapter Formatting */
+    .chapter {
+      margin-bottom: 3.5rem;
+    }
+
+    .chapter-heading {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-burgundy);
+      text-align: center;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px dashed var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Paragraphs & Drop Caps */
+    p.story-paragraph {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+      text-indent: 2em;
+    }
+
+    p.story-paragraph.first-para {
+      text-indent: 0;
+    }
+
+    p.story-paragraph.first-para::first-letter {
+      font-family: var(--font-heading);
+      font-size: 3.8em;
+      float: left;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+    }
+
+    /* Dialogue & Character Voice Styling */
+    .dialogue {
+      font-style: normal;
+    }
+
+    .reflection-point {
+      margin: 1.8rem 0;
+      padding: 1.2rem 1.8rem;
+      background-color: var(--bg-paper-dark);
+      border-left: 4px solid var(--accent-burgundy);
+      border-top: 1px solid var(--border-gold-light);
+      border-right: 1px solid var(--border-gold-light);
+      border-bottom: 1px solid var(--border-gold-light);
+    }
+
+    .reflection-point h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--accent-burgundy);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .reflection-point p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-ink);
+      text-indent: 0;
+      margin-bottom: 0;
+    }
+
+    /* Poem Presentation Container */
+    .poem-box {
+      margin: 2.5rem 0;
+      padding: 2.5rem 2rem;
+      background: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      box-shadow: inset 0 0 20px rgba(122, 28, 28, 0.05);
+      position: relative;
+    }
+
+    .poem-box-header {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--accent-burgundy);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.08em;
+    }
+
+    .poem-author {
+      text-align: center;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      padding-bottom: 1rem;
+    }
+
+    .poem-stanza {
+      margin-bottom: 2rem;
+      padding-left: 10%;
+    }
+
+    .poem-stanza:last-child {
+      margin-bottom: 0;
+    }
+
+    .poem-stanza-num {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.1em;
+      text-align: left;
+    }
+
+    .poem-line {
+      margin-bottom: 0.3rem;
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+
+    .poem-line.indent {
+      padding-left: 2rem;
+    }
+
+    .poem-line.indent-extra {
+      padding-left: 4rem;
+      font-style: italic;
+    }
+
+    /* Book Plate Illustrations */
+    .book-plate {
+      margin: 3rem 0;
+      text-align: center;
+      background: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      padding: 1rem;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .book-plate img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #d4c5a9;
+      margin: 0 auto;
+    }
+
+    .plate-caption {
+      margin-top: 0.9rem;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .plate-number {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+
+    /* Book Footer */
+    .book-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-gold-light);
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="book-page">
+    
+    <!-- Filigree Corners -->
+    <div class="corner-flourish corner-tl"></div>
+    <div class="corner-flourish corner-tr"></div>
+    <div class="corner-flourish corner-bl"></div>
+    <div class="corner-flourish corner-br"></div>
+
+    <!-- Title Block -->
+    <header class="book-header">
+      <span class="header-tag">Derived from: curriculum/spelling/Language Arts - Detailed.html (Week 1)</span>
+      <h1 class="book-title">The Library of Rama Lama</h1>
+      <p class="book-subtitle">Being a Hearthside Gathering & Recitation of Mr. Edward Lear's "The Owl and the Pussy-Cat"</p>
+    </header>
+
+    <!-- Chapter I -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter I — The Hearthside Welcome</h2>
+      
+      <p class="story-paragraph first-para">
+        Outside the tall arched windows of the grand sanctuary, a soft autumn drizzle tapped gently against the leaded glass. Inside, however, the atmosphere was bathed in golden warmth. High wooden shelves of carved mahogany stretched all the way to the vaulted ceiling, filled to overflowing with ancient volumes, stitched maps, and gild-edged manuscripts. The air smelled delightfully of aged parchment, beeswax candles, and sweet mountain cedar.
+      </p>
+
+      <p class="story-paragraph">
+        Near the crackling fireplace sat Rama Lama in his cushioned armchair. His dark brown curly wool looked soft and inviting in the firelight, his distinctive curved cream horns swept back with noble quietude, and the single turquoise bead of his cord necklace glimmered like a calm star upon his chest. Hearing a footstep at the heavy oak doorway, he looked up, his dark eyes brimming with gentle warmth.
+      </p>
+
+      <p class="story-paragraph dialogue">
+        "Ah, welcome, my young friend!" Rama Lama said softly, rising to offer a courteous bow. "Please, step inside out of the damp air and draw your chair close to the hearth. You have arrived at a most opportune moment. I was just retrieving one of my very favorite volumes from the poetry alcove."
+      </p>
+
+      <p class="story-paragraph">
+        He held up a handsome, gold-embossed book bound in emerald cloth. "Poetry," Rama Lama observed thoughtfully as he settled back into his armchair, "is a quiet kind of magic. While prose explains the world to our minds, a poem speaks directly to the imagination. It brings us rhythm, music, and gentle wonder. Today, I should like to read to you a famous poem that never fails to bring joy to my heart: <em>The Owl and the Pussy-Cat</em>, written by Mr. Edward Lear."
+      </p>
+
+      <!-- Plate I -->
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/rama_lama_library.jpg" alt="Plate I: Rama Lama seated comfortably in his Neo-Victorian library holding an open leather-bound book">
+        <figcaption class="plate-caption">
+          <span class="plate-number">Plate I</span>
+          Rama Lama welcomes the reader into his cozy library sanctuary, preparing to share a cherished volume of classic verse by the warm hearthlight.
+        </figcaption>
+      </figure>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter II -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter II — The Recitation of the Verse</h2>
+      
+      <p class="story-paragraph first-para">
+        Rama Lama smoothed the pages of the emerald volume with great care. He adjusted his posture, took a quiet breath, and began to read aloud in his deep, soothing, and melodious voice:
+      </p>
+
+      <!-- Full Poem Box -->
+      <div class="poem-box">
+        <h3 class="poem-box-header">The Owl and the Pussy-Cat</h3>
+        <p class="poem-author">By Edward Lear</p>
+
+        <div class="poem-stanza">
+          <div class="poem-stanza-num">I</div>
+          <p class="poem-line">The Owl and the Pussy-cat went to sea</p>
+          <p class="poem-line indent">In a beautiful pea-green boat;</p>
+          <p class="poem-line">They took some honey, and plenty of money</p>
+          <p class="poem-line indent">Wrapped up in a five-pound note.</p>
+          <p class="poem-line">The Owl looked up to the moon above,</p>
+          <p class="poem-line indent">And sang to a small guitar,</p>
+          <p class="poem-line">"O lovely Pussy! O Pussy, my love!</p>
+          <p class="poem-line indent">What a beautiful Pussy you are,—</p>
+          <p class="poem-line indent-extra">You are,</p>
+          <p class="poem-line indent">What a beautiful Pussy you are!"</p>
+        </div>
+
+        <div class="poem-stanza">
+          <div class="poem-stanza-num">II</div>
+          <p class="poem-line">Pussy said to the Owl, "You elegant fowl!</p>
+          <p class="poem-line indent">How wonderful sweet you sing!</p>
+          <p class="poem-line">Oh, let us be married,—too long we have tarried,—</p>
+          <p class="poem-line indent">But what shall we do for a ring?"</p>
+          <p class="poem-line">They sailed away for a year and a day</p>
+          <p class="poem-line indent">To the land where the Bong-tree grows,</p>
+          <p class="poem-line">And there in a wood a piggy-wig stood</p>
+          <p class="poem-line indent">With a ring in the end of his nose,—</p>
+          <p class="poem-line indent-extra">His nose,</p>
+          <p class="poem-line indent">With a ring in the end of his nose.</p>
+        </div>
+
+        <div class="poem-stanza">
+          <div class="poem-stanza-num">III</div>
+          <p class="poem-line">"Dear Pig, are you willing to sell for one shilling</p>
+          <p class="poem-line indent">Your ring?" Said the piggy, "I will."</p>
+          <p class="poem-line">So they took it away, and were married next day</p>
+          <p class="poem-line indent">By the turkey who lives on the hill.</p>
+          <p class="poem-line">They dined upon mince and slices of quince,</p>
+          <p class="poem-line indent">Which they ate with a runcible spoon,</p>
+          <p class="poem-line">And hand in hand on the edge of the sand</p>
+          <p class="poem-line indent">They danced by the light of the moon,—</p>
+          <p class="poem-line indent-extra">The moon,</p>
+          <p class="poem-line indent">They danced by the light of the moon.</p>
+        </div>
+      </div>
+
+      <!-- Plate II -->
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/owl_and_pussycat_sea.jpg" alt="Plate II: The Owl playing guitar and the Pussy-Cat sailing together in a pea-green boat under the starry sky">
+        <figcaption class="plate-caption">
+          <span class="plate-number">Plate II</span>
+          The Owl and the Pussy-Cat set sail across the tranquil moonlit sea in their pea-green boat, serenading the stars with a small guitar.
+        </figcaption>
+      </figure>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter III -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter III — Rama Lama's Reflections</h2>
+      
+      <p class="story-paragraph first-para">
+        As the final words echoed softly in the quiet room, Rama Lama gently rested the open book upon his lap. He looked into the glowing embers of the fireplace, a warm and peaceful smile resting upon his face.
+      </p>
+
+      <p class="story-paragraph dialogue">
+        "Ah," Rama Lama murmured softly, turnings his dark, expressive eyes back to the reader. "Every time I hear those lines, I feel as though a refreshing ocean breeze has swept into the library. Do you know why I enjoy this poem so very much? Allow me to share three reasons."
+      </p>
+
+      <div class="reflection-point">
+        <h3>1. The Harmony of Unlikely Friends</h3>
+        <p>
+          "Consider who has set sail together! An Owl, belonging to the night sky, and a Cat, belonging to the green earth. In the ordinary world, one might expect them to remain distant strangers. Yet here, they share their honey, sing to one another under the stars, and embark on a grand journey in complete trust. It reminds me that true affection and friendship do not depend on coming from the same place or being alike. When hearts are gentle, even the most different creatures can build a home of joy together."
+        </p>
+      </div>
+
+      <div class="reflection-point">
+        <h3>2. The Playful Music of Language</h3>
+        <p>
+          "Notice how Mr. Lear plays with words! Words like <em>runcible spoon</em> or the <em>Bong-tree</em> are not found in heavy dictionaries, yet they feel completely right in our imagination. The poem bounces with rhythm, like a merry tune played on a small guitar. It teaches us that language is not merely for exchanging facts; it can be used to play, to sing, and to bring lighthearted delight to our spirit."
+        </p>
+      </div>
+
+      <div class="reflection-point">
+        <h3>3. The Courage to Voyage Together</h3>
+        <p>
+          "Lastly, I admire their cheerful courage. They did not hesitate to sail away for a year and a day into the unknown. They brought what little they had—a bit of honey, a five-pound note, a guitar, and their devotion to one another—and they found happiness waiting for them on the distant sand. It reassures us that when we face new horizons with goodwill, kindness, and music, we will always find our way to dance by the light of the moon."
+        </p>
+      </div>
+
+      <p class="story-paragraph dialogue" style="margin-top: 2rem;">
+        "Thank you for sharing this quiet hour with me," Rama Lama said gently, closing the emerald volume with a satisfying click. "Whenever the world outside feels a little too hurried, remember that you may always step into your imagination—or return here to my library—and set sail in a pea-green boat of your own."
+      </p>
+    </section>
+
+    <!-- Book Footer -->
+    <footer class="book-footer">
+      <p>THE PRIMER COMPENDIUM OF LITERATURE • LESSON I</p>
+      <p style="margin-top: 0.3rem; font-size: 0.8rem; font-style: italic;">Printed & Formatted in Neo-Victorian Style for Young Scholars</p>
+    </footer>
+
+  </article>
+
+</body>
+</html>

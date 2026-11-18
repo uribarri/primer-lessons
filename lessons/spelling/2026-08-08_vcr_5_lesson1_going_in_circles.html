@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Great Circular Adventure — A Tale of the Five Playful Friends</title>
+  <!-- Google Fonts: Cormorant Garamond & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Victorian Paper & Typography Palette */
+    :root {
+      --bg-paper: #f9f5eb;
+      --bg-paper-dark: #f2ebd9;
+      --text-ink: #2b1f17;
+      --text-muted: #5c4a3e;
+      --border-gold: #c5a059;
+      --border-gold-light: #e6c88b;
+      --accent-burgundy: #7a1c1c;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #1a1410;
+      background-image: 
+        radial-gradient(circle at center, rgba(30, 20, 15, 0.4) 0%, rgba(10, 7, 5, 0.9) 100%),
+        linear-gradient(to bottom, #140d09, #241810, #140d09);
+      color: var(--text-ink);
+      font-family: var(--font-body);
+      font-size: 21px;
+      line-height: 1.85;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+    }
+
+    /* Book Page Container */
+    .book-page {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--bg-paper);
+      background-image: radial-gradient(#e8dfc8 1px, transparent 1px);
+      background-size: 24px 24px;
+      border: 1px solid var(--border-gold);
+      box-shadow: 
+        0 0 0 12px #261b14,
+        0 0 0 14px var(--border-gold),
+        0 25px 60px rgba(0, 0, 0, 0.85);
+      padding: 4rem 4.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .book-page {
+        padding: 2.5rem 1.8rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      }
+      body {
+        padding: 1rem 0.5rem;
+        font-size: 19px;
+      }
+    }
+
+    /* Ornate Filigree Corner Accents */
+    .corner-flourish {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    /* Header & Title Block */
+    .book-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      position: relative;
+    }
+
+    .header-tag {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 600;
+    }
+
+    h1.book-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.8rem;
+    }
+
+    .book-subtitle {
+      font-style: italic;
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Victorian Decorative Rule */
+    .flourish-divider {
+      text-align: center;
+      margin: 2.5rem 0;
+      color: var(--border-gold);
+      font-size: 1.5rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* Chapter Formatting */
+    .chapter {
+      margin-bottom: 3.5rem;
+    }
+
+    .chapter-heading {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-burgundy);
+      text-align: center;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px dashed var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Paragraphs & Drop Caps */
+    p.story-paragraph {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+      text-indent: 2em;
+    }
+
+    p.story-paragraph.first-para {
+      text-indent: 0;
+    }
+
+    p.story-paragraph.first-para::first-letter {
+      font-family: var(--font-heading);
+      font-size: 3.8em;
+      float: left;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+    }
+
+    /* Vocabulary Words Styling in Victorian Book */
+    .vocab {
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    /* Book Plate Illustrations */
+    .book-plate {
+      margin: 3rem 0;
+      text-align: center;
+      background: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      padding: 1rem;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .book-plate img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #d4c5a9;
+      margin: 0 auto;
+    }
+
+    .plate-caption {
+      margin-top: 0.9rem;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .plate-number {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+
+    /* Book Footer */
+    .book-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-gold-light);
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="book-page">
+    
+    <!-- Filigree Corners -->
+    <div class="corner-flourish corner-tl"></div>
+    <div class="corner-flourish corner-tr"></div>
+    <div class="corner-flourish corner-bl"></div>
+    <div class="corner-flourish corner-br"></div>
+
+    <!-- Title Block -->
+    <header class="book-header">
+      <span class="header-tag">Derived from: curriculum/spelling/vcr_5_lesson1.pdf</span>
+      <h1 class="book-title">The Great Circular Adventure</h1>
+      <p class="book-subtitle">Being a Pleasant & Wholesome Tale of the Five Playful Friends</p>
+    </header>
+
+    <!-- Chapter I -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter I — The Unicycle & The Circular Path</h2>
+      
+      <p class="story-paragraph first-para">
+        On a bright and gilded morning in Oakwood Meadow, five inseparable companions ventured forth into the sunshine. Bounce, a springy bunny rabbit with long expressive ears, hopped onto a slender, single-wheeled <span class="vocab">unicycle</span>. Balancing with astonishing grace, she pedaled smoothly along a stone pathway shaped in a perfect, <span class="vocab">circular</span> loop.
+      </p>
+
+      <p class="story-paragraph">
+        "Observe!" giggled Bounce, as her single wheel hummed against the cobblestones. "Because this path is round, no matter how far I travel, every turn brings me gently back to where we began!"
+      </p>
+
+      <p class="story-paragraph">
+        Paw, a light-grey speckled puppy overflowing with enthusiasm, let out a joyful bark and bounded after her. He raced along the entire <span class="vocab">circuit</span> of the meadow, following the unbroken trail from the foot of the ancient Oak Tree all the way back to its starting root. Beside him, Ali Baba, a tall and golden camel, bounded in high-spirited leaps, clearing the decorative hurdles along the path with effortless agility.
+      </p>
+
+      <!-- Plate I -->
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/friends_unicycle_circuit.jpg" alt="Plate I: Bounce riding her unicycle along the circular path surrounded by her four companions">
+        <figcaption class="plate-caption">
+          <span class="plate-number">Plate I</span>
+          Bounce balances gracefully upon her unicycle along the circular circuit, as Paw, Buck, Nile, and Ali Baba look on in delight.
+        </figcaption>
+      </figure>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter II -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter II — The Splash & The Whirling Wind</h2>
+      
+      <p class="story-paragraph first-para">
+        Halting near the riverbank to rest, Nile, a gentle green crocodile with dark scaled markings, glided smoothly into the cool stream. Paddling his tail in rhythmic strokes, Nile worked to <span class="vocab">circulate</span> the refreshing water into every duck pond, lily basin, and winding creek across the meadow.
+      </p>
+
+      <p class="story-paragraph">
+        Meanwhile, upon the grassy knoll, Buck the goat spotted a large, hollow wooden hoop. Lowering his head with playful mischief, Buck gave the hoop a brisk nudge with his smooth grey curved horns. Down the incline it rolled, gathering speed until it stirred the crisp autumn leaves into a swirling <span class="vocab">cyclone</span> of gold and crimson wind.
+      </p>
+
+      <p class="story-paragraph">
+        Entranced by the dancing vortex of leaves, the five companions seated themselves in a quiet <span class="vocab">semicircle</span> upon the velvet grass, forming a neat half-circle to marvel at the swirling breeze together.
+      </p>
+
+      <!-- Plate II -->
+      <figure class="book-plate">
+        <img src="../../assets/illustrations/friends_semicircle_recycle.jpg" alt="Plate II: The five companions arranged in a curved semicircle arc upon the grass">
+        <figcaption class="plate-caption">
+          <span class="plate-number">Plate II</span>
+          The five playful companions arranged in a distinct curved semicircle upon the velvet grass, facing inward together.
+        </figcaption>
+      </figure>
+    </section>
+
+    <div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+    <!-- Chapter III -->
+    <section class="chapter">
+      <h2 class="chapter-heading">Chapter III — The Work of Recycling & The Life Cycle</h2>
+      
+      <p class="story-paragraph first-para">
+        When the breeze at last grew still, Paw noticed several discarded tin cans and paper wrappers left near the meadow pavilion. "We must keep our woodland home pristine," barked Paw, gently rolling a fallen bottle with his nose.
+      </p>
+
+      <p class="story-paragraph">
+        "We shall <span class="vocab">recycle</span> them!" declared Ali Baba. Working in joyful harmony, Nile carried the containers in his snout, Buck rolled the cardboards, and Bounce tossed them neatly into the sorting bins. Using their clever minds, they even gathered leftover timber to fashion new hurdles for their running track.
+      </p>
+
+      <p class="story-paragraph">
+        As dusk settled softly over the meadow and stars began to glitter, the five tired friends curled up together under the shelter of the Oak Tree. Bounce rested her head against Nile's soft green side. "Is it not wonderful," she murmured softly, "how all of nature moves in a peaceful <span class="vocab">cycle</span>—from sunrise to sunset, and from play to rest, only to begin anew tomorrow?"
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="book-footer">
+      ❖ &nbsp; Finis &nbsp; ❖
+    </footer>
+
+  </article>
+
+</body>
+</html>

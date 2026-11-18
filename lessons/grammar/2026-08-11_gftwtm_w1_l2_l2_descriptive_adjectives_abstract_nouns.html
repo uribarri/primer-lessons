@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="primer-week" content="1">
+  <meta name="primer-day" content="2">
+  <meta name="primer-uuid" content="a9ee8b62-b253-543d-93bc-cfda2296f985">
+  <title>The Gallery of Whispered Words — L2: Descriptive Adjectives, Abstract Nouns</title>
+  <!-- Google Fonts: Cormorant Garamond & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Neo-Victorian Paper & Typography Palette */
+    :root {
+      --bg-paper: #f9f5eb;
+      --bg-paper-dark: #f2ebd9;
+      --text-ink: #2b1f17;
+      --text-muted: #5c4a3e;
+      --border-gold: #c5a059;
+      --border-gold-light: #e6c88b;
+      --accent-burgundy: #7a1c1c;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Cormorant Garamond', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #1a1410;
+      background-image: 
+        radial-gradient(circle at center, rgba(30, 20, 15, 0.4) 0%, rgba(10, 7, 5, 0.9) 100%),
+        linear-gradient(to bottom, #140d09, #241810, #140d09);
+      color: var(--text-ink);
+      font-family: var(--font-body);
+      font-size: 21px;
+      line-height: 1.85;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+    }
+
+    /* Book Page Container */
+    .book-page {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--bg-paper);
+      background-image: radial-gradient(#e8dfc8 1px, transparent 1px);
+      background-size: 24px 24px;
+      border: 1px solid var(--border-gold);
+      box-shadow: 
+        0 0 0 12px #261b14,
+        0 0 0 14px var(--border-gold),
+        0 25px 60px rgba(0, 0, 0, 0.85);
+      padding: 4rem 4.5rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .book-page {
+        padding: 2.5rem 1.8rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      }
+      body {
+        padding: 1rem 0.5rem;
+        font-size: 19px;
+      }
+    }
+
+    /* Ornate Filigree Corner Accents */
+    .corner-flourish {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .corner-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .corner-br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    /* Header & Title Block */
+    .book-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gold-light);
+      position: relative;
+    }
+
+    .header-tag {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 600;
+    }
+
+    h1.book-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      line-height: 1.25;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.8rem;
+    }
+
+    .book-subtitle {
+      font-style: italic;
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Victorian Decorative Rule */
+    .flourish-divider {
+      text-align: center;
+      margin: 2.5rem 0;
+      color: var(--border-gold);
+      font-size: 1.5rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* Chapter Formatting */
+    .chapter {
+      margin-bottom: 3.5rem;
+    }
+
+    .chapter-heading {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent-burgundy);
+      text-align: center;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px dashed var(--border-gold-light);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Paragraphs & Drop Caps */
+    p.story-paragraph {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+      text-indent: 2em;
+    }
+
+    p.story-paragraph.first-para {
+      text-indent: 0;
+    }
+
+    p.story-paragraph.first-para::first-letter {
+      font-family: var(--font-heading);
+      font-size: 3.8em;
+      float: left;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-burgundy);
+      font-weight: 700;
+    }
+
+    /* Vocabulary Words Styling */
+    .vocab {
+      font-weight: 700;
+      color: var(--accent-burgundy);
+      font-style: italic;
+    }
+
+    /* Book Plate Illustrations */
+    .book-plate {
+      margin: 3rem 0;
+      text-align: center;
+      background: var(--bg-paper-dark);
+      border: 1px solid var(--border-gold);
+      padding: 1rem;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .book-plate img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #d4c5a9;
+      margin: 0 auto;
+    }
+
+    .plate-caption {
+      margin-top: 0.9rem;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .plate-number {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-burgundy);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+
+    /* Book Footer */
+    .book-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-gold-light);
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="book-page">
+    
+    <!-- Filigree Corners -->
+    <div class="corner-flourish corner-tl"></div>
+    <div class="corner-flourish corner-tr"></div>
+    <div class="corner-flourish corner-bl"></div>
+    <div class="corner-flourish corner-br"></div>
+
+    <!-- Title Block -->
+    <header class="book-header">
+      <span class="header-tag">Week 1 • Day 2 — Grammar (gftwtm_w1_l2)</span>
+      <h1 class="book-title">The Gallery of Whispered Words</h1>
+      <p class="book-subtitle">Being a Pleasant & Wholesome Tale of Dilly the Armadillo & Little Gray the Plush Donkey</p>
+    </header>
+
+    <section class="chapter">
+  <h2 class="chapter-heading">Chapter I — The Cabinet of Tactile Treasures</h2>
+  <p class="story-paragraph first-para">High upon the polished mahogany desk within the sunlit study of Willow Cottage, Miss Dilly the plush armadillo engaged herself in a most meticulous undertaking. Her ribbed, corduroy-textured blue-grey armor plate caught the golden slant of the afternoon sun, whilst the pebbled plush sections of her shell glistened like fine river cobbles. With a earnest tilt of her smooth light-grey head and a twitch of her tapered pink-tipped snout, she lifted a magnifying lens in one stubby grey paw to inspect an array of miniature curiosities.</p>
+  <p class="story-paragraph">Beside her, Little Gray, a small plush donkey whose mottled greyish-brown fur rustled delightfully with every bound, hopped from one dark brown hoof to the other. His long fuzzy ears pricked up with earnest fascination, and his brown-tufted tail gave an impetuous swish against the dark wood. "Oh, Miss Dilly!" he exclaimed, his dark embroidered nostrils twitching with joy. "What wondrous things have we collected today?"</p>
+  <p class="story-paragraph">"We are assembling a gallery, my dear Little Gray," Dilly replied softly, her voice carrying the measured cadence of an accomplished curator. "A cabinet of physical wonders. But to catalog them properly, one must employ the precise magic of every <span class="vocab">descriptive adjective</span>."</p>
+  <p class="story-paragraph">Little Gray tilted his white snout, his small dark eyes blinking in curiosity. "A <span class="vocab">descriptive adjective</span>? Is that a kind of secret key?"</p>
+  <p class="story-paragraph">"In a manner of speaking," smiled Dilly, turning to a river stone resting on a piece of baize. "A <span class="vocab">descriptive adjective</span> is a word that paints the physical truth of an object. It describes what our five senses—our eyes, ears, noses, tongues, and paws—can perceive directly. Observe this stone, Little Gray. Run your dark brown hooves across its surface."</p>
+  <p class="story-paragraph">The little donkey leaned forward, tapping his hoof gently against the cold gray stone. "It is not smooth like your snout, Dilly! It feels rough and bumpy."</p>
+  <p class="story-paragraph">"Precisely!" praised Dilly. "The word <span class="vocab">pebbled</span> is a <span class="vocab">descriptive adjective</span>. It tells us about its texture. And look here—at this coil of woven thread." She picked up a slender spool. "How does the sun catch it?"</p>
+  <p class="story-paragraph">"It glints! It looks bright and shining!" Little Gray offered enthusiastically.</p>
+  <p class="story-paragraph">"Indeed," Dilly affirmed gently. "It possesses a <span class="vocab">shimmering</span> sheen. <span class="vocab">Shimmering</span> is an adjective that reveals how it appears to our eyes. And what of this brass gear from the old mantle clock?"</p>
+  <p class="story-paragraph">Little Gray nudged the wheel with his nose, nudging its dense weight. "Oof! It is exceedingly <span class="vocab">heavy</span> and feels <span class="vocab">cold</span>."</p>
+
+  <figure class="book-plate">
+    <img src="../../assets/illustrations/gallery_words_plate_1.jpg" alt="Miss Dilly carefully examines a textured stone upon the mahogany table, while Little Gray observes with bright curiosity.">
+    <figcaption class="plate-caption">
+      <span class="plate-number">Plate I</span>
+      Miss Dilly carefully examines a textured stone upon the mahogany table, while Little Gray observes with bright curiosity.
+    </figcaption>
+  </figure>
+
+  <p class="story-paragraph">"Splendid!" cheered Dilly, writing the words neatly upon a tiny paper placard with a fine fountain pen. "<span class="vocab">Heavy</span>, <span class="vocab">cold</span>, <span class="vocab">shimmering</span>, and <span class="vocab">pebbled</span>—all of these are <span class="vocab">descriptive adjectives</span> because they belong to the concrete world of sight, touch, and weight. They describe the physical form of things we can hold in our paws."</p>
+  <p class="story-paragraph">Little Gray beamed with pride, his long ears standing straight up. He trotted around the mahogany table, delighting in naming every texture he could find—the <span class="vocab">corduroy</span> ridges of Dilly's back armor, the <span class="vocab">soft</span> white plush of his own muzzle, and the <span class="vocab">polished</span> grain of the wooden table. Physical reality, he realized, was rich with wonderful describing words.</p>
+</section>
+
+<div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+<section class="chapter">
+  <h2 class="chapter-heading">Chapter II — The Lantern of Intangible Light</h2>
+  <p class="story-paragraph first-para">As the sun dipped lower, casting long lavender shadows across the study, Little Gray wandered toward a quiet corner of the grand mahogany desk. There stood a secondary tier of tiny exhibition stands—a series of elegant miniature pedestals wrapped in crimson velvet. Yet, as the little donkey stepped closer and squirted his eyes to look, his mouth fell open in utter bewilderment.</p>
+  <p class="story-paragraph">"Miss Dilly!" he called out, scampering back to the armadillo. "Come quickly! Someone has stolen the treasures from the second row! The velvet stands are entirely empty!"</p>
+  <p class="story-paragraph">Dilly trotted over on her four stubby grey legs, her tapered tail swishing with quiet amusement. She stopped beside a small, softly glowing brass lantern that sat upon the desk, illuminating the vacant velvet cushions with warm light.</p>
+  <p class="story-paragraph">"No thief has visited us, my dear Little Gray," Dilly explained mildly, her dark grey ears with their delicate pink inner lining twitching with affection. "These pedestals are reserved for treasures of a very different nature. They are dedicated to the <span class="vocab">abstract noun</span>."</p>
+
+  <figure class="book-plate">
+    <img src="../../assets/illustrations/gallery_words_plate_2.jpg" alt="Little Gray gazes in wonder at the velvet pedestals illuminated by the soft glow of a brass lantern.">
+    <figcaption class="plate-caption">
+      <span class="plate-number">Plate II</span>
+      Little Gray gazes in wonder at the velvet pedestals illuminated by the soft glow of a brass lantern.
+    </figcaption>
+  </figure>
+
+  <p class="story-paragraph">Little Gray stretched out one dark brown hoof and reached cautiously toward the top of an empty pedestal. He patted the air above the crimson velvet. "There is nothing here to touch," he said, shaking his head. "My hooves feel only space. My eyes see no stone, no gear, no ribbon."</p>
+  <p class="story-paragraph">"And that is precisely the point," said Dilly, placing a gentle paw on his shoulder. "An <span class="vocab">abstract noun</span> is a word that names a concept, an emotion, a state of being, or an idea. Unlike a concrete object, an <span class="vocab">abstract noun</span> cannot be touched with your paws, seen with your eyes, or heard with your ears. Yet, it is as real as any stone on this table."</p>
+  <p class="story-paragraph">Little Gray scratched his short brown mane with his hoof. "If I cannot touch it, how do I know it is there?"</p>
+  <p class="story-paragraph">"Consider the feeling that fills your chest when we embark upon an adventure," Dilly suggested, pointing to the glowing brass lantern. "What do you feel when you step into the dark corner without fear?"</p>
+  <p class="story-paragraph">"I feel... <span class="vocab">courage</span>!" Little Gray declared softly.</p>
+  <p class="story-paragraph">"Yes!" whispered Dilly. "<span class="vocab">Courage</span> is an <span class="vocab">abstract noun</span>. You cannot put <span class="vocab">courage</span> in a jar or weigh it upon a balance scale, but you hold it within your heart. And when you wait patiently for me to finish my cataloging without interrupting, what are you demonstrating?"</p>
+  <p class="story-paragraph">"I am showing <span class="vocab">patience</span>," Little Gray answered, his eyes shining with sudden understanding.</p>
+  <p class="story-paragraph">"Indeed! <span class="vocab">Patience</span> is another <span class="vocab">abstract noun</span>," Dilly affirmed. "So too is <span class="vocab">warmth</span>, not merely the physical heat of the stove, but the gentle comfort of our friendship. And look at you now, bouncing with bright spirits—that vibrant energy you possess is <span class="vocab">enthusiasm</span>!"</p>
+  <p class="story-paragraph">Little Gray gasped in delight, his tail tip trembling with excitement. "Then these velvet stands are not empty at all! They are holding ideas and feelings that give meaning to everything else in the study!"</p>
+</section>
+
+<div class="flourish-divider">❦ &nbsp; ✦ &nbsp; ❦</div>
+
+<section class="chapter">
+  <h2 class="chapter-heading">Chapter III — A Harmony of Form and Spirit</h2>
+  <p class="story-paragraph first-para">With the lamps lit and the study filled with cozy twilight, the two friends set to work completing their grand exhibition. Little Gray had discovered that language was like a magnificent tapestry, woven together by distinct threads: the physical qualities described by <span class="vocab">descriptive adjectives</span>, and the quiet, invisible truths named by <span class="vocab">abstract nouns</span>.</p>
+  <p class="story-paragraph">"Let us pair them together," proposed Dilly, arranging inkpots and cards. "Each physical object on our catalog table shall stand beside the unseen idea it inspires."</p>
+  <p class="story-paragraph">Little Gray bounded forward to assist. He selected a heavy brass padlock that lay upon the mahogany surface. "This lock is <span class="vocab">sturdy</span> and <span class="vocab">strong</span>," he said, proudly using his <span class="vocab">descriptive adjectives</span> to capture its physical nature. "It keeps our study chest safe."</p>
+  <p class="story-paragraph">"And what idea does it represent upon our velvet pedestal?" Dilly inquired, her pen poised over a fresh card.</p>
+  <p class="story-paragraph">"It represents <span class="vocab">security</span>!" Little Gray answered confidently, naming the <span class="vocab">abstract noun</span>.</p>
+  <p class="story-paragraph">"Magnificent!" Dilly wrote the words down with elegant flourishes. Next, she gestured to the small brass lantern that cast a soft golden radiance over their work. "And this lamp? Describe its physical presence first, my clever friend."</p>
+  <p class="story-paragraph">"It is a <span class="vocab">glowing</span>, <span class="vocab">radiant</span> lamp," Little Gray offered, admiring the warm light reflecting off Dilly's corduroy armor plate. "And the idea it brings to a dark room is <span class="vocab">hope</span>!"</p>
+  <p class="story-paragraph">"A perfect pair," Dilly agreed warmly. "A <span class="vocab">glowing</span> lamp of physical brass, illuminating the abstract spirit of <span class="vocab">hope</span>."</p>
+  <p class="story-paragraph">Together, they arranged item after item, creating a marvelous balance throughout the cabinet. They placed a delicate, <span class="vocab">fragile</span> silk ribbon beside the pedestal marked <span class="vocab">friendship</span>, and a <span class="vocab">solid</span>, <span class="vocab">ancient</span> wooden bound book beside the pedestal marked <span class="vocab">wisdom</span>.</p>
+  <p class="story-paragraph">When the final card was laid in place, Little Gray stood back on his dark brown hooves, leaning his mottled greyish-brown shoulder against Dilly's smooth plush shell. The gallery was complete. Every tangible thing had been described by vivid sensory words, and every intangible feeling had been honored by its true name.</p>
+  <p class="story-paragraph">"We have brought true <span class="vocab">harmony</span> to the study," Little Gray murmured softly, pleased to recognize <span class="vocab">harmony</span> as yet another marvelous abstract idea.</p>
+  <p class="story-paragraph">"Indeed we have," Dilly replied, tucking her snout in contented satisfaction. "For when physical form and inward spirit are spoken with care, the world becomes a gallery of endless wonder."</p>
+</section>
+
+    <!-- Footer -->
+    <footer class="book-footer">
+      ❖ &nbsp; Finis &nbsp; ❖
+    </footer>
+
+  </article>
+
+</body>
+</html>
